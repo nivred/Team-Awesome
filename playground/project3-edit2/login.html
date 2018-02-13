@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project 3 Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">
+
+	<div class="col-sm-3 col-md-4"></div>
+	
+		<div id="login" class="well col-sm-6 col-md-4">
+        <h2>User Login</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">
+						<form action="/api/login" method="POST">
+							<div class="form-group text-left">
+								<label for="email">E-Mail</label>
+								<input type="text" class="form-control" id="email" placeholder="contact@example.com">
+							</div>
+							<div class="form-group text-left">
+								<label for="pwd">Password</label>
+								<input type="text" class="form-control" id="password" placeholder="Password">
+							</div>
+							<button type="submit" class="btn btn-lg">Sign In</button>
+							<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
+						</form>
+					
+					</div> <!-- .end panel-body -->
+        </div> <!-- #end panel -->
+			</div> <!-- #end login -->
+
+		<div class="col-sm-3 col-md-4"></div>
+
+	</div> <!-- .end row content -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+	
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title">New User Info</h2>
+				</div>
+	
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form action="/action_page.php">
+						<div class="form-group">
+							<label for="username">Username:</label>
+							<input type="text" class="form-control" id="pwd">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address:</label>
+							<input type="email" class="form-control" id="email">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Password:</label>
+							<input type="password" class="form-control" id="pwd">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Confirm Password:</label>
+							<input type="password" class="form-control" id="pwd">
+						</div>
+					</form>
+				</div>
+	
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-lg" data-dismiss="modal">Submit</button>
+				</div>
+	
+			</div> <!-- .end modal-content -->
+		</div> <!-- .end modal-dialog -->
+	</div> <!-- .end Modal -->
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
