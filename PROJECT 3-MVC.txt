@@ -1,0 +1,25 @@
+CLIENT (VIEW)
+   > PUBIC
+      > SRC
+         > COMPONENTS
+            - generic html elements
+         > PAGES
+            - login, game(main)
+         > UTIL
+            - routes(true) of pages
+CONTROLLERS
+   > DB
+MODELS
+   > DB
+   > TABLES
+ROUTES
+   > API
+      - CRUD
+SCRIPTS
+   > BUILD
+   - seeds
+
+
+
+
+
