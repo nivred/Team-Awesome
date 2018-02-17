@@ -64,30 +64,30 @@ class Login extends Component {
                 </div>
 
                 <div className="modal-body">
-                  <form action="/action_page.php">
+                  <form action="/api/register" method="POST">
                     <div className="form-group">
                       <label for="username">Username:</label>
-                      <input type="text" className="form-control" id="pwd" />
+                      <input type="text" className="form-control" id="username" name="username" />
                     </div>
                     <div className="form-group">
                       <label for="email">Email address:</label>
-                      <input type="email" className="form-control" id="email" />
+                      <input type="email" className="form-control" id="email" name="email" />
                     </div>
                     <div className="form-group">
                       <label for="pwd">Password:</label>
-                      <input type="password" className="form-control" id="pwd" />
+                      <input type="password" className="form-control" id="pwd1" name="pwd1" />
                     </div>
                     <div className="form-group">
                       <label for="pwd">Confirm Password:</label>
-                      <input type="password" className="form-control" id="pwd" />
+                      <input type="password" className="form-control" id="pwd2" name="pwd2" />
+                    </div>
+                 
+          
+                    <div className="modal-footer">
+                      <button type="submit" className="btn btn-lg" data-dismiss="modal">Submit</button>
                     </div>
                   </form>
                 </div>
-          
-                <div className="modal-footer">
-                  <button type="submit" className="btn btn-lg" data-dismiss="modal">Submit</button>
-                </div>
-          
               </div> 
             </div> 
           </div> 
