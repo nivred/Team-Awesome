@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import ClickItem from "./Components/ClickItem";
+import data from "./data.json";
+
+
 
 class Login extends Component {
   render() {
@@ -16,7 +20,7 @@ class Login extends Component {
         
         <div className="wrapperAnimation">
           <h1 className="goodVibration">
-            <span>B<span className="redText">R</span>AIN</span><br />
+            <span>BR<span className="redText">AI</span>N</span><br />
             <span>DEAD</span>
           </h1>
         </div>
@@ -93,6 +97,12 @@ class Login extends Component {
 }
 
 class Game extends Component {
+  
+    state = {
+      data,
+      score: 0,
+      topScore: 0
+    };
 
   render() {
     return (
@@ -168,8 +178,17 @@ class Game extends Component {
             </div>
 
             <div id="main-content" className="col-sm-8 col-md-9 text-center"> 
-              <div className="row">
-                <div className="col-sm-3 col-md-3">
+            {this.state.data.map(item => (
+            <ClickItem
+              key={item.id}
+              id={item.id}
+              shake={!this.state.score && this.state.topScore}
+              handleClick={this.handleItemClick}
+              image={item.image}
+            />
+          ))}
+              {/* {/* <div className="row"> */}
+                {/* <div className="col-sm-3 col-md-3">
                   <div className="card" data-tilt data-tilt-glare="true" data-tilt-transition="true"  data-tilt-scale="1.1">
                     <div className="card-block">
                     </div>
@@ -243,11 +262,11 @@ class Game extends Component {
                 </div>        
                 <div className="col-sm-3 col-md-3">
                   <div className="card">
-                    <div className="card-block">
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    <div className="card-block"> */}
+                    {/* </div> */} */}
+                  {/* </div> */}
+                {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div> 
