@@ -16,8 +16,8 @@ class Login extends Component {
         
         <div className="wrapperAnimation">
           <h1 className="goodVibration">
-            <span>T<span className="redText">O</span>TAL</span><br />
-            <span>RECALL</span>
+            <span>B<span className="redText">R</span>AIN</span><br />
+            <span>DEAD</span>
           </h1>
         </div>
         
