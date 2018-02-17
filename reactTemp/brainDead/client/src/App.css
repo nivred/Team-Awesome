@@ -67,9 +67,9 @@
 /*---------------------------------------------------------------*/
 
 @keyframes resonantVibration {
-	0% {top:-22vh;left:-10vw;opacity:0.05;}
-	50% {top:-18vh;left:-8vw;opacity:0.05;}
-	100% {top:-22vh;left:-10vw;opacity:0.05;}
+	0% {top:-22vh;left:4vw;opacity:0.05;}
+	50% {top:-18vh;left:2vw;opacity:0.05;}
+	100% {top:-22vh;left:4vw;opacity:0.05;}
 }
 .wrapperAnimation {
 	position:absolute;
