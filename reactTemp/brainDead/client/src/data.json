@@ -48,5 +48,15 @@
     "id": 10,
     "image": "./assets/images/zombie10.jpg",
     "clicked": false
+  },
+  {
+    "id": 11,
+    "image": "./assets/images/zombie11.jpg",
+    "clicked": false
+  },
+  {
+    "id": 12,
+    "image": "./assets/images/zombie12.jpg",
+    "clicked": false
   }
 ]
