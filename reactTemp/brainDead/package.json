@@ -7,9 +7,12 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mysql": "^2.15.0",
+    "react-scripts": "^1.1.1"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.1"
   }
 }

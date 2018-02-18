@@ -5,6 +5,7 @@ var methodOverride = require("method-override");
 //test
 
 var app = express();
+
 var port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -22,6 +23,8 @@ app.use(methodOverride("_method"));
 var routes = require("./controllers/index.js");
 
 app.use(routes);
+// app.use(app.router);
+// routes.initialize(app);
 
 app.listen(PORT, function(){
     console.log("app listening on port", PORT)

@@ -1,18 +1,19 @@
+var path = require("path");
 var express = require("express");
 var fs = require('fs');
 
 var router = express.Router();
-var PATH = '../client/public/'
+var path = '../client/public/';
 
-var orm = require('../models/orm.js')
+var orm = require('../models/orm.js');
 
 //CUSTOM MODELS
-router.use('/users', require('./userController'))
-router.use('/scores', require('./scoreController'))
-router.use('/game', require('./gameController'))
+router.use('/users', require('./userController'));
+router.use('/scores', require('./scoreController'));
+router.use('/game', require('./gameController'));
 
 //LOGIN ROUTE
-router.post("/api/login", function(req, res){
+router.post("/login", function(req, res){
 
     orm.select('users', {user_email: req.body.email}, function(result){
         if(result[0]){

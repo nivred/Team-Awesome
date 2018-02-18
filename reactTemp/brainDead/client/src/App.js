@@ -13,7 +13,7 @@ class Login extends Component {
         <nav className="navbar navbar-inverse">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="/Game">Logo</a> {/*href needs to change from /Game to /*/}
+              <a className="navbar-brand" href="/Game">Logo</a> 
             </div>
           </div>
         </nav>
@@ -33,7 +33,7 @@ class Login extends Component {
                 <h2>User Login</h2>
                 <div className="panel panel-default">
                   <div className="panel-body">
-                    <form action="/api/login" method="POST">
+                    <form action="/login" method="POST">
                       <div className="form-group text-left">
                         <label for="email">E-Mail</label>
                         <input type="text" className="form-control" id="email" placeholder="contact@example.com" />
@@ -274,6 +274,8 @@ class Game extends Component {
     )
   }
 }
+
+
 
 const App = () =>
 <Switch>
