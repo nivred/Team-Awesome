@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import ClickItem from "./Components/ClickItem";
-import data from "./data.json";
+// import data from "./data.json";
+import ShuffleDeck from "./ShuffleDeck.js";
+
+
 
 
 
 class Login extends Component {
   render() {
+    
     return (
       <div className="wrapper">
         <nav className="navbar navbar-inverse">
@@ -99,10 +103,30 @@ class Login extends Component {
 class Game extends Component {
   
     state = {
-      data,
+      ShuffleDeck,
       score: 0,
+      selected:[],
       topScore: 0
     };
+    clickHandler(cid) {
+      //  early return in case cards been selected this round or the timer is 'on'
+      if(this.state.selected.includes(cid) || this.resetTime) {
+        return;
+      }
+  
+      if(this.state.selected.length >= 1) {
+        this.resetTime = setTimeout(() => {
+          this.checkMatch();
+        }, 1500);
+      }
+  
+      this.state.selected.push(cid)
+  
+      console.log(cid, 'PROPS', this.state.selected);
+      this.setState({
+        selected: this.state.selected
+      })
+    }
 
   render() {
     return (
@@ -181,12 +205,12 @@ class Game extends Component {
             <div classname="wrapper">
               <div className="row">
               <div className="col-sm-3 col-md-3">
-                 {this.state.data.map(item => (
+                 {this.state.ShuffleDeck.map(item => (
                 <ClickItem
                 key={item.id}
                 id={item.id}
                 shake={!this.state.score && this.state.topScore}
-                handleClick={this.handleItemClick}
+                clickHandler={this.clickHandler}
                 image={item.image}
             />
                ))}
