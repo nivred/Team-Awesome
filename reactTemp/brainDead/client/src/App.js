@@ -134,8 +134,6 @@ class Login extends Component {
                       <label for="pwd">Confirm Password:</label>
                       <input type="password" className="form-control" id="pwd2" name="pwd2" />
                     </div>
-                 
-          
                     <div className="modal-footer">
                       <button type="submit" className="btn btn-lg" data-dismiss="modal">Submit</button>
                     </div>
@@ -231,16 +229,20 @@ class Game extends Component {
             </div>
 
             <div id="main-content" className="col-sm-8 col-md-9 text-center"> 
-            {this.state.data.map(item => (
-            <ClickItem
-              key={item.id}
-              id={item.id}
-              shake={!this.state.score && this.state.topScore}
-              handleClick={this.handleItemClick}
-              image={item.image}
-            />
-          ))}
-              {/* {/* <div className="row"> */}
+              <div className="row">
+                 {this.state.ShuffleDeck.map(item => (
+                <ClickItem
+                  key={item.id}
+                  id={item.id}
+                  shake={!this.state.score && this.state.topScore}
+                  clickHandler={this.clickHandler}
+                  image={item.image}
+                />
+                ))}
+              </div>
+
+               {/* <div className="row"> */}
+
                 {/* <div className="col-sm-3 col-md-3">
                   <div className="card" data-tilt data-tilt-glare="true" data-tilt-transition="true"  data-tilt-scale="1.1">
                     <div className="card-block">
@@ -316,7 +318,7 @@ class Game extends Component {
                 <div className="col-sm-3 col-md-3">
                   <div className="card">
                     <div className="card-block"> */}
-                    {/* </div> */} */}
+                    {/* </div> */}
                   {/* </div> */}
                 {/* </div> */}
               {/* </div> */}
