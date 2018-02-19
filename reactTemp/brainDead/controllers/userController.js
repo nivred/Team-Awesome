@@ -8,7 +8,7 @@ var PATH = './client/public/'
 var users = require("../models/users.js");
 
 
-router.post("/login", function(req, res){
+router.post("/api/login", function(req, res){
     console.log("req.body", req.body)
 
     users.findByEmail(req.body.email}, function(result){
@@ -33,25 +33,28 @@ router.post("/login", function(req, res){
 
 
 
-router.post("/register", function(req, res) {
+router.post("/api/register", function(req, res) {
     var data = req.body
     
-    users.createNew(data, function(result){
+    let myObj = {
+        uN: data.username,
+        email: data.email,
+        pwd1: data.pwd1,
+        pwd2: data.pwd2
+    }   
 
-        res.send({
-            status: 'success',
-            url: '/'
-        });
-    });
+    
+    //if pwd1 = pwd2
+
+    // users.createNew(data, function(result){
+
+    //     res.send({
+    //         status: 'success',
+    //         url: '/'
+    //     });
+    // });
+
+    res.send(console.log(myObj));
 });
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
