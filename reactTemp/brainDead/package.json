@@ -8,6 +8,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.16.2",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
@@ -15,11 +16,8 @@
     "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1", 
+    "concurrently": "^3.5.1",
     "nodemon": "^1.15.0"
-  },
-  "dependencies": {
-    "express": "^4.16.2"
   },
   "license": "ISC"
 }

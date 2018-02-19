@@ -1,31 +1,34 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
-
+const express = require('express');
+const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
+const routes = require("./controllers/index.js");
 //test
 
-var app = express();
 
-var port = process.env.PORT || 5000;
+const app = express();
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
-
+// // Serve static content for the app from the "public" directory in the application directory.
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("client/build"));
 
-// Override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
+app.use(routes);
+// // Override with POST having ?_method=DELETE
+// app.use(methodOverride("_method"));
+
+app.get('/api/hello', (req, res) => {
+  res.send({ express: 'Hello From Express' });
+});
 
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/index.js");
+// const routes = require("./controllers/index.js");
+// console.log(routes);
 
-app.use(routes);
 // app.use(app.router);
 // routes.initialize(app);
 
-app.listen(PORT, function(){
-    console.log("app listening on port", PORT)
-});
+
