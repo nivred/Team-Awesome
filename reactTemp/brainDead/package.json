@@ -1,16 +1,25 @@
 {
-  "name": "brainDead",
+  "name": "BrainDead",
   "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
-    "client": "cd client && yarn start",
     "server": "nodemon server.js",
+    "client": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mysql": "^2.15.0",
+    "react-scripts": "^1.1.1",
     "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
-  }
+    "concurrently": "^3.5.1", 
+    "nodemon": "^1.15.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "license": "ISC"
 }
