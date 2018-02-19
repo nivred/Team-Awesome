@@ -178,15 +178,17 @@ class Game extends Component {
             </div>
 
             <div id="main-content" className="col-sm-8 col-md-9 text-center"> 
+            <div className="row">
             {this.state.data.map(item => (
-            <ClickItem
-              key={item.id}
-              id={item.id}
-              shake={!this.state.score && this.state.topScore}
-              handleClick={this.handleItemClick}
-              image={item.image}
-            />
-          ))}
+              <ClickItem
+                key={item.id}
+                id={item.id}
+                shake={!this.state.score && this.state.topScore}
+                handleClick={this.handleItemClick}
+                image={item.image}
+              />
+            ))}
+            </div>
               {/* {/* <div className="row"> */}
                 {/* <div className="col-sm-3 col-md-3">
                   <div className="card" data-tilt data-tilt-glare="true" data-tilt-transition="true"  data-tilt-scale="1.1">
