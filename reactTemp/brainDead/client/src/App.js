@@ -2,16 +2,58 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import ClickItem from "./Components/ClickItem";
-// import data from "./data.json";
-import ShuffleDeck from "./ShuffleDeck.js";
-
-
-
+import data from "./data.json";
+import API from "./utils/API";
+// import users from "../../models/users";
 
 
 class Login extends Component {
-  render() {
+
+  state = {
+    response: "",
+    name: "",
+    email: "",
+    password: ""
+  };
+
+  // componentDidMount() {
+  //   this.serverConnect()
+  //     .then(res => this.setState({ response: res.express }))
+  //     .catch(err => console.log(err));
+  // };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if(this.state.email && this.state.password) {
+      API.login({
+        name: "newuser",
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    }
+  };
+
+  // serverConnect = async () => {
+  //   const response = await fetch('/api/hello');
+  //   const body = await response.json();
     
+  //   if (response.status !== 200) throw Error(body.message);
+
+  //   return body;
+
+
+  // };
+
+  render() {
     return (
       <div className="wrapper">
         <nav className="navbar navbar-inverse">
@@ -37,18 +79,25 @@ class Login extends Component {
                 <h2>User Login</h2>
                 <div className="panel panel-default">
                   <div className="panel-body">
-                    <form action="/login" method="POST">
+                    <form action="/api/login" method="GET">
                       <div className="form-group text-left">
                         <label for="email">E-Mail</label>
-                        <input type="text" className="form-control" id="email" placeholder="contact@example.com" />
+                        <input type="text" className="form-control" id="lemail" placeholder="contact@example.com" name="email"
+                        value={this.state.email}
+                        onChange={this.handleInputChange}  />
                       </div>
                       <div className="form-group text-left">
                         <label for="pwd">Password</label>
-                        <input type="text" className="form-control" id="password" placeholder="Password" />
+                        <input type="text" className="form-control" id="lpassword" placeholder="Password" name="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChange} />
                       </div>
-                      <button type="submit" className="btn btn-lg">Sign In</button>
+                      <button type="submit" className="btn btn-lg"
+                      disabled={!(this.state.email && this.state.password)}
+                      onClick={this.handleFormSubmit}>Sign In</button>
                       <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
-                    </form>
+                    <p>{this.state.response}
+                    </p></form>
                   
                   </div>
                 </div>
@@ -75,7 +124,7 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                       <label for="email">Email address:</label>
-                      <input type="email" className="form-control" id="email" name="email" />
+                      <input type="email" className="form-control" id="remail" name="email" />
                     </div>
                     <div className="form-group">
                       <label for="pwd">Password:</label>
@@ -103,30 +152,10 @@ class Login extends Component {
 class Game extends Component {
   
     state = {
-      ShuffleDeck,
+      data,
       score: 0,
-      selected:[],
       topScore: 0
     };
-    clickHandler(cid) {
-      //  early return in case cards been selected this round or the timer is 'on'
-      if(this.state.selected.includes(cid) || this.resetTime) {
-        return;
-      }
-  
-      if(this.state.selected.length >= 1) {
-        this.resetTime = setTimeout(() => {
-          this.checkMatch();
-        }, 1500);
-      }
-  
-      this.state.selected.push(cid)
-  
-      console.log(cid, 'PROPS', this.state.selected);
-      this.setState({
-        selected: this.state.selected
-      })
-    }
 
   render() {
     return (
@@ -202,23 +231,16 @@ class Game extends Component {
             </div>
 
             <div id="main-content" className="col-sm-8 col-md-9 text-center"> 
-            <div classname="wrapper">
-              <div className="row">
-              <div className="col-sm-3 col-md-3">
-                 {this.state.ShuffleDeck.map(item => (
-                <ClickItem
-                key={item.id}
-                id={item.id}
-                shake={!this.state.score && this.state.topScore}
-                clickHandler={this.clickHandler}
-                image={item.image}
+            {this.state.data.map(item => (
+            <ClickItem
+              key={item.id}
+              id={item.id}
+              shake={!this.state.score && this.state.topScore}
+              handleClick={this.handleItemClick}
+              image={item.image}
             />
-               ))}
-               </div>
-               </div>
-               </div>
-
-               {/* <div className="row"> */}
+          ))}
+              {/* {/* <div className="row"> */}
                 {/* <div className="col-sm-3 col-md-3">
                   <div className="card" data-tilt data-tilt-glare="true" data-tilt-transition="true"  data-tilt-scale="1.1">
                     <div className="card-block">
