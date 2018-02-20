@@ -20,7 +20,7 @@ class Game extends Component {
         return (
             <div className="wrapper">
                 <div className="container-fluid text-center">    
-                    <div id="main-content" className="row content">
+                    <div id="main-content" className="row content col-md-3">
                         {this.state.data.map(item => (
                             <ClickItem
                                 key={item.id}
@@ -106,7 +106,7 @@ class Game extends Component {
                             <div className="col-sm-3 col-md-3">
                             <div className="card">
                                 <div className="card-block"> */}
-                                {/* </div> */} */}
+                                {/* </div> */}
                             {/* </div> */}
                             {/* </div> */}
                         {/* </div> */}
