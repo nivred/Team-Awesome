@@ -1,12 +1,9 @@
 {
-<<<<<<< HEAD
-  "name": "example-create-react-app-express",
-=======
   "name": "BrainDead-React",
->>>>>>> 1ee7e5ebc3edbd72bf8366d972fdee96189b222f
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",

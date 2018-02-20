@@ -12,13 +12,6 @@
     "express": "^4.16.2",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
-<<<<<<< HEAD
-    "react-scripts": "^1.1.1"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.1"
-  }
-=======
     "react-scripts": "^1.1.1",
     "shuffle-array": "^1.0.1"
   },
@@ -27,5 +20,4 @@
     "nodemon": "^1.15.0"
   },
   "license": "ISC"
->>>>>>> 1ee7e5ebc3edbd72bf8366d972fdee96189b222f
 }

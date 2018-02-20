@@ -13,7 +13,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 // // Serve static content for the app from the "public" directory in the application directory.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 
 app.use(routes);
 // // Override with POST having ?_method=DELETE

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
 import ClickItem from "./ClickItem";
-import data from "../data.json";
+import ShuffleDeck from "../ShuffleDeck"
 
 class Game extends Component {
   
     state = {
-      data,
+      ShuffleDeck,
       score: 0,
       topScore: 0
     };
@@ -21,7 +21,7 @@ class Game extends Component {
             <div className="wrapper">
                 <div className="container-fluid text-center">    
                     <div id="main-content" className="row content col-md-3">
-                        {this.state.data.map(item => (
+                        {this.state.ShuffleDeck.map(item => (
                             <ClickItem
                                 key={item.id}
                                 id={item.id}
