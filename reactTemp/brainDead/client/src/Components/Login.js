@@ -21,14 +21,14 @@ class Login extends Component {
                         <h2>User Login</h2>
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <form action="/api/login" method="POST">
+                                <form action="/api/login" method="GET">
                                     <div className="form-group text-left">
                                         <label for="email">Username/E-Mail</label>
-                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com"></input>
+                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email"></input>
                                     </div>
                                     <div className="form-group text-left">
                                         <label for="pwd">Password</label>
-                                        <input type="text" className="form-control" id="password" placeholder="Password"></input>
+                                        <input type="password" className="form-control" id="password" placeholder="Password" name="password"></input>
                                     </div>
                                     <button type="submit" className="btn btn-lg">Sign In</button>
                                     <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
