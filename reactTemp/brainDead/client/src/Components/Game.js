@@ -6,12 +6,12 @@ import ShuffleDeck from "../ShuffleDeck"
 class Game extends Component {
   
     state = {
-      ShuffleDeck,
+      ShuffleDeck: ShuffleDeck(),
       score: 0,
       topScore: 0
     };
 
-    handleItemClick = event => {
+    handleItemClick = id => {
         // make something happen
         alert('Flip Me!')
     };
@@ -29,6 +29,8 @@ class Game extends Component {
                                     shake={!this.state.score && this.state.topScore}
                                     handleClick={this.handleItemClick}
                                     image={item.image}
+                                    flipped={item.flipped}
+                                    faceDown={item.faceDown}
                                 />
                             ))}
                         </div>
