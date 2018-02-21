@@ -3,6 +3,35 @@ import '../App.css';
 // import data from "./data.json";
 
 class Login extends Component {
+    
+    state = {
+        response: "",
+        name: "",
+        email: "",
+        password: ""
+      };
+  
+      handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+    
+      handleFormSubmit = event => {
+        event.preventDefault();
+        if(this.state.email && this.state.password) {
+          API.login({
+            email: this.state.email,
+            password: this.state.password
+          })
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
+        }
+      };
+    
+    
+    
     render() {
         return (
         <div className="wrapper">
@@ -21,14 +50,18 @@ class Login extends Component {
                         <h2>User Login</h2>
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <form action="/api/login" method="GET">
+                                <form onSubmit={this.handleFormSubmit}> 
                                     <div className="form-group text-left">
-                                        <label for="email">Username/E-Mail</label>
-                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email"></input>
+                                        <label for="email">E-Mail</label>
+                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email">
+                                        value={this.state.email}
+                                        onChange={this.handleInputChange} />
                                     </div>
                                     <div className="form-group text-left">
                                         <label for="pwd">Password</label>
-                                        <input type="password" className="form-control" id="password" placeholder="Password" name="password"></input>
+                                        <input type="password" className="form-control" id="password" placeholder="Password" name="password">
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange} />
                                     </div>
                                     <button type="submit" className="btn btn-lg">Sign In</button>
                                     <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
