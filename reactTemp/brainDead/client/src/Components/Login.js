@@ -63,7 +63,9 @@ class Login extends Component {
                                         value={this.state.password}
                                         onChange={this.handleInputChange} />
                                     </div>
-                                    <button type="submit" className="btn btn-lg">Sign In</button>
+                                    <button type="submit" className="btn btn-lg"
+                                    disabled={!(this.state.email && this.state.password)}
+                                    onClick={this.handleFormSubmit}>Sign In</button>
                                     <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
                                 </form>
                             
