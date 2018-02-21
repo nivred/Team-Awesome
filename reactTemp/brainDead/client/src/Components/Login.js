@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 // import data from "./data.json";
+import API from "../utils/API";
 
 class Login extends Component {
     
