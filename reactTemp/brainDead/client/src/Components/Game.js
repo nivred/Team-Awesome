@@ -8,16 +8,32 @@ class Game extends Component {
     state = {
       ShuffleDeck: ShuffleDeck(),
       score: 0,
-      topScore: 0
+      topScore: 0,
+      selected: []
     };
 
-    handleItemClick = (id,position) => {
+    handleItemClick =  (id,position) => {
         this.setState((state)=>{
-            if (state.ShuffleDeck[position].flipped){
-                state.ShuffleDeck[position].flipped = false;
-            } else {
+            if (this.state.selected.length==1){
                 state.ShuffleDeck[position].flipped = true;
-            }
+                // alert("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
+                 setTimeout(() => {
+                    state.ShuffleDeck[position].flipped = false;
+                    state.ShuffleDeck[this.state.selected[0].position].flipped = false;
+                    console.log(state.ShuffleDeck[1]);
+                    console.log(this.state.selected);
+                    this.state.selected =[];
+                    console.log(this.state.selected);
+
+
+                    
+                }, 0);
+            }else{
+
+                state.ShuffleDeck[position].flipped = true;
+                this.state.selected.push(state.ShuffleDeck[position]);
+                console.log(this.state.selected);
+        }
             return {ShuffleDeck: state.ShuffleDeck};
         });
         
