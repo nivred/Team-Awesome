@@ -7,20 +7,35 @@ import Game from "./Components/Game";
 import ClickItem from "./Components/ClickItem";
 import API from "./utils/API";
 
-const App = () =>
+class App extends Component {
+ 
+  state = {
+    response: "",
+    name: ""
+  };
 
+  onPassName = (nameValue) => {
+    this.setState({name: nameValue});
+    console.log("App says Hi to " + nameValue);
+  };
+
+ 
+
+render() {
+return (
   <Router>
-    <div>
-      {
-        <Nav />
-      }
-      <Switch>
-        <Route exact path="/" component = {Login} />
-        <Route exact path="/Game" component = {Game} />
-      </Switch>
-    </div>
-  </Router>
+  <div>
+      <Route path="/" component = {()=> <Nav {...this.state} />} />
 
-  {/* <Route component = {NoMatch} /> */}
+    <Switch>
+      <Route exact path="/" component = {()=> <Login  onPassName={this.onPassName}  />} />
+      <Route exact path="/Game" component = {Game} />
+    </Switch>
+  </div>
+</Router>
+)
+}
 
+ 
+ }
 export default App;

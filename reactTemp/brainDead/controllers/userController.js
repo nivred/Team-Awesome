@@ -16,16 +16,20 @@ router.route("/login")
     .post(function(req,res){
         users.findByEmail(req.body.email, function(result){
             console.log(result);
- 
+            
             if(result[0]){
                 if(req.body.password === result[0].user_password){
 
                     res.send({
                         status: "Success",
+                        name: result[0].user_name,
                         url: '/game'
                     });
                 } else{
-                    res.send("Incorrect password");
+                    res.send({
+                        status: "Incorrect password",
+                        url:"/login"
+                     });
                 }
             } else{
                 res.send({

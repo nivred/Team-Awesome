@@ -5,33 +5,42 @@ import API from "../utils/API";
 
 class Login extends Component {
     
-    state = {
-        response: "",
-        name: "",
-        email: "",
-        password: ""
-      };
+
+  state = {
+    response: "",
+    name: "",
+    email: "",
+    password: ""
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
   
-      handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-      };
-    
-      handleFormSubmit = event => {
-        event.preventDefault();
-        if(this.state.email && this.state.password) {
-          API.login({
-            email: this.state.email,
-            password: this.state.password
-          })
-          .then(res => console.log(res))
-          .catch(err => console.log(err))
-        }
-      };
-    
-    
+  handlePassName = (nameValue) => {
+    this.props.onPassName(nameValue);
+    };
+
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if(this.state.email && this.state.password) {
+      API.login({
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        console.log(res);
+        this.state.name = res.data.name;
+        this.handlePassName(this.state.name);
+      })
+      .catch(err => console.log(err))
+    }
+  };
+
     
     render() {
         return (
@@ -52,7 +61,7 @@ class Login extends Component {
                         <div className="panel panel-default">
                             <div className="panel-body">
                                 <form onSubmit={this.handleFormSubmit}> 
-                                    <div className="form-group text-left">
+                                   <div className="form-group text-left">
                                         <label for="email">E-Mail</label>
                                         <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email"
                                         value={this.state.email}
@@ -61,9 +70,9 @@ class Login extends Component {
                                     <div className="form-group text-left">
                                         <label for="pwd">Password</label>
                                         <input type="password" className="form-control" id="password" placeholder="Password" name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleInputChange} />
-                                    </div>
+                                     value={this.state.password}
+                                    onChange={this.handleInputChange} />
+                                 </div>
                                     <button type="submit" className="btn btn-lg"
                                     disabled={!(this.state.email && this.state.password)}
                                     onClick={this.handleFormSubmit}>Sign In</button>
