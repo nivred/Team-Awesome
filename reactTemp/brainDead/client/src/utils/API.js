@@ -11,9 +11,9 @@ export default {
     return axios.get("/api/user");
   },
   register: function() {
-    return axios.get("/api/user/register", dataObj);
+    return axios.post("/api/user/register", dataObj);
   },
   changePassword: function() {
-    return axios.get("/api/user/password", dataObj);
+    return axios.post("/api/user/password", dataObj);
   }
 };
