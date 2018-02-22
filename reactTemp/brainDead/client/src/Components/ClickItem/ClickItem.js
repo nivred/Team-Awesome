@@ -7,7 +7,7 @@ const ClickItem = props => (
     aria-label="click item"
     onClick={() => props.handleClick(props.id, props.position)}
     style={{ backgroundImage: `url("${props.flipped ? props.image:props.faceDown}")` }}
-    className={`click-item${props.shake ? " shake" : ""} col-md-2 pull-left`}
+    className={`click-item col-md-2 pull-left`}
   />
 );
 
