@@ -13,7 +13,11 @@ class Game extends Component {
 
     handleItemClick = (id,position) => {
         this.setState((state)=>{
-            state.ShuffleDeck[position].flipped = true;
+            if (state.ShuffleDeck[position].flipped){
+                state.ShuffleDeck[position].flipped = false;
+            } else {
+                state.ShuffleDeck[position].flipped = true;
+            }
             return {ShuffleDeck: state.ShuffleDeck};
         });
         
@@ -31,7 +35,6 @@ class Game extends Component {
                                 <ClickItem
                                     key={item.id}
                                     id={item.id}
-                                    shake={!this.state.score && this.state.topScore}
                                     handleClick={this.handleItemClick}
                                     image={item.image}
                                     flipped={item.flipped}
