@@ -11,7 +11,14 @@ class Game extends Component {
       topScore: 0
     };
 
-    handleItemClick = id => {
+    handleItemClick = (id,position) => {
+        // this.state.ShuffleDeck[id].flipped=true;
+        alert(position);
+        this.setState((state)=>{
+            state.ShuffleDeck[position].flipped = true;
+            return {ShuffleDeck: state.ShuffleDeck};
+        });
+        
         // make something happen
         alert('Flip Me!')
     };
@@ -31,6 +38,7 @@ class Game extends Component {
                                     image={item.image}
                                     flipped={item.flipped}
                                     faceDown={item.faceDown}
+                                    position={item.position}
                                 />
                             ))}
                         </div>

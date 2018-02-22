@@ -81,13 +81,13 @@ const ShuffleDeck = () => {
 		flipped: false,
 		faceDown: "./assets/images/zombie12.jpg"
 	  }
-	]
-
+  ]
+  
 	const numCards = 6;
 
 	let newShuffleDeck = cards.slice(0,numCards);
 
-	newShuffleDeck.map(obj => newShuffleDeck.push(obj));
+	newShuffleDeck.map(obj => newShuffleDeck.push({...obj}));
 
 	let completeDeck = shuffle(newShuffleDeck);
 
