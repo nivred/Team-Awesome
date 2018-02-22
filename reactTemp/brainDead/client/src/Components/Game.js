@@ -12,15 +12,13 @@ class Game extends Component {
     };
 
     handleItemClick = (id,position) => {
-        // this.state.ShuffleDeck[id].flipped=true;
-        alert(position);
         this.setState((state)=>{
             state.ShuffleDeck[position].flipped = true;
             return {ShuffleDeck: state.ShuffleDeck};
         });
         
         // make something happen
-        alert('Flip Me!')
+        
     };
 
   render() {

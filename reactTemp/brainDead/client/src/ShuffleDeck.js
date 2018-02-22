@@ -85,7 +85,7 @@ const ShuffleDeck = () => {
   
 	const numCards = 6;
 
-	let newShuffleDeck = cards.slice(0,numCards);
+	let newShuffleDeck = shuffle(cards).slice(0,numCards);
 
 	newShuffleDeck.map(obj => newShuffleDeck.push({...obj}));
 
