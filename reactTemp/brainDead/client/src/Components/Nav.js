@@ -10,7 +10,9 @@ class Nav extends Component {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="/game">Logo</a>
+                        <a className="navbar-brand" href="/game">
+                        <img src="../assets/images/brainDead.png" />
+                        </a>
                     </div>
                     <div className="navbar-collapse" id="myNavbar">
                         <ul className="nav navbar-nav navbar-right">
