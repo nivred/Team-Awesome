@@ -9,13 +9,22 @@ class Game extends Component {
       ShuffleDeck: ShuffleDeck(),
       score: 0,
       topScore: 0,
-      selected: []
+      selected: [],
+      match: []
     };
 
     handleItemClick =  (id,position) => {
+        if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
+            return;
+        }
         this.setState((state)=>{
             if (this.state.selected.length==1){
                 state.ShuffleDeck[position].flipped = true;
+                if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
+                    console.log("we have a match")
+                    this.state.match.push(state.ShuffleDeck[position]);
+                    this.state.selected =[];
+                } else {
                 // alert("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
                  setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
@@ -28,6 +37,7 @@ class Game extends Component {
 
                     
                 }, 0);
+            }
             }else{
 
                 state.ShuffleDeck[position].flipped = true;
