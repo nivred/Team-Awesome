@@ -10,10 +10,10 @@ export default {
   allUsers: function() {
     return axios.get("/api/user");
   },
-  register: function() {
+  register: function(dataObj) {
     return axios.post("/api/user/register", dataObj);
   },
-  changePassword: function() {
+  changePassword: function(dataObj) {
     return axios.post("/api/user/password", dataObj);
   }
 };

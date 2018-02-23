@@ -63,6 +63,7 @@ router.route("/register")
         console.log("req.body", req.body)
           var data = {
             name: req.body.name,
+            password: req.body.password,
             email: req.body.email
             }
      
@@ -70,14 +71,19 @@ router.route("/register")
             if(result.length > 0){
 
                 res.send({
-                    status: "User is already registered"
+                    status: "User is already registered",
+                    name: result[0].user_name,
+                    email: result[0].user_email,
+                    url: url
                 });
             } else {
 
-                users.createNew(req.body, function(result){
-
+                users.createNew(data, function(result){
+                    console.log(result);
                     res.send({
                         status: 'Success',
+                        name: data.name,
+                        email: data.email,
                         url: '/game'
                    });
                 });   
