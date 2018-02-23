@@ -24,7 +24,6 @@ class Login extends Component {
     this.props.onPassName(nameValue);
     };
 
-
   handleFormSubmit = event => {
     event.preventDefault();
     if(this.state.email && this.state.password) {
@@ -34,7 +33,8 @@ class Login extends Component {
       })
       .then(res => {
         console.log(res);
-        this.state.name = res.data.name;
+        
+        this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
       })
       .catch(err => console.log(err))

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import './App.css';
 import Nav from "./Components/Nav";
 import Login from "./Components/Login";
@@ -11,31 +11,34 @@ class App extends Component {
  
   state = {
     response: "",
-    name: ""
+    name: ""//,
+    // loggedIn: false
   };
 
   onPassName = (nameValue) => {
     this.setState({name: nameValue});
     console.log("App says Hi to " + nameValue);
+    // this.setState({loggedIn:true})
+    // this.state.loggedIn ? <Redirect push to="/Game" /> : <Redirect to="/" />   
   };
 
  
 
-render() {
-return (
-  <Router>
-  <div>
-      <Route path="/" component = {()=> <Nav {...this.state} />} />
+  render() {
+    return (
+      <Router>
+      <div>
+          <Route path="/" component = {()=> <Nav {...this.state} />} />
 
-    <Switch>
-      <Route exact path="/" component = {()=> <Login  onPassName={this.onPassName}  />} />
-      <Route exact path="/Game" component = {Game} />
-    </Switch>
-  </div>
-</Router>
-)
-}
+        <Switch>
+          <Route exact path="/" component = {()=> <Login onPassName={this.onPassName} />} />
+          <Route exact path="/Game" component = {Game} />
+        </Switch>
+      </div>
+    </Router>
+    )
+  }
 
  
- }
+}
 export default App;
