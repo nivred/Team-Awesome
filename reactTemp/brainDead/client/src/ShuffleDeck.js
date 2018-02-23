@@ -73,13 +73,6 @@ const ShuffleDeck = () => {
 		image: "./assets/images/zombie10.jpg",
 		flipped: false,
 		faceDown: "./assets/images/zombie12.jpg"
-	  },
-	  {
-		id: 11,
-		position: 0,
-		image: "./assets/images/zombie11.jpg",
-		flipped: false,
-		faceDown: "./assets/images/zombie12.jpg"
 	  }
   ]
   

@@ -14,18 +14,25 @@ class Game extends Component {
     };
 
     handleItemClick =  (id,position) => {
+        console.log("match is");
+        console.log(this.state.match);
+        console.log("position id"+this.state.ShuffleDeck[position].id);
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
+            console.log("i did a return")
             return;
-        }
+        } else{
         this.setState((state)=>{
             if (this.state.selected.length==1){
                 state.ShuffleDeck[position].flipped = true;
                 if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
                     console.log("we have a match")
-                    this.state.match.push(state.ShuffleDeck[position]);
+                    this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
+                    if (this.state.match.length==6) {
+                        alert("you won");
+                    }
                 } else {
-                // alert("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
+                console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
                  setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
                     state.ShuffleDeck[this.state.selected[0].position].flipped = false;
@@ -36,7 +43,7 @@ class Game extends Component {
 
 
                     
-                }, 0);
+                }, 1);
             }
             }else{
 
@@ -48,7 +55,7 @@ class Game extends Component {
         });
         
         // make something happen
-        
+    }  
     };
 
   render() {
