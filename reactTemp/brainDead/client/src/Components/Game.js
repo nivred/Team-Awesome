@@ -13,6 +13,8 @@ class Game extends Component {
       match: []
     };
 
+
+
     handleItemClick =  (id,position) => {
         console.log("match is");
         console.log(this.state.match);
@@ -20,9 +22,13 @@ class Game extends Component {
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
             console.log("i did a return")
             return;
+        
         } else{
         this.setState((state)=>{
             if (this.state.selected.length==1){
+                if((state.ShuffleDeck[position].position==state.ShuffleDeck[this.state.selected[0].position].position)){
+                    return;
+                } 
                 state.ShuffleDeck[position].flipped = true;
                 if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
                     console.log("we have a match")
@@ -30,6 +36,7 @@ class Game extends Component {
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         alert("you won");
+                        // resetState();
                     }
                 } else {
                 console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
@@ -43,7 +50,7 @@ class Game extends Component {
 
 
                     
-                }, 1);
+                }, 0);
             }
             }else{
 
