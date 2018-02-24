@@ -1,6 +1,6 @@
-var orm = require("./orm");
+const orm = require("./orm");
 
-var game = {
+const game = {
 
 //select all cards
 

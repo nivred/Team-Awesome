@@ -10,8 +10,10 @@ class Login extends Component {
     response: "",
     name: "",
     email: "",
-    password: ""
+    password: "",
+    pwd2: ""
   };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -24,7 +26,7 @@ class Login extends Component {
     this.props.onPassName(nameValue);
     };
 
-  handleFormSubmit = event => {
+  handleLoginSubmit = event => {
     event.preventDefault();
     if(this.state.email && this.state.password) {
       API.login({
@@ -40,6 +42,31 @@ class Login extends Component {
       .catch(err => console.log(err))
     }
   };
+
+  handleRegisterSubmit = event => {
+    event.preventDefault();
+    if(this.state.name && this.state.email && this.state.password) {
+      API.register({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        console.log(res);
+        
+        this.setState({name:res.data.name});
+        this.handlePassName(this.state.name);
+      })
+      .catch(err => console.log(err))
+    }
+  };
+
+  handlePwdConfirm = () => {
+    if(this.state.password !== this.state.pwd2) {
+        alert("Passwords do not match!");
+    }
+    };
+
 
     
     render() {
@@ -60,7 +87,7 @@ class Login extends Component {
                         <h2>User Login</h2>
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <form onSubmit={this.handleFormSubmit}> 
+                                <form onSubmit={this.handleLoginSubmit}> 
                                    <div className="form-group text-left">
                                         <label for="email">E-Mail</label>
                                         <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email"
@@ -75,7 +102,7 @@ class Login extends Component {
                                  </div>
                                     <button type="submit" className="btn btn-lg"
                                     disabled={!(this.state.email && this.state.password)}
-                                    onClick={this.handleFormSubmit}>Sign In</button>
+                                    onClick={this.handleLoginSubmit}>Sign In</button>
                                     <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
                                 </form>
                             
@@ -97,25 +124,36 @@ class Login extends Component {
                         </div>
 
                         <div className="modal-body">
-                            <form action="/api/register" method="POST">
+                             <form onSubmit={this.handleRegisterSubmit}> 
                                 <div className="form-group">
                                     <label for="username">Username:</label>
-                                    <input type="text" className="form-control" id="username" name="username" />
-                                </div>
+                                    <input type="text" className="form-control" id="username" name="name" 
+                                    value={this.state.name}
+                                    onChange={this.handleInputChange} />
+                               </div>
                                 <div className="form-group">
                                     <label for="email">Email address:</label>
-                                    <input type="email" className="form-control" id="email" name="email" />
+                                    <input type="email" className="form-control" id="email" name="email"
+                                    value={this.state.email}
+                                    onChange={this.handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label for="pwd">Password:</label>
-                                    <input type="password" className="form-control" id="pwd1" name="pwd1" />
+                                    <input type="password" className="form-control" id="pwd1" name="password" 
+                                    value={this.state.password}
+                                    onChange={this.handleInputChange} />
                                 </div>
                                 <div className="form-group">
                                     <label for="pwd">Confirm Password:</label>
-                                    <input type="password" className="form-control" id="pwd2" name="pwd2" />
-                                </div>
+                                    <input type="password" className="form-control" id="pwd2" name="pwd2" 
+                                    value={this.state.pwd2} 
+                                    onChange={this.handleInputChange} />
+                              </div>
                                 <div className="modal-footer">
-                                    <button type="submit" className="btn btn-lg" data-dismiss="modal">Submit</button>
+                                    <button type="submit" className="btn btn-lg" data-dismiss="modal"
+                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2)}
+                                    onChange={this.handlePwdConfirm} 
+                                    onClick={this.handleRegisterSubmit}>Submit</button>
                                 </div>
                             </form>
                         </div>
