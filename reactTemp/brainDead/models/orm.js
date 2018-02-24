@@ -37,17 +37,6 @@ const orm = {
       callback(result);
     })
   },
-  
-  selectSort: function(table, sortfield, callback){
-    let querystring = "SELECT * FROM ?? ORDER BY ? ";
-    let parms = [table, sortfield];
-
-    connection.query(querystring, parms, function(err, result){
-      if(err) throw err;
-
-      callback(result);
-    })
-  },
 
   selectAll: function(table, callback) {
     let queryString = "SELECT * FROM ?? ";

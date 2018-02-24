@@ -15,8 +15,5 @@ export default {
   },
   changePassword: function(dataObj) {
     return axios.post("/api/user/password", dataObj);
-  },
-  getCards: function() {
-    return axios.get("/api/game");
   }
 };
