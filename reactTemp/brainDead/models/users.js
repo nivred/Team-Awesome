@@ -1,10 +1,10 @@
 // Import the ORM to create functions that will interact with the database.
-var orm = require("./orm");
+const orm = require("./orm");
 
-var users = {
+const users = {
 
   createNew: function(userData, callback){
-    var userTableData = {
+    let userTableData = {
       user_name: userData.name,
       user_password: userData.password,
       user_email: userData.email

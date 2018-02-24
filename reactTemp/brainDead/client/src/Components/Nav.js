@@ -4,7 +4,17 @@ import '../App.css';
 
 class Nav extends Component {
   
-    render() {
+    //  displayGreeting = () => {   
+    //     let playerName = this.props.name;
+    //     if(playerName != "") {
+    //       console.log("Nav says Hi to " + playerName);
+    //       return <h2>Hello {playerName} ! </h2>;
+    //     }
+    // };
+    
+
+    render() {   
+       
         return (
         <div className="wrapper">
             <nav className="navbar navbar-inverse">

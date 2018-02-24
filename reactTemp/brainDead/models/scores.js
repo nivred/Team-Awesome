@@ -1,6 +1,6 @@
-var orm = require("./orm");
+const orm = require("./orm");
 
-var scores = {
+const scores = {
 
 //select all
 

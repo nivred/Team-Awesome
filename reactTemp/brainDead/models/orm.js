@@ -1,13 +1,13 @@
 // Import MySQL connection.
-var connection = require("../config/connection.js");
+const connection = require("../config/connection.js");
 
 console.log("orm here");
 
 //object containing functions for SQL queries
-var orm = {
+const orm = {
   select: function(table, condition, callback){
-    var querystring = "SELECT * FROM ?? WHERE ? ";
-    var parms = [table, condition];
+    let querystring = "SELECT * FROM ?? WHERE ? ";
+    let parms = [table, condition];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
@@ -17,8 +17,8 @@ var orm = {
   },
  
   selectOr: function(table, condition1, condition2, callback){
-    var querystring = "SELECT * FROM ?? WHERE ? OR ?";
-    var parms = [table, condition1, condition2];
+    let querystring = "SELECT * FROM ?? WHERE ? OR ?";
+    let parms = [table, condition1, condition2];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
@@ -28,8 +28,19 @@ var orm = {
   },
 
   selectAnd: function(table, condition1, condition2, callback){
-    var querystring = "SELECT * FROM ?? WHERE ? AND ?";
-    var parms = [table, condition1, condition2];
+    let querystring = "SELECT * FROM ?? WHERE ? AND ?";
+    let parms = [table, condition1, condition2];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+  
+  selectSort: function(table, sortfield, callback){
+    let querystring = "SELECT * FROM ?? ORDER BY ? ";
+    let parms = [table, sortfield];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
@@ -39,8 +50,8 @@ var orm = {
   },
 
   selectAll: function(table, callback) {
-    var queryString = "SELECT * FROM ?? ";
-    var parms = [table];
+    let queryString = "SELECT * FROM ?? ";
+    let parms = [table];
 
     connection.query(queryString, parms, function(err, result) {
       if (err) {
@@ -51,8 +62,8 @@ var orm = {
   },
 
   update: function(table, value, condition, callback){
-    var querystring = "UPDATE ?? SET ? WHERE ? ";
-    var parms = [table, value, condition];
+    let querystring = "UPDATE ?? SET ? WHERE ? ";
+    let parms = [table, value, condition];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
@@ -62,13 +73,13 @@ var orm = {
   },
 
   insertRow: function(table, dataObject, callback){
-    var queryString = "INSERT INTO ?? (??) VALUES (?) ";
-    var parms = [table];
+    let queryString = "INSERT INTO ?? (??) VALUES (?) ";
+    let parms = [table];
 
-    var columns = [];
-    var values = [];
+    let columns = [];
+    let values = [];
 
-    for(var key in dataObject){
+    for(let key in dataObject){
       columns.push(key);
       values.push(dataObject[key])
     };

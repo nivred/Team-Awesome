@@ -3,114 +3,127 @@ const express = require("express");
 // const fs = require('fs');
 
 const router = express.Router();
-// var axios = require("axios");
-// var PATH = '../client/public/'
 
-// Import user model to access its orm functions
-var users = require("../models/users");
+// Import user model to access its functions
+const users = require("../models/users");
 
 console.log("hello from userController");
-// module.exports = {
-// login = function(req, res) {
+
 router.route("/login")
     .post(function(req,res){
+
         users.findByEmail(req.body.email, function(result){
             console.log(result);
- 
+            
             if(result[0]){
                 if(req.body.password === result[0].user_password){
 
                     res.send({
                         status: "Success",
-                        url: '/game'
+                        name: result[0].user_name,
+                        url: '/api/user/game'
                     });
-                } else{
-                    res.send("Incorrect password");
+                } else {
+                    res.send({
+                        status: "Incorrect password",
+                        url:'/api/user/login'
+                     });
                 }
-            } else{
+            } else {
                 res.send({
                     status: "Email not found",
-                    url: '/register'
+                    url: '/api/user/register'
                 });
-            }    
-        });        
+            }   
+         });        
     });
-// };
+
 
 router.route("/")
     .get(function(req, res) {
 
-        users.selectAll(function(data){
-            if(data === "Database Error"){
+        users.selectAll(function(result){
+            if(result === "Database Error"){
                 res.send({
                     status: "Internal Database Error"
                 });
-            }else{
-                let str = JSON.stringify(data)
-                res.send({ data });
-             console.log(str);
+            } else {
+                let str = JSON.stringify(result)
+                res.send({ result });
+                console.log(str);
             }
         });
     });
     
 
-// router.post("/api/register", function(req, res) {
-//     console.log("req.body", req.body)
-//       var data = {
-//         name: req.body.name,
-//         email: req.body.email
-//         }
- 
-//     users.findEither(data, function(result){
-//         if(result.length > 0){
+router.route("/register")
+    .post(function(req, res) {
 
-//             res.send({
-//                 status: "User is already registered"
-//             });
-//         } else {
+        console.log("req.body", req.body)
+          let data = {
+            name: req.body.name,
+            password: req.body.password,
+            email: req.body.email
+            }
+     
+        users.findEither(data, function(result){
+            if(result.length > 0){
 
-//             users.createNew(req.body, function(result){
+                res.send({
+                    status: "User is already registered",
+                    name: result[0].user_name,
+                    email: result[0].user_email,
+                    url: '/api/user/login'
+                });
+            } else {
 
-//                 res.send({
-//                     status: 'Success',
-//                     url: url
-//                 });
-//             });   
-//         }
-//     });
+                users.createNew(data, function(result){
+                    if(result === "Database Error"){
+                        res.send({
+                            status: "Internal Database Error"
+                        });
+                    } else {
+                        console.log(result);
+                        res.send({
+                            status: 'Success',
+                            name: result[0].user_name,
+                            email: result[0].user_email,
+                            url: '/api/user/game'
+                        });
+                    }
+                });   
+            }
+        });
     
-// });
+});
 
-// router.post("/api/password", function(req, res) {
-//     console.log("req.body", req.body)
-//       var data = {
-//         name: req.body.name,
-//         password: req.body.password
-//         }
- 
-//     users.changePassword(data, function(result){
-//         if(result[0].changedRows == 1){
+router.route("/password")
+    .post(function(req, res) {
 
-//             res.send({
-//                 status: "Success"
-//             });
-//         } else {
+        console.log("req.body", req.body)
+          let data = {
+            name: req.body.name,
+            password: req.body.password
+            }
+     
+        users.changePassword(data, function(result){
+            console.log(result);
+            if(result[0].changedRows == 1){
 
-//             res.send({
-//                 status: 'No success',
-//                 url: url
-//             });
-//         }
-//     });
+                res.send({
+                    status: "Password successfully changed",
+                    url: '/api/user/game'
+                });
+            } else {
+
+                res.send({
+                    status: 'Password could not be changed',
+                    url: '/api/user/password'
+                });
+            }
+        });
     
-// });
-
-
-// }
-
-
-
-
+});
 
 
 module.exports = router;

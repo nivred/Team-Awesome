@@ -8,17 +8,54 @@ class Game extends Component {
     state = {
       ShuffleDeck: ShuffleDeck(),
       score: 0,
-      topScore: 0
+      topScore: 0,
+      selected: [],
+      match: []
     };
 
-    handleItemClick = (id,position) => {
+    handleItemClick =  (id,position) => {
+        console.log("match is");
+        console.log(this.state.match);
+        console.log("position id"+this.state.ShuffleDeck[position].id);
+        if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
+            console.log("i did a return")
+            return;
+        } else{
         this.setState((state)=>{
-            state.ShuffleDeck[position].flipped = true;
+            if (this.state.selected.length==1){
+                state.ShuffleDeck[position].flipped = true;
+                if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
+                    console.log("we have a match")
+                    this.state.match.push(state.ShuffleDeck[position].id);
+                    this.state.selected =[];
+                    if (this.state.match.length==6) {
+                        alert("you won");
+                    }
+                } else {
+                console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
+                 setTimeout(() => {
+                    state.ShuffleDeck[position].flipped = false;
+                    state.ShuffleDeck[this.state.selected[0].position].flipped = false;
+                    console.log(state.ShuffleDeck[1]);
+                    console.log(this.state.selected);
+                    this.state.selected =[];
+                    console.log(this.state.selected);
+
+
+                    
+                }, 1);
+            }
+            }else{
+
+                state.ShuffleDeck[position].flipped = true;
+                this.state.selected.push(state.ShuffleDeck[position]);
+                console.log(this.state.selected);
+        }
             return {ShuffleDeck: state.ShuffleDeck};
         });
         
         // make something happen
-        
+    }  
     };
 
   render() {
@@ -31,7 +68,6 @@ class Game extends Component {
                                 <ClickItem
                                     key={item.id}
                                     id={item.id}
-                                    shake={!this.state.score && this.state.topScore}
                                     handleClick={this.handleItemClick}
                                     image={item.image}
                                     flipped={item.flipped}

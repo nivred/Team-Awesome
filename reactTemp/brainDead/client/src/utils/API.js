@@ -3,11 +3,20 @@ import axios from "axios";
 
 console.log("hello from API");
 export default {
-  // Gets all books
+
   login: function(dataObj) {
     return axios.post("/api/user/login", dataObj);
   },
-  allUser: function() {
+  allUsers: function() {
     return axios.get("/api/user");
+  },
+  register: function(dataObj) {
+    return axios.post("/api/user/register", dataObj);
+  },
+  changePassword: function(dataObj) {
+    return axios.post("/api/user/password", dataObj);
+  },
+  getCards: function() {
+    return axios.get("/api/game");
   }
 };
