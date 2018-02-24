@@ -1,5 +1,19 @@
 import shuffle from 'shuffle-array';
 // const shuffle = require("shuffle-array");
+import API from './utils/API';
+
+// let dbCards= API.getCards();
+// console.log(dbCards);
+API.getCards()
+.then(res => {
+	console.log(res);
+	
+
+})
+.catch(err => console.log(err))
+
+
+
 
 const ShuffleDeck = () => {
 
