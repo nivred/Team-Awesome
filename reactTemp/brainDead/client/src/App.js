@@ -5,7 +5,8 @@ import Nav from "./Components/Nav";
 import Login from "./Components/Login";
 import Game from "./Components/Game";
 import ClickItem from "./Components/ClickItem";
-import API from "./utils/API";
+import Stats from "./Components/Stats";
+import API from "./utils/API"; 
 
 class App extends Component {
  
@@ -33,6 +34,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component = {()=> <Login onPassName={this.onPassName} />} />
           <Route exact path="/Game" component = {Game} />
+          <Route exact path="/Stats" component = {Stats} />
         </Switch>
       </div>
     </Router>
