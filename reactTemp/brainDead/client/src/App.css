@@ -18,12 +18,33 @@
 	height: 90px;
 	margin-bottom: 0;
 }
+.navbar a {
+	color: #9d9d9d;
+	font-size: 1.5em;
+	text-decoration: none;
+}
 
+.navbar .btn {
+	color: white;
+	font-size: 32px;
+	margin: 0 20px 15px 20px;
+	padding-bottom: 0;
+}
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 100%}
 
 #login {
 	margin: 10% auto;
+}
+
+#timer {
+	color: white;
+	font-size: 42px;
+}
+
+#controller {
+	display: block;
+	padding-top: 10px;
 }
 
 /* stats css */
