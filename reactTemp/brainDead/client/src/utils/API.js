@@ -22,7 +22,7 @@ export default {
   allScores: function() {
     return axios.get("/api/score");
   },
-  addScore: function() {
-    return axios.post("/api/score/add");
+  addScore: function(dataObj) {
+    return axios.post("/api/score/add", dataObj);
   }
 };
