@@ -16,5 +16,5 @@ INSERT INTO cards (descr, theme_id, image, image_url) VALUES ('Zombie 8', 1, LOA
 INSERT INTO cards (descr, theme_id, image, image_url) VALUES ('Zombie 9', 1, LOAD_FILE('../../client/public/assets/images/zombie9.jpg'), './assets/images/zombie9.jpg');
 INSERT INTO cards (descr, theme_id, image, image_url) VALUES ('Zombie 10', 1, LOAD_FILE('../../client/public/assets/images/zombie10.jpg'), './assets/images/zombie10.jpg');
 
-INSERT INTO scores (user_id, theme_id, flip_speed, card_count) VALUES (1, 1, 2, 8);
+INSERT INTO scores (user_id, theme_id, flip_speed, card_count) VALUES (1, 1, 0, 12);
 
