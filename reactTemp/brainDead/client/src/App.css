@@ -34,7 +34,13 @@
 .row.content {height: 100%}
 
 #login {
+	/* font-family: fantasy; */
+	font-family: 'Creepster', cursive;
 	margin: 10% auto;
+}
+
+label {
+	color: white;
 }
 
 #timer {
@@ -50,11 +56,13 @@
 /* stats css */
 
 #stats {
-	/* background-image: url(../../public/assets/images/zombieBG.jpg);
+	background-image: url("/assets/images/zombieBG.jpg");
+
 	background-repeat: no-repeat;
-	background-size: cover; */
+	background-size: cover;
+	background-position-y: -120px;
 	background-color: darkolivegreen;
-	color: red;
+	color: #be1313;
 	font-family: 'Creepster', cursive;
 	font-size: 1.5em;
 	font-weight: 600;

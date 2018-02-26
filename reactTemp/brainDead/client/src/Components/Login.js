@@ -99,11 +99,15 @@ class Login extends Component {
                                         <input type="password" className="form-control" id="password" placeholder="Password" name="password"
                                      value={this.state.password}
                                     onChange={this.handleInputChange} />
-                                 </div>
-                                    <button type="submit" className="btn btn-lg"
-                                    disabled={!(this.state.email && this.state.password)}
-                                    onClick={this.handleLoginSubmit}>Sign In</button>
-                                    <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
+                                    </div>
+                                    <div className="col-sm-6 col-md-6 text-center">
+                                        <button type="submit" className="btn btn-lg"
+                                        disabled={!(this.state.email && this.state.password)}
+                                        onClick={this.handleLoginSubmit}>Sign In</button>
+                                    </div>
+                                    <div className="col-sm-6 col-md-6 text-center">
+                                        <button type="button" className="btn btn-lg" data-toggle="modal" data-target="#myModal">Register</button>	
+                                    </div>
                                 </form>
                             
                             </div>

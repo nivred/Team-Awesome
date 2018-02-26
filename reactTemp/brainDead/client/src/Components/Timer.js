@@ -3,6 +3,7 @@ import '../App.css';
 
 export default class Timer extends Component {
     state = {
+        elapsed: 0,
         myTime: 0,
         Clock: 0,
         mSec: 0,
