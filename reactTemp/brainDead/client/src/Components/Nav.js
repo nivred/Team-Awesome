@@ -23,12 +23,12 @@ class Nav extends Component {
                 <div className="container-fluid">
                     <div className="navbar-header col-md-4">
                         <a className="navbar-brand" href="/game">
-                        <img src="../assets/images/brainDead.png" />
+                            <img src="../assets/images/brainDead.png" />
                         </a>
                     </div>
 
                     <Switch>
-                        <Route exact path="/Game" component={Timer} />
+                        <Route exact path="/Game" component={() => <Timer {...this.props}/>} />
                     </Switch>
                 </div>
             </nav>
