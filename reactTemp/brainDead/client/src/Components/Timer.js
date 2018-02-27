@@ -69,7 +69,7 @@ export default class Timer extends Component {
                 </div>
                 <div className="col-md-4" id="myNavbar">
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#"><span className="glyphicon glyphicon-stats"></span> Stats</a></li>
+                        <li><a href="/stats"><span className="glyphicon glyphicon-stats"></span> Stats</a></li>
                         <li><a href="#"><span className="glyphicon glyphicon-log-out"></span> Sign out</a></li>
                     </ul>               
                 </div>
