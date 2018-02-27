@@ -38,6 +38,7 @@ class Login extends Component {
   };
   
   handlePassName = (nameValue) => {
+      console.log(nameValue);
     this.props.onPassName(nameValue);
   };
 
@@ -52,12 +53,16 @@ class Login extends Component {
         console.log(res);
         if(res.data.status==="Success") {
             console.log("hello you are here");
+            // this.props.name =res.data.name;
+            console.log(res.data.name);
+            this.setState({name:res.data.name});
+            this.handlePassName(this.state.name);
+            console.log("this "+ this.props.name);
             return(
                 this.props.history.push("/game") 
             );
         };
-        this.setState({name:res.data.name});
-        this.handlePassName(this.state.name);
+
       })
       .catch(err => console.log(err))
     }

@@ -56,7 +56,7 @@ class App extends Component {
         
           <Switch>
             <Route exact path="/" component = {(props)=> <Login {...props} onPassName={this.onPassName} />} />
-            <Route exact path="/Game" component = {()=> <Game timerStart={this.timerStart} />} />
+            <Route exact path="/Game" component = {()=> <Game timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} />} />
           </Switch>
         
       </div>

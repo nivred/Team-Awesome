@@ -55,6 +55,12 @@ class Game extends Component {
 
     });
 
+    youWin = () => {
+        alert(this.props.name);
+        alert(this.props.elapsed);
+
+    }
+
     handleItemClick =  (id,position) => {
         console.log("match is");
         console.log(this.state.match);
@@ -76,7 +82,7 @@ class Game extends Component {
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         alert("you won");
-                        // resetState();
+                        this.youWin();
                     }
                 } else {
                 console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
