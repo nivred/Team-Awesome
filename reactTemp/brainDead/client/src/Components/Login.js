@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import '../App.css';
 // import data from "./data.json";
+import {Route, Redirect} from 'react-router';
 import API from "../utils/API";
+
+
+// const AuthButton = withRouter(                                        // A generated button that authenticates a user
+//   ({ history }) =>
+//     fakeAuth.isAuthenticated ? (
+//       <p>
+//         Welcome!{" "}
+//         <button onClick={() => { fakeAuth.signout(() => history.push("/")); }}>Sign out</button>
+//       </p>
+//     ) : (
+//       <p>You are not logged in.</p>
+//     )
+// );
 
 class Login extends Component {
     
@@ -11,7 +25,8 @@ class Login extends Component {
     name: "",
     email: "",
     password: "",
-    pwd2: ""
+    pwd2: "",
+    isAuthenticated:false
   };
 
 
@@ -24,7 +39,7 @@ class Login extends Component {
   
   handlePassName = (nameValue) => {
     this.props.onPassName(nameValue);
-    };
+  };
 
   handleLoginSubmit = event => {
     event.preventDefault();
@@ -35,7 +50,12 @@ class Login extends Component {
       })
       .then(res => {
         console.log(res);
-        
+        if(res.data.status==="Success") {
+            console.log("hello you are here");
+            return(
+                this.props.history.push("/game") 
+            );
+        };
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
       })
@@ -56,6 +76,8 @@ class Login extends Component {
         
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
+
+        
       })
       .catch(err => console.log(err))
     }
@@ -71,13 +93,13 @@ class Login extends Component {
     
     render() {
         return (
-        <div className="wrapper">
-            <div className="wrapperAnimation">
+        <div className="wrapper .svgBackground">
+            {/* <div className="wrapperAnimation">
                 <h1 className="goodVibration">
                     <span>BR<span className="redText">AI</span>N</span><br />
                     <span>DEAD</span>
                 </h1>
-            </div>
+            </div> */}
             
             <div className="container-fluid text-center">
 

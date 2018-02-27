@@ -13,7 +13,47 @@ class Game extends Component {
       match: []
     };
 
+    shouldComponentUpdate(nextProp, nextState) {
+        if(this.state.elapsed !== nextState.elapsed || this.state.start !== nextState.start || this.state.isStarted !== nextState.isStarted) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
+    formatNumDisplay = num => Math.log10(num) < 1 ? `0${num}` : num;
 
+    formatTime = (time,string) => {
+        switch (string) {
+            case 'milliseconds':
+                return this.formatNumDisplay(Math.floor(time % 1000));
+                break;
+            case 'seconds':
+                return this.formatNumDisplay(Math.floor((time / 1000) % 60));
+                break;
+            case 'minutes':
+                return this.formatNumDisplay(Math.floor((time / 1000) / 60));
+                break;
+        }
+    };
+    timerStart = event => {
+        event.preventDefault();
+        
+        if(!this.state.isStarted) {
+          this.setState({start:Date.now(), isStarted:true});
+        
+          this.timer = setInterval(this.tick,1);
+        }
+        
+      }
+    
+    tick = () => this.setState(()=>{
+        const elapsed = Date.now() - this.state.start
+        document.querySelector("#minutes").textContent = this.formatTime(elapsed, "minutes")
+        document.querySelector("#seconds").textContent = this.formatTime(elapsed, "seconds")
+        return {elapsed}
+
+    });
 
     handleItemClick =  (id,position) => {
         console.log("match is");
@@ -47,9 +87,6 @@ class Game extends Component {
                     console.log(this.state.selected);
                     this.state.selected =[];
                     console.log(this.state.selected);
-
-
-                    
                 }, 0);
             }
             }else{
@@ -73,7 +110,7 @@ class Game extends Component {
                         <div class="col-xs-12">
                             {this.state.ShuffleDeck.map(item => (
                                 <ClickItem
-                                    key={item.id}
+                                    timerStart={this.timerStart}
                                     id={item.id}
                                     handleClick={this.handleItemClick}
                                     image={item.image}

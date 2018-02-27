@@ -40,7 +40,7 @@ componentDidMount = () => {
                             <div class="panel panel-default">
                                 <h3 class="panel-body-sm">Your best time is: 00:20</h3>
                             </div>
-                            <a href="#" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
+                            <a href="/game" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
                         </div>
                         <div class="col-md-12">	
                             <h2>HIGH SCORES</h2>
