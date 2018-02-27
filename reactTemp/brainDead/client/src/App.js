@@ -20,7 +20,7 @@ class App extends Component {
  
   state = {
     response: "",
-    name: "",//,
+    name: "",
     isAuthenticated: false,
     start:false,
     isStarted:false,
@@ -52,6 +52,7 @@ class App extends Component {
       <Router>
       <div>
           <Route path="/" component = {()=> <Nav {...this.state} />} />
+<<<<<<< HEAD
         
         
           <Switch>
@@ -59,6 +60,15 @@ class App extends Component {
             <Route exact path="/Game" component = {()=> <Game timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} />} />
           </Switch>
         
+=======
+
+
+        <Switch>
+          <Route exact path="/" component = {(props)=> <Login {...props} onPassName={this.onPassName} />} />
+          <Route exact path="/Game" component = {()=> <Game {...this.state} timerStart={this.timerStart}/>} />
+          <Route exact path="/Stats" component = {()=> <Stats {...this.state} />} />
+        </Switch>
+>>>>>>> 5ea981de6aada53416307fbb33503efe4194cee2
       </div>
     </Router>
     )
