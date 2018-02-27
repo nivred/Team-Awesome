@@ -23,7 +23,7 @@ class Stats extends Component {
 
 
 componentDidMount = () => {
-    getStats();
+    this.getStats();
 };
 
 
