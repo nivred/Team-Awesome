@@ -98,11 +98,10 @@ class Login extends Component {
     
     render() {
         return (
-<<<<<<< HEAD
+
         <div className="wrapper">
-=======
-        <div className="wrapper .svgBackground">
->>>>>>> 6bbce6500d13e34e09f883561c8eea4a37f35cef
+
+
             {/* <div className="wrapperAnimation">
                 <h1 className="goodVibration">
                     <span>BR<span className="redText">AI</span>N</span><br />
