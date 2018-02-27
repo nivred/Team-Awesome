@@ -37,10 +37,54 @@ const orm = {
       callback(result);
     })
   },
+
+  selectLike: function(table, col, value, callback){
+    let querystring = "SELECT * FROM ?? WHERE ?? LIKE ?";
+    let parms = [table, col, value];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
   
-  selectSort: function(table, sortfield, callback){
-    let querystring = "SELECT * FROM ?? ORDER BY ? ";
+  selectSortA: function(table, sortfield, callback){
+    let querystring = "SELECT * FROM ?? ORDER BY ?? ASC";
     let parms = [table, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  selectSortD: function(table, sortfield, callback){
+    let querystring = "SELECT * FROM ?? ORDER BY ?? DESC";
+    let parms = [table, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  selectBySortA: function(table, condition, sortfield, callback){
+    let querystring = "SELECT * FROM ?? WHERE ? ORDER BY ?? ASC";
+    let parms = [table, condition, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  selectBySortD: function(table, condition, sortfield, callback){
+    let querystring = "SELECT * FROM ?? WHERE ? ORDER BY ?? DESC";
+    let parms = [table, condition, sortfield];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
@@ -61,6 +105,17 @@ const orm = {
     });
   },
 
+  countBy: function(table, field, condition, callback){
+    let querystring = "SELECT COUNT(??) FROM ?? WHERE ? ";
+    let parms = [table, field, condition];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
   update: function(table, value, condition, callback){
     let querystring = "UPDATE ?? SET ? WHERE ? ";
     let parms = [table, value, condition];
@@ -70,6 +125,17 @@ const orm = {
 
       callback(result);
     });
+  },
+
+  joinSelect: function(table1, table2, col1, col2, condition, callback){
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? AND ? ";
+    let parms = [table1, table2, col1, col2, condition];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
   },
 
   insertRow: function(table, dataObject, callback){

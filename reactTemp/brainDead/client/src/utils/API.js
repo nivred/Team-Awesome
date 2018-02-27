@@ -18,5 +18,11 @@ export default {
   },
   getCards: function() {
     return axios.get("/api/game");
+  },
+  allScores: function() {
+    return axios.get("/api/score");
+  },
+  addScore: function(dataObj) {
+    return axios.post("/api/score/add", dataObj);
   }
 };

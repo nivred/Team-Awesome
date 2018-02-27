@@ -13,40 +13,67 @@ const game = {
 
 
 //select all cards by theme
+  cardsByTheme: function(cardtheme, callback) {
+    orm.joinSelect("themes", "cards", "themes.theme_id", "cards.theme_id", {"themes.descr": cardtheme}, function(result) {
+      callback(result);
+    });
 
-//insert card
-  // createCard: function(cardData, callback){
-  //   let cardTableData = {
-  //     descr: cardData.descr,
-  //     theme_id: cardData.name,
-  //     game_level: cardData.email
-  //   }
+  },
 
-  //   orm.insertRow('cards', cardTableData, function(result){
-  //     if(result === "Database Error"){
-  //       callback(result)
-  //       return;
-  //     }
 
-  //   });
-  // },
+// insert card
+  createCard: function(cardData, callback){
+    let cardTableData = {
+      descr: cardData.descr,
+      theme_id: cardData.themeid,
+      image_url: cardData.url
+    }
 
-//insert theme
-  // createTheme: function(themeData, callback){
-  //   let userTableData = {
-  //     user_name: userData.name,
-  //     user_password: userData.password,
-  //     user_email: userData.email
-  //   }
+    orm.insertRow('cards', cardTableData, function(result){
+      if(result === "Database Error"){
+        callback(result)
+        return;
+      }
 
-  //   orm.insertRow('users', userTableData, function(result){
-  //     if(result === "Database Error"){
-  //       callback(result)
-  //       return;
-  //     }
+    });
+  },
 
-  //   });
-  // },
+// insert theme
+  createTheme: function(themeData, callback){
+    let themeTableData = {
+      descr: themeData.descr,
+      author: themeData.userid,
+      game_level: themeData.level
+    }
+
+    orm.insertRow('themes', themeTableData, function(result){
+      if(result === "Database Error"){
+        callback(result)
+        return;
+      }
+
+    });
+  },
+
+
+//select themes by author
+  themesByAuthor: function(username, callback) {
+    orm.joinSelect("themes", "users", "themes.author", "users.user_id", {"users.user_name": username}, function(result) {
+      callback(result);
+    });
+
+  },
+
+
+//search themes by description
+  themeSearch: function(searchstring, callback) {
+  	let value = "%" + searchstring + "%";
+    orm.selectLike("themes", "descr", value, function(result) {
+      callback(result);
+    });
+
+  },
+
 
 //select all themes
   allThemes: function(callback) {
@@ -66,7 +93,7 @@ const game = {
 
 //select all themes, order by create date desc
   themesDateSort: function(callback) {
-    orm.selectSort("themes", {create_date}, function(result) {
+    orm.selectSortA("themes", "create_date", function(result) {
       callback(result);
     });
 

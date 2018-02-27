@@ -13,7 +13,8 @@ import Nav from "./Components/Nav";
 import Login from "./Components/Login";
 import Game from "./Components/Game";
 import ClickItem from "./Components/ClickItem";
-import API from "./utils/API";
+import Stats from "./Components/Stats";
+import API from "./utils/API"; 
 
 class App extends Component {
  

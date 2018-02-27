@@ -29,9 +29,9 @@ CREATE TABLE scores
     user_id INT,
 	score TIME DEFAULT 0,
     date_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    theme_id INT,
-    flip_speed INT,
-    card_count INT,
+    theme_id INT DEFAULT 1,
+    flip_speed INT DEFAULT 0,
+    card_count INT DEFAULT 12,
 	FOREIGN KEY(user_id) REFERENCES users(user_id),
     FOREIGN KEY(theme_id) REFERENCES themes(theme_id),
     PRIMARY KEY (score_id)
