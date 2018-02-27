@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+
+import { 
+  Switch, 
+  Route, 
+  BrowserRouter as Router, 
+  Redirect,
+  withRouter 
+} from 'react-router-dom';
+
 import './App.css';
 import Nav from "./Components/Nav";
 import Login from "./Components/Login";
@@ -12,8 +20,11 @@ class App extends Component {
  
   state = {
     response: "",
-    name: ""//,
-    // loggedIn: false
+    name: "",
+    isAuthenticated: false,
+    start:false,
+    isStarted:false,
+    elapsed:"00"
   };
 
   onPassName = (nameValue) => {
@@ -23,7 +34,18 @@ class App extends Component {
     // this.state.loggedIn ? <Redirect push to="/Game" /> : <Redirect to="/" />   
   };
 
- 
+  // timerStart = event => {
+  //   event.preventDefault();
+    
+  //   if(!this.state.isStarted) {
+  //     this.setState({start:Date.now(), isStarted:true});
+    
+  //     this.timer = setInterval(this.tick,1);
+  //   }
+    
+  // }
+
+  // tick = () => this.setState({elapsed: Date.now() - this.state.start});
 
   render() {
     return (
@@ -31,11 +53,13 @@ class App extends Component {
       <div>
           <Route path="/" component = {()=> <Nav {...this.state} />} />
 
-        <Switch>
-          <Route exact path="/" component = {()=> <Login onPassName={this.onPassName} />} />
-          <Route exact path="/Game" component = {Game} />
-          <Route exact path="/Stats" component = {Stats} />
-        </Switch>
+        
+        
+          <Switch>
+            <Route exact path="/" component = {(props)=> <Login {...props} onPassName={this.onPassName} />} />
+            <Route exact path="/Game" component = {()=> <Game timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} />} />
+          </Switch>
+        
       </div>
     </Router>
     )

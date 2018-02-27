@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import '../App.css';
+import API from "../utils/API";
 
 class Stats extends Component {
   
+    state = {
+    response: "",
+    stats: []
+  };
+
+  getStats = () => {
+    if(this.props.name) {
+      API.allScores()
+      .then(res => {
+        console.log(res);
+        
+        this.setState({stats:res});
+      })
+      .catch(err => console.log(err))
+    }
+  };
+
+
+componentDidMount = () => {
+    this.getStats();
+};
+
+
   render() {
         return (
             <div id="stats" class="wrapper">
@@ -16,7 +40,7 @@ class Stats extends Component {
                             <div class="panel panel-default">
                                 <h3 class="panel-body-sm">Your best time is: 00:20</h3>
                             </div>
-                            <a href="#" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
+                            <a href="/game" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
                         </div>
                         <div class="col-md-12">	
                             <h2>HIGH SCORES</h2>

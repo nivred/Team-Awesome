@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import '../App.css';
 // import data from "./data.json";
+import {Route, Redirect} from 'react-router';
 import API from "../utils/API";
+
+
+// const AuthButton = withRouter(                                        // A generated button that authenticates a user
+//   ({ history }) =>
+//     fakeAuth.isAuthenticated ? (
+//       <p>
+//         Welcome!{" "}
+//         <button onClick={() => { fakeAuth.signout(() => history.push("/")); }}>Sign out</button>
+//       </p>
+//     ) : (
+//       <p>You are not logged in.</p>
+//     )
+// );
 
 class Login extends Component {
     
@@ -11,7 +25,8 @@ class Login extends Component {
     name: "",
     email: "",
     password: "",
-    pwd2: ""
+    pwd2: "",
+    isAuthenticated:false
   };
 
 
@@ -23,8 +38,9 @@ class Login extends Component {
   };
   
   handlePassName = (nameValue) => {
+      console.log(nameValue);
     this.props.onPassName(nameValue);
-    };
+  };
 
   handleLoginSubmit = event => {
     event.preventDefault();
@@ -35,9 +51,18 @@ class Login extends Component {
       })
       .then(res => {
         console.log(res);
-        
-        this.setState({name:res.data.name});
-        this.handlePassName(this.state.name);
+        if(res.data.status==="Success") {
+            console.log("hello you are here");
+            // this.props.name =res.data.name;
+            console.log(res.data.name);
+            this.setState({name:res.data.name});
+            this.handlePassName(this.state.name);
+            console.log("this "+ this.props.name);
+            return(
+                this.props.history.push("/game") 
+            );
+        };
+
       })
       .catch(err => console.log(err))
     }
@@ -56,6 +81,8 @@ class Login extends Component {
         
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
+
+        
       })
       .catch(err => console.log(err))
     }
@@ -71,7 +98,11 @@ class Login extends Component {
     
     render() {
         return (
+<<<<<<< HEAD
         <div className="wrapper">
+=======
+        <div className="wrapper .svgBackground">
+>>>>>>> 6bbce6500d13e34e09f883561c8eea4a37f35cef
             {/* <div className="wrapperAnimation">
                 <h1 className="goodVibration">
                     <span>BR<span className="redText">AI</span>N</span><br />

@@ -21,18 +21,18 @@ router.route("/login")
                     res.send({
                         status: "Success",
                         name: result[0].user_name,
-                        url: '/api/user/game'
+                        url: '/game'
                     });
                 } else {
                     res.send({
                         status: "Incorrect password",
-                        url:'/api/user/login'
+                        url:'/login'
                      });
                 }
             } else {
                 res.send({
                     status: "Email not found",
-                    url: '/api/user/register'
+                    url: '/register'
                 });
             }   
          });        
@@ -73,7 +73,7 @@ router.route("/register")
                     status: "User is already registered",
                     name: result[0].user_name,
                     email: result[0].user_email,
-                    url: '/api/user/login'
+                    url: '/login'
                 });
             } else {
 
@@ -88,7 +88,7 @@ router.route("/register")
                             status: 'Success',
                             name: result[0].user_name,
                             email: result[0].user_email,
-                            url: '/api/user/game'
+                            url: '/game'
                         });
                     }
                 });   
@@ -112,13 +112,13 @@ router.route("/password")
 
                 res.send({
                     status: "Password successfully changed",
-                    url: '/api/user/game'
+                    url: '/game'
                 });
             } else {
 
                 res.send({
                     status: 'Password could not be changed',
-                    url: '/api/user/password'
+                    url: '/password'
                 });
             }
         });
