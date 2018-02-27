@@ -33,8 +33,8 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component = {()=> <Login onPassName={this.onPassName} />} />
-          <Route exact path="/Game" component = {Game} />
-          <Route exact path="/Stats" component = {Stats} />
+          <Route exact path="/Game" component = {()=> <Game {...this.state} />} />
+          <Route exact path="/Stats" component = {()=> <Stats {...this.state} />} />
         </Switch>
       </div>
     </Router>

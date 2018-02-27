@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import '../App.css';
+import API from "../utils/API";
 
 class Stats extends Component {
   
+    state = {
+    response: "",
+    stats: []
+  };
+
+  getStats = () => {
+    if(this.props.name) {
+      API.allScores()
+      .then(res => {
+        console.log(res);
+        
+        this.setState({stats:res});
+      })
+      .catch(err => console.log(err))
+    }
+  };
+
+
+componentDidMount = () => {
+    getStats();
+};
+
+
   render() {
         return (
             <div id="stats" class="wrapper">
