@@ -1,5 +1,5 @@
 .wrapper {
-	background-color: darkolivegreen;
+	letter-spacing: 2px;
 }
 
 .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, 
@@ -21,6 +21,7 @@
 .navbar a {
 	color: #9d9d9d;
 	font-size: 1.5em;
+	letter-spacing: 0;
 	text-decoration: none;
 }
 
@@ -33,14 +34,38 @@
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 100%}
 
+#landing {
+	background-image: url("/assets/images/zombieLoginBG.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-block-end: 20%;
+}
+
 #login {
-	/* font-family: fantasy; */
 	font-family: 'Creepster', cursive;
-	margin: 10% auto;
 }
 
 label {
 	color: white;
+}
+
+.modal-header {
+	border-bottom: 1px solid greenyellow;
+	font-family: 'Creepster', cursive;
+}
+
+.modal-footer {
+	border-top: 1px solid greenyellow;
+}
+
+.modal-content {
+	background-color: black;
+	color: #be1313;
+	letter-spacing: 0;
+}
+
+form input {
+	font-family: sans-serif;
 }
 
 #timer {
@@ -57,11 +82,10 @@ label {
 
 #stats {
 	background-image: url("/assets/images/zombieBG.jpg");
-
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: -120px;
-	background-color: darkolivegreen;
+	background-color: black;
 	color: #be1313;
 	font-family: 'Creepster', cursive;
 	font-size: 1.5em;

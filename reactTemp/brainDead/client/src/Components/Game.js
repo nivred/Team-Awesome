@@ -70,7 +70,7 @@ class Game extends Component {
             <div className="wrapper">
                 <div className="container-fluid text-center">    
                     <div id="main-content" className="row content">
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-12">
                             {this.state.ShuffleDeck.map(item => (
                                 <ClickItem
                                     key={item.id}

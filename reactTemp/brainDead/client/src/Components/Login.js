@@ -72,14 +72,14 @@ class Login extends Component {
     render() {
         return (
         <div className="wrapper">
-            <div className="wrapperAnimation">
+            {/* <div className="wrapperAnimation">
                 <h1 className="goodVibration">
                     <span>BR<span className="redText">AI</span>N</span><br />
                     <span>DEAD</span>
                 </h1>
-            </div>
+            </div> */}
             
-            <div className="container-fluid text-center">
+            <div id="landing" className="container-fluid text-center">
 
                 <div className="col-sm-3 col-md-4"></div>
 
