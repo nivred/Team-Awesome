@@ -7,6 +7,7 @@ class Game extends Component {
   
     state = {
       ShuffleDeck: ShuffleDeck(),
+      name: this.props.name,
       score: 0,
       topScore: 0,
       selected: [],
@@ -56,17 +57,23 @@ class Game extends Component {
     });
 
     youWin = () => {
-        alert(this.props.name);
-        alert(this.props.elapsed);
-
+        alert(this.state.name);
+        alert(this.state.elapsed/60/60);
+        this.setState(
+            {isStarted:false,
+            ShuffleDeck:ShuffleDeck(),
+            start:0,
+            match:[],
+            selected:[]
+        });
     }
 
     handleItemClick =  (id,position) => {
-        console.log("match is");
-        console.log(this.state.match);
-        console.log("position id"+this.state.ShuffleDeck[position].id);
+        // console.log("match is");
+        // console.log(this.state.match);
+        // console.log("position id"+this.state.ShuffleDeck[position].id);
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
-            console.log("i did a return")
+            // console.log("i did a return")
             return;
         
         } else{
@@ -93,7 +100,7 @@ class Game extends Component {
                     console.log(this.state.selected);
                     this.state.selected =[];
                     console.log(this.state.selected);
-                }, 0);
+                }, 500);
             }
             }else{
 
