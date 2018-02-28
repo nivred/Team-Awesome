@@ -125,5 +125,7 @@ router.route("/password")
     
 });
 
+    res.send(console.log(myObj));
+});
 
 module.exports = router;
