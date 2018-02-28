@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
 
   user: "root",
 
-  password: process.env.MYSQL_ROOT_PASSWORD,
+  password: process.env.MYSQL_ROOT_PWD,
   database: "memory_db"
 });
 
