@@ -10,7 +10,10 @@ class Game extends Component {
       score: 0,
       topScore: 0,
       selected: [],
-      match: []
+      match: [],
+      start:null,
+      isStarted:false,
+      elapsed:"00"
     };
 
     shouldComponentUpdate(nextProp, nextState) {
@@ -19,8 +22,8 @@ class Game extends Component {
         } else {
             return true;
         }
-        
     }
+
     formatNumDisplay = num => Math.log10(num) < 1 ? `0${num}` : num;
 
     formatTime = (time,string) => {
@@ -36,6 +39,10 @@ class Game extends Component {
                 break;
         }
     };
+    
+    timer;
+
+
     timerStart = event => {
         event.preventDefault();
         
@@ -45,7 +52,7 @@ class Game extends Component {
           this.timer = setInterval(this.tick,1);
         }
         
-      }
+    }
     
     tick = () => this.setState(()=>{
         const elapsed = Date.now() - this.state.start
@@ -62,44 +69,52 @@ class Game extends Component {
     }
 
     handleItemClick =  (id,position) => {
-        console.log("match is");
-        console.log(this.state.match);
-        console.log("position id"+this.state.ShuffleDeck[position].id);
+        // console.log("match is");
+        // console.log(this.state.match);
+        // console.log("position id"+this.state.ShuffleDeck[position].id);
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
-            console.log("i did a return")
+            // console.log("i did a return")
             return;
         
         } else{
         this.setState((state)=>{
+            if (this.state.selected.length > 1) {
+                return;
+            }
             if (this.state.selected.length==1){
+                this.state.selected.push(state.ShuffleDeck[position]);
                 if((state.ShuffleDeck[position].position==state.ShuffleDeck[this.state.selected[0].position].position)){
                     return;
                 } 
                 state.ShuffleDeck[position].flipped = true;
                 if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
-                    console.log("we have a match")
+                    // console.log("we have a match")
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         alert("you won");
                         this.youWin();
+                        this.props.history.push("/Stats");
+                        // this.setState({isStarted:false,matched:[],selected:[],ShuffleDeck:ShuffleDeck()});
+                        // clearInterval(this.timer);
+
                     }
                 } else {
-                console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
-                 setTimeout(() => {
+                // console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
+                setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
                     state.ShuffleDeck[this.state.selected[0].position].flipped = false;
-                    console.log(state.ShuffleDeck[1]);
-                    console.log(this.state.selected);
+                    // console.log(state.ShuffleDeck[1]);
+                    // console.log(this.state.selected);
                     this.state.selected =[];
-                    console.log(this.state.selected);
-                }, 0);
+                    // console.log(this.state.selected);
+                }, 800);
             }
             }else{
 
                 state.ShuffleDeck[position].flipped = true;
                 this.state.selected.push(state.ShuffleDeck[position]);
-                console.log(this.state.selected);
+                // console.log(this.state.selected);
         }
             return {ShuffleDeck: state.ShuffleDeck};
         });
