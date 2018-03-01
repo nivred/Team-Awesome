@@ -15,24 +15,30 @@ class Game extends Component {
       match: []
     };
 
+    millisToMinutesAndSeconds = (millis) => {
+        var minutes = Math.floor(millis / 60000);
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+      }
+
     addScoreSubmit = () => {
        
           API.addScore({
             name: this.state.name,
-            score: this.state.elapsed,
+            score: this.millisToMinutesAndSeconds(this.state.elapsed),
             theme: 1
           })
           .then(res => {
             console.log("added score");
-            console.log(res.data.status);
-            if(res.data.status==="Success") {
-                console.log("hello you have success");
-                // this.props.name =res.data.name;
-                // console.log(res.data.name);
-                // console.log("this "+ this.props.name);
-                // return(
-                    // this.props.history.push("/game") 
-            }
+            // console.log(res.data.status);
+            // if(res.data.status==="Success") {
+            //     console.log("hello you have success");
+            //     // this.props.name =res.data.name;
+            //     // console.log(res.data.name);
+            //     // console.log("this "+ this.props.name);
+            //     // return(
+            //         // this.props.history.push("/game") 
+            // }
            
     
           })
@@ -84,7 +90,7 @@ class Game extends Component {
 
     youWin = () => {
         alert(this.state.name);
-        alert(this.state.elapsed/60/60);
+        alert(this.millisToMinutesAndSeconds(this.state.elapsed));
         this.addScoreSubmit();
         this.setState(
             {isStarted:false,
@@ -117,6 +123,7 @@ class Game extends Component {
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         alert("you won");
+                        clearInterval(this.timer);
                         this.youWin();
                     }
                 } else {
