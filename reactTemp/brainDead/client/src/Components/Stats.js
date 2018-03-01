@@ -13,9 +13,17 @@ class Stats extends Component {
     if(this.props.name) {
       API.allScores()
       .then(res => {
-        console.log(res);
-        
-        this.setState({stats:res});
+        console.log(res.data.result);
+        let allStats = [];
+       for(let i = 1, j = 0; i <= res.data.result.length; i++, j++) {
+            let score = {
+                rank: i,
+                user_name: res.data.result[j].user_name,
+                score: res.data.result[j].score
+            }
+            allStats.push(score);
+         }
+        this.setState({stats:allStats});
       })
       .catch(err => console.log(err))
     }
@@ -23,7 +31,7 @@ class Stats extends Component {
 
 
 componentDidMount = () => {
-    this.getStats();
+    window.addEventListener('load', this.getStats());
 };
 
 
@@ -53,56 +61,9 @@ componentDidMount = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>			
-                                    <tr>
-                                        <td>8</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>USERNAME</td>
-                                        <td>00:20</td>
-                                    </tr>
+                                    {this.state.stats.map(stat => (
+                                        <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>

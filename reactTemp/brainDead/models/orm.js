@@ -138,6 +138,50 @@ const orm = {
     })
   },
 
+  joinSortA: function(table1, table2, col1, col2, sortfield, callback){
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? ASC";
+    let parms = [table1, table2, col1, col2, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  joinSortD: function(table1, table2, col1, col2, sortfield, callback){
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? DESC";
+    let parms = [table1, table2, col1, col2, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  joinSelectSortA: function(table1, table2, col1, col2, condition, sortfield, callback){
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? AND ? ORDER BY ?? ASC";
+    let parms = [table1, table2, col1, col2, condition, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  joinSelectSortD: function(table1, table2, col1, col2, condition, sortfield, callback){
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? AND ? ORDER BY ?? DESC";
+    let parms = [table1, table2, col1, col2, condition, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
   insertRow: function(table, dataObject, callback){
     let queryString = "INSERT INTO ?? (??) VALUES (?) ";
     let parms = [table];
