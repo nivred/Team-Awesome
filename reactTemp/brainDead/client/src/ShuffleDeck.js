@@ -4,7 +4,7 @@ import shuffle from 'shuffle-array';
 // import API from './utils/API';
 
 
-let cards = [
+const cards = [
 	{
 	id: 1,
 	position: 0,
@@ -123,6 +123,7 @@ const ShuffleDeck = () => {
 
 	for(let i = 0; i < completeDeck.length; i++) {
 	  completeDeck[i].position = i;
+	  completeDeck[i].flipped = false;
 	}
 
 	console.log(completeDeck);

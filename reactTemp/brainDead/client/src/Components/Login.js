@@ -98,7 +98,10 @@ class Login extends Component {
     
     render() {
         return (
+
         <div className="wrapper">
+
+
             {/* <div className="wrapperAnimation">
                 <h1 className="goodVibration">
                     <span>BR<span className="redText">AI</span>N</span><br />
