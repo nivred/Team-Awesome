@@ -24,5 +24,11 @@ export default {
   },
   addScore: function(dataObj) {
     return axios.post("/api/score/add", dataObj);
+  },
+  lastScore: function(dataObj) {
+    return axios.post("/api/score/last", dataObj);
+  },
+  bestScore: function(dataObj) {
+    return axios.post("/api/score/best", dataObj);
   }
 };

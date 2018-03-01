@@ -6,11 +6,12 @@ class Stats extends Component {
   
     state = {
     response: "",
-    stats: []
+    stats: [],
+    lastScore: 0,
+    bestScore: 0
   };
 
   getStats = () => {
-    if(this.props.name) {
       API.allScores()
       .then(res => {
         console.log(res.data.result);
@@ -26,12 +27,38 @@ class Stats extends Component {
         this.setState({stats:allStats});
       })
       .catch(err => console.log(err))
+  };
+
+  getLast = () => {
+    if(this.props.name) {
+      API.lastScore({
+        name: this.props.name})
+      .then(res => {
+        console.log(res.data.result);  
+        this.setState({lastScore:res.data.result[0].score});
+      })
+      .catch(err => console.log(err))
+    }
+  };
+
+  getBest = () => {
+    if(this.props.name) {
+      API.bestScore({
+        name: this.props.name})
+      .then(res => {
+        console.log(res.data.result);
+        this.setState({bestScore:res.data.result[0].score});
+      })
+      .catch(err => console.log(err))
     }
   };
 
 
 componentDidMount = () => {
     window.addEventListener('load', this.getStats());
+    console.log("Hello, " + this.props.name + " from the Stats Component");
+    this.getLast();
+    this.getBest();
 };
 
 
@@ -43,10 +70,10 @@ componentDidMount = () => {
                     <div class="col-md-6">
                         <div class="col-md-12 well">
                             <div class="panel panel-default">
-                                <h3 class="panel-body-sm">Your time was: 00:30</h3>
+                                <h3 class="panel-body-sm">Your time was: {this.state.lastScore}</h3>
                             </div>
                             <div class="panel panel-default">
-                                <h3 class="panel-body-sm">Your best time is: 00:20</h3>
+                                <h3 class="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
                             </div>
                             <a href="/game" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
                         </div>

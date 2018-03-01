@@ -33,7 +33,8 @@ class Game extends Component {
           })
           .then(res => {
             console.log("added score");
-            // console.log(res.data.status);
+            // this.props.history.push("/Stats");
+           // console.log(res.data.status);
             // if(res.data.status==="Success") {
             //     console.log("hello you have success");
             //     // this.props.name =res.data.name;
