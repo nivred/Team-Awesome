@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import ClickItem from "./ClickItem";
 import ShuffleDeck from "../ShuffleDeck"
+import API from "../utils/API";
 
 class Game extends Component {
   
@@ -13,6 +14,31 @@ class Game extends Component {
       selected: [],
       match: []
     };
+
+    addScoreSubmit = () => {
+       
+          API.addScore({
+            name: this.state.name,
+            score: this.state.elapsed,
+            theme: 1
+          })
+          .then(res => {
+            console.log("added score");
+            console.log(res.data.status);
+            if(res.data.status==="Success") {
+                console.log("hello you have success");
+                // this.props.name =res.data.name;
+                // console.log(res.data.name);
+                // console.log("this "+ this.props.name);
+                // return(
+                    // this.props.history.push("/game") 
+            }
+           
+    
+          })
+          .catch(err => console.log(err))
+        };
+     
 
     shouldComponentUpdate(nextProp, nextState) {
         if(this.state.elapsed !== nextState.elapsed || this.state.start !== nextState.start || this.state.isStarted !== nextState.isStarted) {
@@ -59,6 +85,7 @@ class Game extends Component {
     youWin = () => {
         alert(this.state.name);
         alert(this.state.elapsed/60/60);
+        this.addScoreSubmit();
         this.setState(
             {isStarted:false,
             ShuffleDeck:ShuffleDeck(),
@@ -66,6 +93,7 @@ class Game extends Component {
             match:[],
             selected:[]
         });
+        
     }
 
     handleItemClick =  (id,position) => {
