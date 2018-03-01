@@ -136,7 +136,7 @@ class Game extends Component {
                         alert("you won");
                         clearInterval(this.timer);
                         this.youWin();
-                        this.props.history.push("/Stats");
+                        // this.props.history.push("/Stats");
                         // this.setState({isStarted:false,matched:[],selected:[],ShuffleDeck:ShuffleDeck()});
                         // clearInterval(this.timer);
 
