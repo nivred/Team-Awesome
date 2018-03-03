@@ -41,8 +41,8 @@ router.route("/login")
 router.route("/exists")
     .get(function(req,res){
           let data = {
-            name: req.body.name,
-            email: req.body.email
+            name: req.body.userdata,
+            email: req.body.userdata
             }
 
         users.findEither(data, function(result){
@@ -51,8 +51,8 @@ router.route("/exists")
             if(result.length > 0){
                     res.send({
                         status: "User found",
-                        name: result[0].user_name,
-                        email: result[0].user_email,
+                        name: result.user_name,
+                        email: result.user_email,
                     });
                 } else {
                     res.send({
