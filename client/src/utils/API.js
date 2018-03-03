@@ -10,6 +10,9 @@ export default {
   allUsers: function() {
     return axios.get("/api/user");
   },
+  checkName: function(dataObj) {
+    return axios.get("/api/user/username", dataObj);
+  },
   register: function(dataObj) {
     return axios.post("/api/user/register", dataObj);
   },
