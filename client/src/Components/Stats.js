@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import API from "../utils/API";
 
@@ -75,7 +76,7 @@ componentDidMount = () => {
                             <div class="panel panel-default">
                                 <h3 class="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
                             </div>
-                            <a href="/game" type="button" class="btn btn-success btn-lg">PLAY AGAIN</a>
+                            <Link to="/Game"><div type="button" class="btn btn-success btn-lg">PLAY AGAIN</div></Link>
                         </div>
                         <div class="col-md-12">	
                             <h2>HIGH SCORES</h2>
