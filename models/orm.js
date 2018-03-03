@@ -139,7 +139,7 @@ const orm = {
   },
 
   joinSortA: function(table1, table2, col1, col2, sortfield, callback){
-    let querystring = "SELECT DISTINCT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? ASC";
+    let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? ASC";
     let parms = [table1, table2, col1, col2, sortfield];
 
     connection.query(querystring, parms, function(err, result){
@@ -149,9 +149,9 @@ const orm = {
     })
   },
 
-  distinctJoinSortA: function(table1, table2, col1, col2, sortfield, callback){
-    let querystring = "SELECT DISTINCT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? ASC";
-    let parms = [table1, table2, col1, col2, sortfield];
+  distinctJoinSortA: function(table1, table2, fields, col1, col2, sortfield, callback){
+    let querystring = "SELECT DISTINCT ? FROM ??, ?? WHERE ?? = ?? ORDER BY ?? ASC";
+    let parms = [table1, table2, fields, col1, col2, sortfield];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
