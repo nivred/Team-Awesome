@@ -1,5 +1,7 @@
 body {
 	background-color: black;
+	flex-direction: column;
+
 }
 
 .wrapper {
@@ -55,11 +57,15 @@ body {
 	background-image: url("/assets/images/zombieLoginBG.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	padding-block-end: 20%;
 }
 
 #login {
 	font-family: 'Creepster', cursive;
+	margin-top: 6%;
 }
 
 #login .panel {
@@ -102,15 +108,19 @@ form input {
 /* stats css */
 
 #stats {
-	background-image: url("/assets/images/zombieBG.jpg");
+	background-image: url("/assets/images/zombieBG.jpg"); 
 	background-repeat: no-repeat;
 	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-position-y: -120px;
 	background-color: black;
 	color: #be1313;
 	font-family: 'Creepster', cursive;
 	font-size: 1.5em;
 	font-weight: 600;
+	height: 100vh;
 }
 
 .well {
