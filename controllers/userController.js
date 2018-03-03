@@ -38,16 +38,21 @@ router.route("/login")
          });        
     });
 
-router.route("/username")
+router.route("/exists")
     .get(function(req,res){
-        
-        users.findByName(req.body.name, function(result){
+          let data = {
+            name: req.body.userdata,
+            email: req.body.userdata
+            }
+
+        users.findEither(data, function(result){
             console.log(result);
             
-            if(result[0].indexOf(req.body.name) > -1){
+            if(result.length > 0){
                     res.send({
-                        status: "Success",
-                        name: result[0].user_name,
+                        status: "User found",
+                        name: result.user_name,
+                        email: result.user_email,
                     });
                 } else {
                     res.send({
