@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "yarn build && node server.js",
+    "start": "node server.js",
     "client": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\"",
     "build": "cd client && yarn install && cd .."
