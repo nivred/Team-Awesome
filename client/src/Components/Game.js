@@ -93,7 +93,7 @@ class Game extends Component {
     });
 
     youWin = () => {
-        this.addScoreSubmit();
+        // this.addScoreSubmit();
         this.setState(
             {isStarted:false,
             ShuffleDeck:ShuffleDeck(),
