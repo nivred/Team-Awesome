@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "yarn build && node server.js",
     "client": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\"",
+    "build": "cd client && yarn build && cd .."
   },
   "dependencies": {
     "axios": "^0.18.0",
