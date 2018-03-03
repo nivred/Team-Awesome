@@ -3,53 +3,39 @@ import '../App.css';
 import ClickItem from "./ClickItem";
 import ShuffleDeck from "../ShuffleDeck"
 import API from "../utils/API";
-
+//setting state for the game
 class Game extends Component {
   
     state = {
       ShuffleDeck: ShuffleDeck(),
       name: this.props.name,
       score: 0,
-      topScore: 0,
       selected: [],
       match: [],
       start:null,
       isStarted:false,
       elapsed:"00"
     };
-
+//this will convert milliseconds to minutes and seconds
     millisToMinutesAndSeconds = (millis) => {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
       }
-
-    addScoreSubmit = () => {
-       
+//post scores to database
+    addScoreSubmit = () => {       
           API.addScore({
             name: this.state.name,
             score: this.millisToMinutesAndSeconds(this.state.elapsed),
             theme: 1
           })
           .then(res => {
-            console.log("added score");
-            // this.props.history.push("/Stats");
-           // console.log(res.data.status);
-            // if(res.data.status==="Success") {
-            //     console.log("hello you have success");
-            //     // this.props.name =res.data.name;
-            //     // console.log(res.data.name);
-            //     // console.log("this "+ this.props.name);
-            //     // return(
-            //         // this.props.history.push("/game") 
-            // }
-           
-    
+            console.log("added score");          
           })
           .catch(err => console.log(err))
         };
      
-
+//checks time to see if we should update state
     shouldComponentUpdate(nextProp, nextState) {
         if(this.state.elapsed !== nextState.elapsed || this.state.start !== nextState.start || this.state.isStarted !== nextState.isStarted) {
             return false;
@@ -57,9 +43,9 @@ class Game extends Component {
             return true;
         }
     }
-
+//displays the timer
     formatNumDisplay = num => Math.log10(num) < 1 ? `0${num}` : num;
-
+//formats time
     formatTime = (time,string) => {
         switch (string) {
             case 'milliseconds':
@@ -76,18 +62,17 @@ class Game extends Component {
     
     timer;
 
-
+//starts the timer
     timerStart = event => {
         event.preventDefault();
         
         if(!this.state.isStarted) {
           this.setState({start:Date.now(), isStarted:true});
-        
           this.timer = setInterval(this.tick,1);
         }
         
     }
-    
+ //used the timer   
     tick = () => this.setState(()=>{
         const elapsed = Date.now() - this.state.start
         document.querySelector("#minutes").textContent = this.formatTime(elapsed, "minutes")
@@ -111,62 +96,52 @@ class Game extends Component {
     }
 
     handleItemClick =  (id,position) => {
-        // console.log("match is");
-        // console.log(this.state.match);
-        // console.log("position id"+this.state.ShuffleDeck[position].id);
+//if you clicl on card that has already been match return to click another card
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
-            // console.log("i did a return")
             return;
         
         } else{
         this.setState((state)=>{
+            
             if (this.state.selected.length > 1) {
-                alert("this is selected greater than 1 "+this.state.selected.length);
                 return;
             }
+            // if the first card is in select then compare the first and second cards
             if (this.state.selected.length===1){
+                //if the first and second cards are the same ignore
                 if((state.ShuffleDeck[position].position==state.ShuffleDeck[this.state.selected[0].position].position)){
                     return;
+                //otherwise push second card to select
                 this.state.selected.push(state.ShuffleDeck[position]);
-
                 } 
                 state.ShuffleDeck[position].flipped = true;
-                if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
-                    // console.log("we have a match")
+                //checks to see if there is a match
+                if (state.ShuffleDeck[position].id===state.ShuffleDeck[this.state.selected[0].position].id){
+                    
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         // alert("you won");
                         state.ShuffleDeck[position].flipped = true;
                         clearInterval(this.timer);
-                        this.youWin(state);
-                        
-                        // this.props.history.push("/Stats");
-                        // this.setState({isStarted:false,matched:[],selected:[],ShuffleDeck:ShuffleDeck()});
-                        // clearInterval(this.timer);
-
+                        this.addScoreSubmit();
+                        setTimeout(()=> this.youWin(state), 500)
                     }
                 } else {
-                // console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
                 setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
                     state.ShuffleDeck[this.state.selected[0].position].flipped = false;
-                    // console.log(state.ShuffleDeck[1]);
-                    // console.log(this.state.selected);
                     this.state.selected =[];
-                    console.log(this.state.selected);
                 }, 300);
             }
             }else{
-
+                //push the first card into selected
                 state.ShuffleDeck[position].flipped = true;
                 this.state.selected.push(state.ShuffleDeck[position]);
-                // console.log(this.state.selected);
         }
             return {ShuffleDeck: state.ShuffleDeck};
         });
         
-        // make something happen
     }  
     };
 
@@ -175,7 +150,7 @@ class Game extends Component {
             <div className="wrapper">
                 <div className="container-fluid text-center">    
                     <div id="main-content" className="row content">
-                        <div class="col-xs-12 col-sm-12">
+                        <div className="col-xs-12 col-sm-12">
                             {this.state.ShuffleDeck.map(item => (
                                 <ClickItem
                                     timerStart={this.timerStart}
