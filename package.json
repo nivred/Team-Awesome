@@ -6,7 +6,7 @@
     "start": "yarn build && node server.js",
     "client": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn start\" \"yarn client\"",
-    "build": "cd client && yarn build && cd .."
+    "build": "cd client && yarn install && cd .."
   },
   "dependencies": {
     "axios": "^0.18.0",
