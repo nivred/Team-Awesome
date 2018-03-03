@@ -1,9 +1,7 @@
-# ![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?raw=true)
-https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?raw=true
-Brain Dead - Zombie Memory Card Game
+# ![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?aw=true) Brain Dead
 
 ## Description
-This application runs a website using REACT to provide blah blah blah
+This application is a zombie themed memory card game that runs on REACT to provide blah blah blah
 Please view the app please visit http.
 
 ## License
