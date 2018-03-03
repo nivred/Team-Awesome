@@ -19,9 +19,16 @@ class Game extends Component {
     };
 
     millisToMinutesAndSeconds = (millis) => {
-        const minutes = Math.floor(millis / 60000);
-        const seconds = ((millis % 60000) / 1000).toFixed(0);
-        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        var minutes = Math.floor(millis / 60000);
+        if(minutes > 59) {
+            var hours = minutes - 59;
+            minutes = 59;
+        }
+        else {
+            hours = 0;
+        }
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return (hours < 10 ? '0' : '') + hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
       }
 
     addScoreSubmit = () => {
@@ -32,18 +39,7 @@ class Game extends Component {
             theme: 1
           })
           .then(res => {
-            console.log("added score");
-            // this.props.history.push("/Stats");
-           // console.log(res.data.status);
-            // if(res.data.status==="Success") {
-            //     console.log("hello you have success");
-            //     // this.props.name =res.data.name;
-            //     // console.log(res.data.name);
-            //     // console.log("this "+ this.props.name);
-            //     // return(
-            //         // this.props.history.push("/game") 
-            // }
-           
+       
     
           })
           .catch(err => console.log(err))
@@ -72,6 +68,8 @@ class Game extends Component {
                 return this.formatNumDisplay(Math.floor((time / 1000) / 60));
                 break;
         }
+
+
     };
     
     timer;
@@ -97,8 +95,6 @@ class Game extends Component {
     });
 
     youWin = () => {
-        console.log(this.state.name);
-        console.log(this.millisToMinutesAndSeconds(this.state.elapsed));
         this.addScoreSubmit();
         this.setState(
             {isStarted:false,
@@ -111,11 +107,7 @@ class Game extends Component {
     }
 
     handleItemClick =  (id,position) => {
-        // console.log("match is");
-        // console.log(this.state.match);
-        // console.log("position id"+this.state.ShuffleDeck[position].id);
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
-            // console.log("i did a return")
             return;
         
         } else{
@@ -132,7 +124,6 @@ class Game extends Component {
                 } 
                 state.ShuffleDeck[position].flipped = true;
                 if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
-                    // console.log("we have a match")
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
@@ -141,18 +132,11 @@ class Game extends Component {
                         clearInterval(this.timer);
                         this.youWin(state);
                         
-                        // this.props.history.push("/Stats");
-                        // this.setState({isStarted:false,matched:[],selected:[],ShuffleDeck:ShuffleDeck()});
-                        // clearInterval(this.timer);
-
                     }
                 } else {
-                // console.log("check match selected "+ this.state.selected[0].id +" current " + this.state.ShuffleDeck[position].id);
                 setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
                     state.ShuffleDeck[this.state.selected[0].position].flipped = false;
-                    // console.log(state.ShuffleDeck[1]);
-                    // console.log(this.state.selected);
                     this.state.selected =[];
                     console.log(this.state.selected);
                 }, 300);
@@ -161,13 +145,10 @@ class Game extends Component {
 
                 state.ShuffleDeck[position].flipped = true;
                 this.state.selected.push(state.ShuffleDeck[position]);
-                // console.log(this.state.selected);
         }
             return {ShuffleDeck: state.ShuffleDeck};
         });
-        
-        // make something happen
-    }  
+     }  
     };
 
   render() {
