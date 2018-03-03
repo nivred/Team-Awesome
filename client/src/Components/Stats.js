@@ -17,7 +17,7 @@ class Stats extends Component {
       .then(res => {
         console.log(res.data.result);
         let allStats = [];
-       for(let i = 1, j = 0; i <= res.data.result.length; i++, j++) {
+       for(let i = 1, j = 0; i <= res.data.result.length && i <= 10; i++, j++) {
             let score = {
                 rank: i,
                 user_name: res.data.result[j].user_name,
