@@ -1,4 +1,4 @@
-![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?aw=true) 
+![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/readMe.jpg?raw=true) 
 # Brain Dead
 
 ## Description
