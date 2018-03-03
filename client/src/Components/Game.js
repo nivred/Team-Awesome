@@ -18,9 +18,16 @@ class Game extends Component {
     };
 //this will convert milliseconds to minutes and seconds
     millisToMinutesAndSeconds = (millis) => {
-        const minutes = Math.floor(millis / 60000);
-        const seconds = ((millis % 60000) / 1000).toFixed(0);
-        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        var minutes = Math.floor(millis / 60000);
+        if(minutes > 59) {
+            var hours = minutes - 59;
+            minutes = 59;
+        }
+        else {
+            hours = 0;
+        }
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return (hours < 10 ? '0' : '') + hours + ":" + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
       }
 //post scores to database
     addScoreSubmit = () => {       
@@ -30,7 +37,12 @@ class Game extends Component {
             theme: 1
           })
           .then(res => {
+<<<<<<< HEAD
             console.log("added score");          
+=======
+       
+    
+>>>>>>> master
           })
           .catch(err => console.log(err))
         };
@@ -58,6 +70,8 @@ class Game extends Component {
                 return this.formatNumDisplay(Math.floor((time / 1000) / 60));
                 break;
         }
+
+
     };
     
     timer;
@@ -82,8 +96,6 @@ class Game extends Component {
     });
 
     youWin = () => {
-        console.log(this.state.name);
-        console.log(this.millisToMinutesAndSeconds(this.state.elapsed));
         this.addScoreSubmit();
         this.setState(
             {isStarted:false,
@@ -96,7 +108,10 @@ class Game extends Component {
     }
 
     handleItemClick =  (id,position) => {
+<<<<<<< HEAD
 //if you clicl on card that has already been match return to click another card
+=======
+>>>>>>> master
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
             return;
         
@@ -115,17 +130,26 @@ class Game extends Component {
                 this.state.selected.push(state.ShuffleDeck[position]);
                 } 
                 state.ShuffleDeck[position].flipped = true;
+<<<<<<< HEAD
                 //checks to see if there is a match
                 if (state.ShuffleDeck[position].id===state.ShuffleDeck[this.state.selected[0].position].id){
                     
+=======
+                if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
+>>>>>>> master
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         // alert("you won");
                         state.ShuffleDeck[position].flipped = true;
                         clearInterval(this.timer);
+<<<<<<< HEAD
                         this.addScoreSubmit();
                         setTimeout(()=> this.youWin(state), 500)
+=======
+                        this.youWin(state);
+                        
+>>>>>>> master
                     }
                 } else {
                 setTimeout(() => {
@@ -141,8 +165,12 @@ class Game extends Component {
         }
             return {ShuffleDeck: state.ShuffleDeck};
         });
+<<<<<<< HEAD
         
     }  
+=======
+     }  
+>>>>>>> master
     };
 
   render() {

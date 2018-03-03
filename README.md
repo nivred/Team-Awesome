@@ -1,10 +1,22 @@
+<<<<<<< HEAD
+![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?aw=true)
+=======
 ![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/readMe.jpg?raw=true) 
+>>>>>>> 0f1c08acbdad13d6236fce1966e697b0f8c17ca3
 # Brain Dead
 
 ## Description
+This web application is a zombie themed memory card game that challenges users to match any pair of cards of the same image. Each game played is timed and records how long it takes to complete. Users who hold the Top 10 record times are displayed within the Stats page.  
 
-This application is a zombie themed memory card game that runs on REACT to provide blah blah blah
-Please view the app please visit http.
+To view app please visit http://heroku.something-something.com.
+
+## Technology
+ReactJS,, JawsDB MySQL, custome ORM, GET and POST routing, MVC architecture, with user authentication capability
+
+NPM Packages:
+* Express
+* Axios
+* Shuffle
 
 ## License
 * None
