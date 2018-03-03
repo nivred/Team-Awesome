@@ -2,9 +2,12 @@
 const mysql = require("mysql");
 
 console.log("connection here");
-
-//mySQL connection data
-const connection = mysql.createConnection({
+let connection;
+if(process.env.JAWSDB_URL){
+  connection=mysql.createConnection(process.env.JAWSDB_URL);
+} else{
+  //mySQL connection data
+ connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
 
@@ -13,6 +16,8 @@ const connection = mysql.createConnection({
   password: process.env.MYSQL_ROOT_PWD,
   database: "memory_db"
 });
+}
+
 
 //connect
 connection.connect(function(err) {
