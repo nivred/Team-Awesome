@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Redirect, Link } from 'react-router-dom';
 import Timer from "./Timer";
 import '../App.css';
 // import data from "./data.json";
@@ -22,9 +22,9 @@ class Nav extends Component {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <div className="navbar-header col-md-4">
-                        <a className="navbar-brand" href="/game">
-                            <img src="../assets/images/brainDead.png" />
-                        </a>
+                        <div className="navbar-brand">
+                            <Link to="/Game"><img src="../assets/images/brainDead.png" /></Link>
+                        </div>
                     </div>
 
                     <Switch>

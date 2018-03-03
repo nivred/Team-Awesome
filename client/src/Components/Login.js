@@ -4,22 +4,8 @@ import '../App.css';
 import {Route, Redirect} from 'react-router';
 import API from "../utils/API";
 
-
-// const AuthButton = withRouter(                                        // A generated button that authenticates a user
-//   ({ history }) =>
-//     fakeAuth.isAuthenticated ? (
-//       <p>
-//         Welcome!{" "}
-//         <button onClick={() => { fakeAuth.signout(() => history.push("/")); }}>Sign out</button>
-//       </p>
-//     ) : (
-//       <p>You are not logged in.</p>
-//     )
-// );
-
 class Login extends Component {
     
-
   state = {
     response: "",
     name: "",
@@ -62,9 +48,14 @@ class Login extends Component {
             return(
                 this.props.history.push("/game") 
             );
-        };
-
-      })
+        } else {
+          const placeHolderFix = () => {
+            document.querySelector("#password").value = "";
+            document.querySelector("#password").placeholder = "INVALID PASSWORD";
+          }
+          placeHolderFix();
+          setTimeout(() => document.querySelector("#password").placeholder = "Password", 1500);
+      }})
       .catch(err => console.log(err))
     }
   };
@@ -91,9 +82,10 @@ class Login extends Component {
 
   handlePwdConfirm = () => {
     if(this.state.password !== this.state.pwd2) {
-        alert("Passwords do not match!");
+      
+      // alert("Passwords do not match!");
     }
-    };
+  };
 
 
     
