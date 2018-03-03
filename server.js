@@ -7,6 +7,9 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
+app.use(express.static("client/build"));
+
+
 // // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("client/public"));
 
@@ -21,8 +24,11 @@ app.use(routes);
 // app.use(methodOverride("_method"));
 
 app.get("/", function(req,res, next) {
-	res.sendFile(path.resolve(__dirname, "client/public", "index.html"));
-});
+	//this is production
+		res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+		//this is for developing
+		// res.sendFile(path.resolve(__dirname, "client/public", "index.html"));
+	});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

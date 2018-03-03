@@ -38,6 +38,25 @@ router.route("/login")
          });        
     });
 
+router.route("/username")
+    .get(function(req,res){
+
+        users.findByName(req.body.name, function(result){
+            console.log(result);
+            
+            if(result[0]){
+                    res.send({
+                        status: "Success",
+                        name: result[0].user_name,
+                    });
+                } else {
+                    res.send({
+                        status: "Name not found",
+                     });
+                }
+          });        
+    });
+
 
 router.route("/")
     .get(function(req, res) {
