@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/zombie12.jpg?aw=true)
-=======
 ![Brain Dead](https://github.com/stabrr/Team-Awesome/blob/master/client/public/assets/images/readMe.jpg?raw=true) 
->>>>>>> 0f1c08acbdad13d6236fce1966e697b0f8c17ca3
 # Brain Dead
 
 ## Description
