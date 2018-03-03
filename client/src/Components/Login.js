@@ -62,6 +62,16 @@ class Login extends Component {
 
   handleRegisterSubmit = event => {
     event.preventDefault();
+    if(this.state.password !== this.state.pwd2) {
+      let notMatch = "Not a Match, Re-Enter Passwords"
+      document.querySelector("#pwd1").placeholder = notMatch;
+      document.querySelector("#pwd2").placeholder = notMatch;
+      setTimeout(() => {
+        document.querySelector("#pwd1").placeholder = "";
+        document.querySelector("#pwd2").placeholder = "";
+      }, 1500)
+      return;
+    }
     if(this.state.name && this.state.email && this.state.password) {
       API.register({
         name: this.state.name,
@@ -80,11 +90,16 @@ class Login extends Component {
     }
   };
 
-  handlePwdConfirm = () => {
-    if(this.state.password !== this.state.pwd2) {
-      
-      // alert("Passwords do not match!");
-    }
+  handlePwdConfirm = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    
+    let pwd1 = document.querySelector("#pwd1").value;
+    let pwd2 = document.querySelector("#pwd2").value;
+
+    pwd1 === pwd2 ? (document.querySelector("#valid").textContent = "") : (document.querySelector("#valid").textContent = "Confirm Password");
   };
 
 
@@ -168,15 +183,16 @@ class Login extends Component {
                                     <label for="pwd">Password:</label>
                                     <input type="password" className="form-control" id="pwd1" name="password" 
                                     value={this.state.password}
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handlePwdConfirm} />
                                 </div>
                                 <div className="form-group">
                                     <label for="pwd">Confirm Password:</label>
                                     <input type="password" className="form-control" id="pwd2" name="pwd2" 
                                     value={this.state.pwd2} 
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handlePwdConfirm} />
                               </div>
                                 <div className="modal-footer">
+                                    <div id="valid"></div>
                                     <button type="submit" className="btn btn-lg" data-dismiss="modal"
                                     disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2)}
                                     onChange={this.handlePwdConfirm} 
