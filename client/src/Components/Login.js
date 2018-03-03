@@ -90,6 +90,21 @@ class Login extends Component {
     }
   };
 
+  handleUsername = () => {
+    API.checkName({name:this.state.name}).then(res => {
+      console.log(res);
+      if(res.data.status === "Name not found") {
+        alert("Can Use");
+        document.querySelector("#userNameOK").classList.add("glyphicon-ok")
+        document.querySelector("#userNameOK").classList.remove("glyphicon-remove")
+      } else {
+        alert("Cannot Use");
+        document.querySelector("#userNameOK").classList.add("glyphicon-remove")
+        document.querySelector("#userNameOK").classList.remove("glyphicon-ok")
+      }
+    })
+  }
+
   handlePwdConfirm = event => {
     const { name, value } = event.target;
     this.setState({
@@ -168,10 +183,11 @@ class Login extends Component {
                         <div className="modal-body">
                              <form onSubmit={this.handleRegisterSubmit}> 
                                 <div className="form-group">
-                                    <label for="username">Username:</label>
-                                    <input type="text" className="form-control" id="username" name="name" 
+                                    <label for="username">Username <span id="userNameOK" class="glyphicon"></span>:</label>
+                                    <input style={{display : 'inline-block'}} type="text" className="form-control" id="username" name="name" 
                                     value={this.state.name}
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange}
+                                    onBlur={this.handleUsername} />
                                </div>
                                 <div className="form-group">
                                     <label for="email">Email address:</label>
