@@ -126,26 +126,17 @@ class Game extends Component {
                 this.state.selected.push(state.ShuffleDeck[position]);
                 } 
                 state.ShuffleDeck[position].flipped = true;
-<<<<<<< HEAD
                 //checks to see if there is a match
                 if (state.ShuffleDeck[position].id===state.ShuffleDeck[this.state.selected[0].position].id){
                     
-=======
-                if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
->>>>>>> master
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
                         // alert("you won");
                         state.ShuffleDeck[position].flipped = true;
                         clearInterval(this.timer);
-<<<<<<< HEAD
                         this.addScoreSubmit();
                         setTimeout(()=> this.youWin(state), 500)
-=======
-                        this.youWin(state);
-                        
->>>>>>> master
                     }
                 } else {
                 setTimeout(() => {
@@ -161,12 +152,8 @@ class Game extends Component {
         }
             return {ShuffleDeck: state.ShuffleDeck};
         });
-<<<<<<< HEAD
         
     }  
-=======
-     }  
->>>>>>> master
     };
 
   render() {
