@@ -37,12 +37,9 @@ class Game extends Component {
             theme: 1
           })
           .then(res => {
-<<<<<<< HEAD
+
             console.log("added score");          
-=======
-       
-    
->>>>>>> master
+
           })
           .catch(err => console.log(err))
         };
@@ -108,10 +105,9 @@ class Game extends Component {
     }
 
     handleItemClick =  (id,position) => {
-<<<<<<< HEAD
-//if you clicl on card that has already been match return to click another card
-=======
->>>>>>> master
+
+//if you click on card that has already been match return to click another card
+
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
             return;
         
