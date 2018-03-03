@@ -19,8 +19,8 @@ class Game extends Component {
     };
 
     millisToMinutesAndSeconds = (millis) => {
-        var minutes = Math.floor(millis / 60000);
-        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        const minutes = Math.floor(millis / 60000);
+        const seconds = ((millis % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
       }
 
@@ -97,8 +97,8 @@ class Game extends Component {
     });
 
     youWin = () => {
-        alert(this.state.name);
-        alert(this.millisToMinutesAndSeconds(this.state.elapsed));
+        console.log(this.state.name);
+        console.log(this.millisToMinutesAndSeconds(this.state.elapsed));
         this.addScoreSubmit();
         this.setState(
             {isStarted:false,
@@ -121,12 +121,14 @@ class Game extends Component {
         } else{
         this.setState((state)=>{
             if (this.state.selected.length > 1) {
+                alert("this is selected greater than 1 "+this.state.selected.length);
                 return;
             }
-            if (this.state.selected.length==1){
-                this.state.selected.push(state.ShuffleDeck[position]);
+            if (this.state.selected.length===1){
                 if((state.ShuffleDeck[position].position==state.ShuffleDeck[this.state.selected[0].position].position)){
                     return;
+                this.state.selected.push(state.ShuffleDeck[position]);
+
                 } 
                 state.ShuffleDeck[position].flipped = true;
                 if (state.ShuffleDeck[position].id==state.ShuffleDeck[this.state.selected[0].position].id){
@@ -134,9 +136,11 @@ class Game extends Component {
                     this.state.match.push(state.ShuffleDeck[position].id);
                     this.state.selected =[];
                     if (this.state.match.length==6) {
-                        alert("you won");
+                        // alert("you won");
+                        state.ShuffleDeck[position].flipped = true;
                         clearInterval(this.timer);
-                        this.youWin();
+                        this.youWin(state);
+                        
                         // this.props.history.push("/Stats");
                         // this.setState({isStarted:false,matched:[],selected:[],ShuffleDeck:ShuffleDeck()});
                         // clearInterval(this.timer);
@@ -151,7 +155,7 @@ class Game extends Component {
                     // console.log(this.state.selected);
                     this.state.selected =[];
                     console.log(this.state.selected);
-                }, 500);
+                }, 300);
             }
             }else{
 
