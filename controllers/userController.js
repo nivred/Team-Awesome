@@ -7,13 +7,13 @@ const router = express.Router();
 // Import user model to access its functions
 const users = require("../models/users");
 
-console.log("hello from userController");
+// console.log("hello from userController");
 
 router.route("/login")
     .post(function(req,res){
 
         users.findByEmail(req.body.email, function(result){
-            console.log(result);
+            // console.log(result);
             
             if(result[0]){
                 if(req.body.password === result[0].user_password){
@@ -40,13 +40,11 @@ router.route("/login")
 
 router.route("/exists")
     .post(function(req, res){
-        console.log("req.body", req.body);
           let data = {
             name: req.body.userdata,
             email: req.body.userdata
             }
-            console.log(`this is req.body`, req.body)
-            console.log("this is the request data",data)
+
         users.findEither(data, function(result){
             
             if(result.length > 0){
@@ -56,7 +54,7 @@ router.route("/exists")
                         email: result[0].user_email,
                     });
                 } else {
-                    console.log(JSON.stringify(result));
+                    // console.log(JSON.stringify(result));
                     res.send({
                         status: "User not found",
                      });
@@ -76,7 +74,7 @@ router.route("/")
             } else {
                 let str = JSON.stringify(result)
                 res.send({ result });
-                console.log(str);
+                // console.log(str);
             }
         });
     });
@@ -85,7 +83,7 @@ router.route("/")
 router.route("/register")
     .post(function(req, res) {
 
-        console.log("req.body", req.body);
+        // console.log("req.body", req.body);
           let data = {
             name: req.body.name,
             password: req.body.password,
@@ -109,7 +107,7 @@ router.route("/register")
                             status: "Internal Database Error"
                         });
                     } else {
-                        console.log(result);
+                        // console.log(result);
                         res.send({
                             status: 'Success',
                             name: result[0].user_name,
@@ -126,14 +124,14 @@ router.route("/register")
 router.route("/password")
     .post(function(req, res) {
 
-        console.log("req.body", req.body)
+        // console.log("req.body", req.body)
           let data = {
             name: req.body.name,
             password: req.body.password
             }
      
         users.changePassword(data, function(result){
-            console.log(result);
+            // console.log(result);
             if(result[0].changedRows == 1){
 
                 res.send({

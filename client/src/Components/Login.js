@@ -24,7 +24,7 @@ class Login extends Component {
   };
   
   handlePassName = (nameValue) => {
-      console.log(nameValue);
+    //   console.log(nameValue);
     this.props.onPassName(nameValue);
   };
 
@@ -38,13 +38,13 @@ class Login extends Component {
       .then(res => {
         console.log(res);
         if(res.data.status==="Success") {
-            console.log("hello you are here");
+            // console.log("hello you are here");
             // this.props.name =res.data.name;
-            console.log(res.data.name);
+            // console.log(res.data.name);
             this.setState({name:res.data.name});
             window.sessionStorage.setItem("SignIn",JSON.stringify({userName:this.state.name,time:Date.now()}));
             this.handlePassName(this.state.name);
-            console.log("this "+ this.props.name);
+            // console.log("this "+ this.props.name);
             return(
                 this.props.history.push("/game") 
             );
@@ -79,7 +79,7 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
-        console.log(res);
+        // console.log(res);
         
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
@@ -124,8 +124,8 @@ class Login extends Component {
     
     let pwd1 = document.querySelector("#pwd1").value;
     let pwd2 = document.querySelector("#pwd2").value;
-
-    pwd1 === pwd2 ? (document.querySelector("#valid").textContent = "") : (document.querySelector("#valid").textContent = "Confirm Password");
+    let validMatch = document.querySelector("#valid");
+    validMatch.textContent = pwd1 === pwd2 ? "" : "Confirm Password";
   };
 
     render() {
