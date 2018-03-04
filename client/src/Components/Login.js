@@ -42,7 +42,7 @@ class Login extends Component {
             // this.props.name =res.data.name;
             console.log(res.data.name);
             this.setState({name:res.data.name});
-            sessionStorage.setItem("SignIn",JSON.stringify({userName:this.state.name,time:Date.now()}));
+            window.sessionStorage.setItem("SignIn",JSON.stringify({userName:this.state.name,time:Date.now()}));
             this.handlePassName(this.state.name);
             console.log("this "+ this.props.name);
             return(
@@ -91,9 +91,10 @@ class Login extends Component {
   };
 
   handleUsername = () => {
-    API.checkName({name:this.state.name}).then(res => {
-      console.log(res);
-      if(res.data.status === "Name not found") {
+    console.log(`username: ${this.state.name}`)
+    API.checkUser({ userdata: this.state.name }).then(res => {
+      console.log(res.data.status);
+      if(res.data.status === "User found") {
         alert("Can Use");
         document.querySelector("#userNameOK").classList.add("glyphicon-ok")
         document.querySelector("#userNameOK").classList.remove("glyphicon-remove")

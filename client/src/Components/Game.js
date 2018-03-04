@@ -99,6 +99,7 @@ class Game extends Component {
             match:[],
             selected:[]
         });
+        this.props.history.push("/Stats");
         
     }
 
@@ -107,8 +108,9 @@ class Game extends Component {
         if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
             return;
         
-        } else{
-        this.setState((state)=>{
+        } else {
+        
+            this.setState( state => {
             
             if (this.state.selected.length > 1) {
                 return;

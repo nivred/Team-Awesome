@@ -44,7 +44,8 @@ router.route("/exists")
             name: req.body.userdata,
             email: req.body.userdata
             }
-
+            console.log(`this is req.body`, req.body)
+            console.log("this is the request data",data)
         users.findEither(data, function(result){
             console.log(result);
             
@@ -56,7 +57,7 @@ router.route("/exists")
                     });
                 } else {
                     res.send({
-                        status: "Name not found",
+                        status: "User not found",
                      });
                 }
           });        
