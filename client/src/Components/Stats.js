@@ -86,9 +86,9 @@ componentDidMount = () => {
                             <div class="panel panel-default">
                                 <h3 class="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
                             </div>
-                            <Link to="/Game"><div type="button" class="btn btn-success btn-lg">PLAY AGAIN</div></Link>
+                            <Link to="/Game"><div type="button" class="btn btn-sample btn-lg">PLAY AGAIN</div></Link>
                         </div>
-                        <div class="col-md-12">	
+                        <div id="highScores" class="col-md-12">	
                             <h2>HIGH SCORES</h2>
                             <table class="table" border="0" cellspacing="0" cellpadding="0">
                                 <thead>

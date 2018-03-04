@@ -1,7 +1,6 @@
 body {
 	background-color: black;
 	flex-direction: column;
-
 }
 
 .wrapper {
@@ -13,7 +12,7 @@ body {
 }
 
 .checkUserOK {
-	color:greenyellow;
+	color:#adff2f;
 }
 
 .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, 
@@ -25,6 +24,7 @@ body {
     padding-right: 0; 
     padding-left: 0;
 }
+
 .myAnimate {
 	stroke-dasharray:10000;
 	stroke-dashoffset:10000;
@@ -35,16 +35,17 @@ body {
 
 @keyframes dash {
 	100%{
-			
 			stroke-dashoffset:0;
 		}
 }
+
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
 	border-radius: 0;
 	height: 90px;
 	margin-bottom: 0;
 }
+
 .navbar a {
 	color: #9d9d9d;
 	font-size: 1.5em;
@@ -58,6 +59,7 @@ body {
 	margin: 0 20px 15px 20px;
 	padding-bottom: 0;
 }
+
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {height: 100%}
 
@@ -114,7 +116,6 @@ form input {
 }
 
 /* stats css */
-
 #stats {
 	background-image: url("/assets/images/zombieBG.jpg"); 
 	background-repeat: no-repeat;
@@ -155,6 +156,57 @@ form input {
 	margin-bottom: 10px;
 }
 
+.btn-sample { 
+	color: #ffffff; 
+	background-color: #BE1313; 
+	border-color: #ADFF2F; 
+} 
+   
+.btn-sample:hover, 
+.btn-sample:focus, 
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+	color: #ffffff; 
+	background-color: #000; 
+	border-color: #ADFF2F; 
+} 
+   
+.btn-sample:active, 
+.btn-sample.active, 
+.open .dropdown-toggle.btn-sample { 
+	background-image: none; 
+} 
+   
+.btn-sample.disabled, 
+.btn-sample[disabled], 
+fieldset[disabled] .btn-sample, 
+.btn-sample.disabled:hover, 
+.btn-sample[disabled]:hover, 
+fieldset[disabled] .btn-sample:hover, 
+.btn-sample.disabled:focus, 
+.btn-sample[disabled]:focus, 
+fieldset[disabled] .btn-sample:focus, 
+.btn-sample.disabled:active, 
+.btn-sample[disabled]:active, 
+fieldset[disabled] .btn-sample:active, 
+.btn-sample.disabled.active, 
+.btn-sample[disabled].active, 
+fieldset[disabled] .btn-sample.active { 
+	background-color: #BE1313; 
+	border-color: #ADFF2F; 
+} 
+   
+.btn-sample .badge { 
+	color: #BE1313; 
+	background-color: #ffffff; 
+}
+
+#highScores {
+	background-color: rgba(0, 0, 0, 0.35);
+	text-shadow: 1px 1px 1px black;
+}
+
 .table {
     border-bottom:0px !important;
 }
@@ -171,8 +223,8 @@ th {
 	text-align: center;
 }
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding: 0;}
-
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, 
+.table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding: 0;}
 /* end stats css */
 
 #main-content {
@@ -183,24 +235,6 @@ th {
 	background-color: black;
 	padding: 47% 0;
 	margin-bottom: 5%;
-	
-}
-.card-8 {
-	background-color: black;
-	display: inline-block;
-	margin: 0 1%;
-	margin-bottom: 2%;
-	padding: 13% 0;
-	width: 20%;
-}
-
-.card-12 {
-	background-color: black;
-	display: inline-block;
-	margin: 0 1%;
-	margin-bottom: 1%;
-	padding: 12% 0;
-	width: 18%;
 }
 
 /*---------------------------------------------------------------*/
@@ -223,6 +257,7 @@ th {
 	50% {top:-18vh;left:2vw;opacity:0.05;}
 	100% {top:-22vh;left:4vw;opacity:0.05;}
 }
+
 .wrapperAnimation {
 	position:absolute;
 	z-index:-1;
@@ -231,6 +266,7 @@ th {
 	width:100vw;
 	overflow:hidden;
 }
+
 .goodVibration {
 	position:absolute;
 	top:-20vh;
@@ -244,6 +280,7 @@ th {
 	animation-iteration-count: infinite;
 	z-index:-1;
 }
+
 .redText{
 	color:red;
 	
