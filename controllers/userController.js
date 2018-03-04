@@ -39,7 +39,8 @@ router.route("/login")
     });
 
 router.route("/exists")
-    .get(function(req,res){
+    .post(function(req, res){
+        console.log("req.body", req.body);
           let data = {
             name: req.body.userdata,
             email: req.body.userdata
@@ -47,15 +48,15 @@ router.route("/exists")
             console.log(`this is req.body`, req.body)
             console.log("this is the request data",data)
         users.findEither(data, function(result){
-            console.log(result);
             
             if(result.length > 0){
                     res.send({
                         status: "User found",
-                        name: result.user_name,
-                        email: result.user_email,
+                        name: result[0].user_name,
+                        email: result[0].user_email,
                     });
                 } else {
+                    console.log(JSON.stringify(result));
                     res.send({
                         status: "User not found",
                      });
@@ -84,7 +85,7 @@ router.route("/")
 router.route("/register")
     .post(function(req, res) {
 
-        console.log("req.body", req.body)
+        console.log("req.body", req.body);
           let data = {
             name: req.body.name,
             password: req.body.password,
