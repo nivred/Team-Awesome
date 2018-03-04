@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 // import data from "./data.json";
-import {Route, Redirect} from 'react-router';
+import { Route, Redirect } from 'react-router';
 import API from "../utils/API";
 
 class Login extends Component {
@@ -17,15 +17,16 @@ class Login extends Component {
 
   
   componentDidMount(){
+    // User Persistence >>> This could possibly be simplified if all instances of state name is pulled from the parent component's state name
     if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
       let getValue = window.sessionStorage.getItem("SignIn"); 
       this.setState({
         name:JSON.parse(getValue).userName
       });
     }
-    // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
   }
 
+  // handle changes for onchange events
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -33,11 +34,13 @@ class Login extends Component {
     });
   };
   
-  handlePassName = (nameValue) => {
-    //   console.log(nameValue);
+  // Passing information back to parent component
+  handlePassName = nameValue => {
     this.props.onPassName(nameValue);
   };
 
+
+  // Check if Login has information in the input fields and checks if the email and passwords are correct
   handleLoginSubmit = event => {
     event.preventDefault();
     if(this.state.email && this.state.password) {
@@ -67,6 +70,7 @@ class Login extends Component {
     }
   };
 
+  // Handles registration form
   handleRegisterSubmit = event => {
     event.preventDefault();
     if(this.state.password !== this.state.pwd2) {
@@ -97,8 +101,11 @@ class Login extends Component {
     }
   };
 
+  // Checks if there are any changes to the username/email fields and if it matches anything in the database, effectively telling the user if the username/email is taken
   handleUsername = (userData,myStr) => {
+
     const activeElement = document.querySelector("#"+myStr+"OK")
+    
     if(document.querySelector("#"+myStr.toLowerCase()).value === ""){
       activeElement.classList.remove("glyphicon-remove");
       activeElement.classList.remove("checkUserChange");
@@ -108,6 +115,7 @@ class Login extends Component {
       activeElement.classList.add("checkUserChange");
       return;
     };
+    
     API.checkUser({ userdata: userData }).then(res => {
       if(res.data.status === "User not found") {
         activeElement.classList.add("glyphicon-ok")
@@ -120,9 +128,10 @@ class Login extends Component {
         activeElement.classList.remove("glyphicon-ok")
         activeElement.classList.remove("checkUserOK")
       }
-    })
+    }).catch(err => console.log(err));
   }
 
+  // Checks if both password entries match
   handlePwdConfirm = event => {
     const { name, value } = event.target;
     this.setState({
