@@ -16,6 +16,16 @@ class Game extends Component {
       isStarted:false,
       elapsed:"00"
     };
+
+    componentDidMount(){
+      if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+        let getValue = window.sessionStorage.getItem("SignIn"); 
+        this.setState({
+          name:JSON.parse(getValue).userName
+        });
+      }
+        // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
+      }
 //this will convert milliseconds to minutes and seconds
     millisToMinutesAndSeconds = (millis) => {
         var minutes = Math.floor(millis / 60000);
@@ -99,7 +109,7 @@ class Game extends Component {
             match:[],
             selected:[]
         });
-        // this.props.history.push("/Stats");
+        return this.props.history.push("/Stats");
         
     }
 

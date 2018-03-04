@@ -15,6 +15,16 @@ class Login extends Component {
     isAuthenticated:false
   };
 
+  
+  componentDidMount(){
+    if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+      let getValue = window.sessionStorage.getItem("SignIn"); 
+      this.setState({
+        name:JSON.parse(getValue).userName
+      });
+    }
+    // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -36,15 +46,12 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
-        console.log(res);
         if(res.data.status==="Success") {
-            // console.log("hello you are here");
-            // this.props.name =res.data.name;
-            // console.log(res.data.name);
+
             this.setState({name:res.data.name});
             window.sessionStorage.setItem("SignIn",JSON.stringify({userName:this.state.name,time:Date.now()}));
             this.handlePassName(this.state.name);
-            // console.log("this "+ this.props.name);
+
             return(
                 this.props.history.push("/game") 
             );
@@ -130,7 +137,7 @@ class Login extends Component {
 
     render() {
         return (
-
+            
         <div className="wrapper">
             
             <div id="landing" className="container-fluid text-center">

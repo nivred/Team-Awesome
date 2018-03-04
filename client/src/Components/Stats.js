@@ -12,6 +12,16 @@ class Stats extends Component {
     bestScore: 0
   };
 
+  componentDidMount(){
+    if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+      let getValue = window.sessionStorage.getItem("SignIn"); 
+      this.setState({
+        name:JSON.parse(getValue).userName
+      });
+    }
+    // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
+  }
+
   getStats = () => {
       API.allScores()
       .then(res => {
