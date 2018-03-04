@@ -11,7 +11,7 @@ export default {
     return axios.get("/api/user");
   },
   checkUser: function(dataObj) {
-    return axios.get("/api/user/exists", dataObj);
+    return axios.post("/api/user/exists", dataObj);
   },
   register: function(dataObj) {
     return axios.post("/api/user/register", dataObj);
