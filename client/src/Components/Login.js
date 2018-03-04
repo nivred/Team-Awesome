@@ -90,18 +90,28 @@ class Login extends Component {
     }
   };
 
-  handleUsername = () => {
-    console.log(`username: ${this.state.name}`)
-    API.checkUser({ userdata: this.state.name }).then(res => {
-      console.log(res.data.status);
-      if(res.data.status === "User found") {
-        alert("Can Use");
-        document.querySelector("#userNameOK").classList.add("glyphicon-ok")
-        document.querySelector("#userNameOK").classList.remove("glyphicon-remove")
+  handleUsername = (userData,myStr) => {
+    const activeElement = document.querySelector("#"+myStr+"OK")
+    if(document.querySelector("#"+myStr.toLowerCase()).value === ""){
+      activeElement.classList.remove("glyphicon-remove");
+      activeElement.classList.remove("checkUserChange");
+      activeElement.classList.remove("glyphicon-ok");
+      activeElement.classList.remove("checkUserOK");
+      activeElement.classList.add("glyphicon-remove");
+      activeElement.classList.add("checkUserChange");
+      return;
+    };
+    API.checkUser({ userdata: userData }).then(res => {
+      if(res.data.status === "User not found") {
+        activeElement.classList.add("glyphicon-ok")
+        activeElement.classList.add("checkUserOK")
+        activeElement.classList.remove("glyphicon-remove")
+        activeElement.classList.remove("checkUserChange")
       } else {
-        alert("Cannot Use");
-        document.querySelector("#userNameOK").classList.add("glyphicon-remove")
-        document.querySelector("#userNameOK").classList.remove("glyphicon-ok")
+        activeElement.classList.add("glyphicon-remove")
+        activeElement.classList.add("checkUserChange")
+        activeElement.classList.remove("glyphicon-ok")
+        activeElement.classList.remove("checkUserOK")
       }
     })
   }
@@ -118,20 +128,10 @@ class Login extends Component {
     pwd1 === pwd2 ? (document.querySelector("#valid").textContent = "") : (document.querySelector("#valid").textContent = "Confirm Password");
   };
 
-
-    
     render() {
         return (
 
         <div className="wrapper">
-
-
-            {/* <div className="wrapperAnimation">
-                <h1 className="goodVibration">
-                    <span>BR<span className="redText">AI</span>N</span><br />
-                    <span>DEAD</span>
-                </h1>
-            </div> */}
             
             <div id="landing" className="container-fluid text-center">
 
@@ -184,17 +184,28 @@ class Login extends Component {
                         <div className="modal-body">
                              <form onSubmit={this.handleRegisterSubmit}> 
                                 <div className="form-group">
-                                    <label for="username">Username <span id="userNameOK" class="glyphicon"></span>:</label>
-                                    <input style={{display : 'inline-block'}} type="text" className="form-control" id="username" name="name" 
+                                    <div className="col-md-6">
+                                        <label for="username">Username:</label>
+                                    </div>
+                                    <div className="col-md-6 text-right">
+                                        <span id="userNameOK" className="glyphicon"></span>
+                                    </div>
+                                    <input type="text" className="form-control" id="username" name="name" 
                                     value={this.state.name}
                                     onChange={this.handleInputChange}
-                                    onBlur={this.handleUsername} />
+                                    onBlur={() => this.handleUsername(this.state.name,"userName")} />
                                </div>
                                 <div className="form-group">
-                                    <label for="email">Email address:</label>
+                                    <div className="col-md-6">
+                                        <label for="email">Email address:</label>
+                                    </div>
+                                    <div className="col-md-6 text-right">
+                                        <span id="emailOK" className="glyphicon"></span>
+                                    </div>
                                     <input type="email" className="form-control" id="email" name="email"
                                     value={this.state.email}
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange}
+                                    onBlur={() => this.handleUsername(this.state.email,"email")} />
                                 </div>
                                 <div className="form-group">
                                     <label for="pwd">Password:</label>

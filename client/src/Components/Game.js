@@ -99,7 +99,7 @@ class Game extends Component {
             match:[],
             selected:[]
         });
-        this.props.history.push("/Stats");
+        // this.props.history.push("/Stats");
         
     }
 
