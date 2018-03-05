@@ -7,20 +7,41 @@ class Stats extends Component {
   
     state = {
     response: "",
+    name: this.props.name,
     stats: [],
     lastScore: 0,
     bestScore: 0
   };
 
-  componentDidMount(){
-    if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
-      let getValue = window.sessionStorage.getItem("SignIn"); 
-      this.setState({
-        name:JSON.parse(getValue).userName
-      });
-    }
-    // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
-  }
+  // componentDidMount(){
+  //   if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+  //     let getValue = window.sessionStorage.getItem("SignIn"); 
+  //     this.setState({
+  //       name:JSON.parse(getValue).userName
+  //     });
+  //   }
+  //   // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
+  // }
+
+
+componentDidMount = () => {
+    // if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+    //   let getValue = window.sessionStorage.getItem("SignIn"); 
+    //   this.setState({
+    //     name:JSON.parse(getValue).userName
+    //   });
+    // } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
+    //   return this.context.history.push("/");
+    // }
+    // else {
+      // window.addEventListener('load', this.getStats());
+        console.log("Hello, " + this.props.name + " from the Stats Component");
+        this.getStats();
+        this.getLast();
+        this.getBest();
+      // }
+};
+
 
   getStats = () => {
       API.allScores()
@@ -64,13 +85,6 @@ class Stats extends Component {
     }
   };
 
-
-componentDidMount = () => {
-    window.addEventListener('load', this.getStats());
-    console.log("Hello, " + this.props.name + " from the Stats Component");
-    this.getLast();
-    this.getBest();
-};
 
 
   render() {

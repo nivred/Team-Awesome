@@ -17,15 +17,18 @@ class Game extends Component {
       elapsed:"00"
     };
 
-    componentDidMount(){
+    componentDidMount = () => {
       if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
         let getValue = window.sessionStorage.getItem("SignIn"); 
         this.setState({
           name:JSON.parse(getValue).userName
         });
+      } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
+        return this.props.history.push("/");
+
       }
-        // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
-      }
+    };
+    
 //this will convert milliseconds to minutes and seconds
     millisToMinutesAndSeconds = (millis) => {
         var minutes = Math.floor(millis / 60000);
