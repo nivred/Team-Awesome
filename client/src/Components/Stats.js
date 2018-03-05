@@ -114,7 +114,7 @@ componentDidMount = () => {
                                 </thead>
                                 <tbody>
                                     {this.state.stats.map(stat => (
-                                        (this.props.name == stat.user_name) ?
+                                        (this.props.name === stat.user_name) ?
                                         <tr className="highlight"><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
                                          : <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
                                         
