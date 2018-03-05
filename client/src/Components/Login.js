@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 // import data from "./data.json";
-import { Route, Redirect } from 'react-router';
+// import { Route, Redirect } from 'react-router';
 import API from "../utils/API";
 
 class Login extends Component {
@@ -240,7 +240,7 @@ class Login extends Component {
                                 <div className="modal-footer">
                                     <div id="valid"></div>
                                     <button type="submit" className="btn btn-lg" data-dismiss="modal"
-                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password != this.state.pwd2}
+                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password !== this.state.pwd2}
                                     onChange={this.handlePwdConfirm} 
                                     onClick={this.handleRegisterSubmit}>Submit</button>
                                 </div>

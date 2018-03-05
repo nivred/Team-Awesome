@@ -3,16 +3,14 @@ import React, { Component } from 'react';
 import { 
   Switch, 
   Route, 
-  BrowserRouter as Router, 
-  Redirect,
-  withRouter 
+  BrowserRouter as Router 
 } from 'react-router-dom';
 
 import './App.css';
 import Nav from "./Components/Nav";
 import Login from "./Components/Login";
 import Game from "./Components/Game";
-import ClickItem from "./Components/ClickItem";
+// import ClickItem from "./Components/ClickItem";
 import Stats from "./Components/Stats";
 import API from "./utils/API"; 
 

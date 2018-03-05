@@ -70,13 +70,15 @@ class Game extends Component {
         switch (string) {
             case 'milliseconds':
                 return this.formatNumDisplay(Math.floor(time % 1000));
-                break;
+                // break;
             case 'seconds':
                 return this.formatNumDisplay(Math.floor((time / 1000) % 60));
-                break;
+                // break;
             case 'minutes':
                 return this.formatNumDisplay(Math.floor((time / 1000) / 60));
-                break;
+                // break;
+            default:
+            return this.formatNumDisplay(Math.floor((time / 1000) / 60));
         }
 
 
@@ -131,18 +133,19 @@ class Game extends Component {
             // if the first card is in select then compare the first and second cards
             if (this.state.selected.length===1){
                 //if the first and second cards are the same ignore
-                if((state.ShuffleDeck[position].position==state.ShuffleDeck[this.state.selected[0].position].position)){
+                if((state.ShuffleDeck[position].position===state.ShuffleDeck[this.state.selected[0].position].position)){
                     return;
                 //otherwise push second card to select
-                this.state.selected.push(state.ShuffleDeck[position]);
+                // this.state.selected.push(state.ShuffleDeck[position]);
                 } 
                 state.ShuffleDeck[position].flipped = true;
                 //checks to see if there is a match
                 if (state.ShuffleDeck[position].id===state.ShuffleDeck[this.state.selected[0].position].id){
                     
                     this.state.match.push(state.ShuffleDeck[position].id);
-                    this.state.selected =[];
-                    if (this.state.match.length==6) {
+                    setTimeout(()=> this.setState({selected: []}), 100);
+                    // this.state.selected =[];
+                    if (this.state.match.length===6) {
                         // alert("you won");
                         state.ShuffleDeck[position].flipped = true;
                         clearInterval(this.timer);
@@ -153,7 +156,8 @@ class Game extends Component {
                 setTimeout(() => {
                     state.ShuffleDeck[position].flipped = false;
                     state.ShuffleDeck[this.state.selected[0].position].flipped = false;
-                    this.state.selected =[];
+                    setTimeout(()=> this.setState({selected: []}), 100);
+                    // this.state.selected =[];
                 }, 300);
             }
             }else{
