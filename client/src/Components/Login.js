@@ -238,7 +238,7 @@ class Login extends Component {
                                 <div className="modal-footer">
                                     <div id="valid"></div>
                                     <button type="submit" className="btn btn-lg" data-dismiss="modal"
-                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2)}
+                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password != this.state.pwd2}
                                     onChange={this.handlePwdConfirm} 
                                     onClick={this.handleRegisterSubmit}>Submit</button>
                                 </div>

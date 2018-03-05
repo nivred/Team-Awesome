@@ -40,12 +40,6 @@ class Stats extends Component {
       .catch(err => console.log(err))
   };
 
-  // displayStats = () => {
-
-
-
-  // };
-
   getLast = () => {
     if(this.props.name) {
       API.lastScore({
