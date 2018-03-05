@@ -7,7 +7,7 @@ import API from "../utils/API";
 class Game extends Component {
   
     state = {
-      ShuffleDeck: ShuffleDeck(),
+      ShuffleDeck: ShuffleDeck(this.props.cards),
       name: this.props.name,
       score: 0,
       selected: [],
@@ -104,7 +104,7 @@ class Game extends Component {
         // this.addScoreSubmit();
         this.setState(
             {isStarted:false,
-            ShuffleDeck:ShuffleDeck(),
+            ShuffleDeck:ShuffleDeck(this.props.cards),
             start:0,
             match:[],
             selected:[]

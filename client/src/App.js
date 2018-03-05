@@ -24,28 +24,38 @@ class App extends Component {
     isAuthenticated: false,
     start:false,
     isStarted:false,
-    elapsed:"00"
+    elapsed:"00",
+    cards: []
   };
 
   onPassName = (nameValue) => {
     this.setState({name: nameValue});
     console.log("App says Hi to " + nameValue);
-    // this.setState({loggedIn:true})
-    // this.state.loggedIn ? <Redirect push to="/Game" /> : <Redirect to="/" />   
   };
 
-  // timerStart = event => {
-  //   event.preventDefault();
-    
-  //   if(!this.state.isStarted) {
-  //     this.setState({start:Date.now(), isStarted:true});
-    
-  //     this.timer = setInterval(this.tick,1);
-  //   }
-    
-  // }
+  getCards = () => {
+      API.getCards()
+      .then(res => {
+        console.log(res.data.result);
+        let deck = [];
+       for(let i = 0; i < res.data.result.length; i++) {
+            let card = {
+                id: res.data.result[i].card_id,
+                position: 0,
+                image: res.data.result[i].image_url,
+                flipped: false,
+                faceDown: "./assets/images/cardBack.jpg"
+            }
+            deck.push(card);
+         }
+        this.setState({cards:deck});
+      })
+      .catch(err => console.log(err))
+  };
 
-  // tick = () => this.setState({elapsed: Date.now() - this.state.start});
+  componentDidMount = () => {
+    this.getCards();
+  };
 
   render() {
     return (
@@ -54,7 +64,7 @@ class App extends Component {
           <Route path="/" component = {()=> <Nav {...this.state} />} />
           <Switch>
             <Route exact path="/" component = {(props)=> <Login {...props} onPassName={this.onPassName} />} />
-            <Route exact path="/Game" component = {(props)=> <Game {...props} timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} />} />
+            <Route exact path="/Game" component = {(props)=> <Game {...props} timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} cards={this.state.cards} />} />
             <Route exact path="/Stats" component= {()=> <Stats {...this.state} />} />
           </Switch>
         
