@@ -132,6 +132,11 @@ form input {
 	height: 100vh;
 }
 
+.highlight {
+	color: yellowgreen !important;
+	font-size: 1.6em !important;
+}
+
 .well {
 	background-color: transparent;
 	border-color: transparent;

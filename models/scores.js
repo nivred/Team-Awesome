@@ -26,9 +26,9 @@ const scores = {
 
   },
 
-//select all scores, order by score asc
+//select all distinct scores, order by score asc
   allScoresAsc: function(callback) {
-    orm.joinSortA("scores", "users", "scores.user_id", "users.user_id", "score", function(result) {
+    orm.distinctJoinSortA(["users.user_id", "users.user_name", "scores.score"], "scores", "users", "scores.user_id", "users.user_id", "score", function(result) {
       callback(result);
     });
 

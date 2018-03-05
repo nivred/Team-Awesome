@@ -40,6 +40,12 @@ class Stats extends Component {
       .catch(err => console.log(err))
   };
 
+  // displayStats = () => {
+
+
+
+  // };
+
   getLast = () => {
     if(this.props.name) {
       API.lastScore({
@@ -75,22 +81,22 @@ componentDidMount = () => {
 
   render() {
         return (
-            <div id="stats" class="wrapper">
-                <div class="container text-center">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 well">
-                            <div class="panel panel-default">
-                                <h3 class="panel-body-sm">Your time was: {this.state.lastScore}</h3>
+            <div id="stats" className="wrapper">
+                <div className="container text-center">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <div className="col-md-12 well">
+                            <div className="panel panel-default">
+                                <h3 className="panel-body-sm">Your last time was: {this.state.lastScore}</h3>
                             </div>
-                            <div class="panel panel-default">
-                                <h3 class="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
+                            <div className="panel panel-default">
+                                <h3 className="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
                             </div>
-                            <Link to="/Game"><div type="button" class="btn btn-sample btn-lg">PLAY AGAIN</div></Link>
+                            <Link to="/Game"><div type="button" className="btn btn-sample btn-lg">PLAY AGAIN</div></Link>
                         </div>
-                        <div id="highScores" class="col-md-12">	
+                        <div id="highScores" className="col-md-12">	
                             <h2>HIGH SCORES</h2>
-                            <table class="table" border="0" cellspacing="0" cellpadding="0">
+                            <table className="table" border="0" cellspacing="0" cellpadding="0">
                                 <thead>
                                     <tr>
                                         <th>RANK</th>
@@ -100,13 +106,16 @@ componentDidMount = () => {
                                 </thead>
                                 <tbody>
                                     {this.state.stats.map(stat => (
-                                        <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                        (this.props.name == stat.user_name) ?
+                                        <tr className="highlight"><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                         : <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                        
                                         ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-3"></div>
+                    <div className="col-md-3"></div>
                 </div>
             </div>
         )
