@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-console.log("hello from API");
 export default {
 
   login: function(dataObj) {

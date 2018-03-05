@@ -10,8 +10,6 @@ const game = {
 
   },
 
-
-
 //select all cards by theme
   cardsByTheme: function(cardtheme, callback) {
     orm.joinSelect("themes", "cards", "themes.theme_id", "cards.theme_id", {"themes.descr": cardtheme}, function(result) {
@@ -19,7 +17,6 @@ const game = {
     });
 
   },
-
 
 // insert card
   createCard: function(cardData, callback){
@@ -55,7 +52,6 @@ const game = {
     });
   },
 
-
 //select themes by author
   themesByAuthor: function(username, callback) {
     orm.joinSelect("themes", "users", "themes.author", "users.user_id", {"users.user_name": username}, function(result) {
@@ -63,7 +59,6 @@ const game = {
     });
 
   },
-
 
 //search themes by description
   themeSearch: function(searchstring, callback) {
@@ -73,7 +68,6 @@ const game = {
     });
 
   },
-
 
 //select all themes
   allThemes: function(callback) {
@@ -98,7 +92,6 @@ const game = {
     });
 
   }
-
 
 };
 

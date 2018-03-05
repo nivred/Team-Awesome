@@ -1,8 +1,6 @@
 // Import MySQL connection.
 const connection = require("../config/connection.js");
 
-console.log("orm here");
-
 //object containing functions for SQL queries
 const orm = {
   select: function(table, condition, callback){
@@ -164,6 +162,17 @@ const orm = {
   joinSortD: function(table1, table2, col1, col2, sortfield, callback){
     let querystring = "SELECT * FROM ??, ?? WHERE ?? = ?? ORDER BY ?? DESC";
     let parms = [table1, table2, col1, col2, sortfield];
+
+    connection.query(querystring, parms, function(err, result){
+      if(err) throw err;
+
+      callback(result);
+    })
+  },
+
+  distinctJoinSortD: function(fields, table1, table2, col1, col2, sortfield, callback){
+    let querystring = "SELECT DISTINCT ?? FROM ??, ?? WHERE ?? = ?? ORDER BY ?? DESC";
+    let parms = [fields, table1, table2, col1, col2, sortfield];
 
     connection.query(querystring, parms, function(err, result){
       if(err) throw err;
