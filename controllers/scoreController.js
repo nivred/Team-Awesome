@@ -114,6 +114,35 @@ router.route("/best")
         }
     });
 });
+
+router.route("/count")
+.post(function(req, res) {
+
+    users.findByName(req.body.name, function(findresult){
+
+        if(!findresult[0]){
+
+            res.send({
+                status: "User not found"
+            });
+        } else { 
+
+         let userid = findresult[0].user_id;
+
+        scores.userGameCount(userid, function(result){
+            if(result === "Database Error"){
+                res.send({
+                    status: "Internal Database Error"
+                });
+            } else {
+                let str = JSON.stringify(result);
+                res.send({ result });
+            }
+        });
+
+        }
+    });
+});
   
 
 

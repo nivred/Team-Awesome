@@ -148,4 +148,45 @@ router.route("/password")
     
 });
 
+router.route("/name")
+    .post(function(req, res) {
+
+   
+        users.findByName(req.body.name, function(result){
+            if(result[0]){
+                res.send({
+                    status: "Name found",
+                    name: result[0].user_name,
+                    email: result[0].user_email,
+                });
+            } else {
+                res.send({
+                    status: "Name not found",
+                });
+            }
+        });
+    
+});
+
+    router.route("/email")
+    .post(function(req, res) {
+
+   
+        users.findByEmail(req.body.email, function(result){
+            if(result[0]){
+                res.send({
+                    status: "Email found",
+                    name: result[0].user_name,
+                    email: result[0].user_email,
+                });
+            } else {
+                res.send({
+                    status: "Email not found",
+                });
+            }
+        });
+    
+});
+
+
 module.exports = router;

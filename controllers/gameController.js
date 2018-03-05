@@ -6,9 +6,6 @@ const router = express.Router();
 // Import game model to access its functions
 const game = require("../models/game");
 
-console.log("hello from gameController");
-
-
 router.route("/")
     .get(function(req, res) {
 

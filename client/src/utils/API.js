@@ -11,6 +11,12 @@ export default {
   checkUser: function(dataObj) {
     return axios.post("/api/user/exists", dataObj);
   },
+  nameSearch: function(dataObj) {
+    return axios.post("/api/user/name", dataObj);
+  },
+  emailSearch: function(dataObj) {
+    return axios.post("/api/user/email", dataObj);
+  },
   register: function(dataObj) {
     return axios.post("/api/user/register", dataObj);
   },
@@ -31,5 +37,8 @@ export default {
   },
   bestScore: function(dataObj) {
     return axios.post("/api/score/best", dataObj);
+  },
+  numGames: function(dataObj) {
+    return axios.post("/api/score/count", dataObj);
   }
 };
