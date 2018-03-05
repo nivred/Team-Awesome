@@ -1,10 +1,9 @@
 const path = require("path");
 const express = require("express");
-// const fs = require('fs');
 
 const router = express.Router();
 
-// Import user model to access its functions
+// Import game model to access its functions
 const game = require("../models/game");
 
 console.log("hello from gameController");

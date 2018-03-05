@@ -8,6 +8,7 @@ class Login extends Component {
     
   state = {
     response: "",
+    userdata: "",
     name: "",
     email: "",
     password: "",
@@ -43,15 +44,16 @@ class Login extends Component {
   // Check if Login has information in the input fields and checks if the email and passwords are correct
   handleLoginSubmit = event => {
     event.preventDefault();
-    if(this.state.email && this.state.password) {
+    if(this.state.userdata && this.state.password) {
       API.login({
-        email: this.state.email,
+        userdata: this.state.userdata,
         password: this.state.password
       })
       .then(res => {
         if(res.data.status==="Success") {
 
             this.setState({name:res.data.name});
+            this.setState({email:res.data.email});
             window.sessionStorage.setItem("SignIn",JSON.stringify({userName:this.state.name,time:Date.now()}));
             this.handlePassName(this.state.name);
 
@@ -159,9 +161,9 @@ class Login extends Component {
                             <div className="panel-body">
                                 <form onSubmit={this.handleLoginSubmit}> 
                                    <div className="form-group text-left">
-                                        <label for="email">E-Mail</label>
-                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="email"
-                                        value={this.state.email}
+                                        <label for="email">Username / E-Mail</label>
+                                        <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="userdata"
+                                        value={this.state.userdata}
                                         onChange={this.handleInputChange} />
                                     </div>
                                     <div className="form-group text-left">
@@ -172,7 +174,7 @@ class Login extends Component {
                                     </div>
                                     <div className="col-sm-6 col-md-6 text-center">
                                         <button type="submit" className="btn btn-lg"
-                                        disabled={!(this.state.email && this.state.password)}
+                                        disabled={!(this.state.userdata && this.state.password)}
                                         onClick={this.handleLoginSubmit}>Sign In</button>
                                     </div>
                                     <div className="col-sm-6 col-md-6 text-center">

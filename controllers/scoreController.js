@@ -1,15 +1,11 @@
 const path = require("path");
 const express = require("express");
-// const fs = require('fs');
 
 const router = express.Router();
 
-// Import user model to access its functions
+// Import user & score models to access functions
 const scores = require("../models/scores");
 const users = require("../models/users");
-
-console.log("hello from scoreController");
-
 
 router.route("/")
     .get(function(req, res) {
@@ -22,7 +18,6 @@ router.route("/")
             } else {
                 let str = JSON.stringify(result)
                 res.send({ result });
-                console.log(str);
             }
         });
     });
@@ -30,7 +25,6 @@ router.route("/")
 router.route("/add")
     .post(function(req, res) {
 
-        console.log("req.body", req.body)
           let data = {
             user_id: "",
             score: req.body.score,
@@ -38,7 +32,6 @@ router.route("/add")
             }
 
         users.findByName(req.body.name, function(findresult){
-            console.log(findresult);
 
             if(!findresult[0]){
 
@@ -57,8 +50,7 @@ router.route("/add")
                 } else {
                     let str = JSON.stringify(result);
                     res.send({ result });
-                    console.log(str);
-                }
+               }
             });
 
             }
@@ -68,10 +60,7 @@ router.route("/add")
  router.route("/last")
 .post(function(req, res) {
 
-    // console.log(JSON.stringify(req.body.name));
-
     users.findByName(req.body.name, function(findresult){
-        console.log(findresult);
 
         if(!findresult[0]){
 
@@ -90,7 +79,6 @@ router.route("/add")
             } else {
                 let str = JSON.stringify(result);
                 res.send({ result });
-                console.log(str);
             }
         });
 
@@ -101,10 +89,7 @@ router.route("/add")
 router.route("/best")
 .post(function(req, res) {
 
-   // console.log(JSON.stringify(req.body.name));
-
     users.findByName(req.body.name, function(findresult){
-        console.log(findresult);
 
         if(!findresult[0]){
 
@@ -123,7 +108,6 @@ router.route("/best")
             } else {
                 let str = JSON.stringify(result);
                 res.send({ result });
-                console.log(str);
             }
         });
 
