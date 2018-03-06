@@ -1,34 +1,8 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-export default class Timer extends Component {  // ******Note you cannot export more than one defaults form a single file
-    state = {
-        elapsed: "00"
-    }
-
-    timer = null;
-    start = null;
-
-    
-
-    
-
-    // Start = event => {
-    //     event.preventDefault();
-    //     this.setState({start:Date.now()});
-    //     this.timer = setInterval(this.tick,1);
-    // }
-    
-    //-----------------------------------------------------------------------------------------------
-    // Description: Preparing the startTimer Event for card onClick which will encompass the 
-    //     necessary actions 
-    // handleStartTimerEvent = event => {
-    //     event.preventDefault();
-    //     this.setState({start:Date.now()});
-    //     this.timer = setInterval(this.tick,1);
-    // }
-    //-----------------------------------------------------------------------------------------------
+export default class Logout extends Component {  
 
     render() {
         return (
@@ -49,3 +23,25 @@ export default class Timer extends Component {  // ******Note you cannot export 
         )
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div className="col-md-4" id="myNavbar">
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><Link to="/Stats"><span className="glyphicon glyphicon-stats"></span> Stats</Link></li>
+                        <li><Link to="/"><span className="glyphicon glyphicon-log-out"></span> Sign out</Link></li>
+                    </ul>               
+                </div>
