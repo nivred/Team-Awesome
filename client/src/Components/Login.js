@@ -3,6 +3,7 @@ import '../App.css';
 // import data from "./data.json";
 // import { Route, Redirect } from 'react-router';
 import API from "../utils/API";
+const bcrypt = require("bcryptjs");
 
 class Login extends Component {
     
@@ -50,6 +51,7 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
+
         if(res.data.status==="Success") {
 
             this.setState({name:res.data.name});
@@ -86,18 +88,19 @@ class Login extends Component {
       return;
     }
     if(this.state.name && this.state.email && this.state.password) {
+      alert("hey you got through the gates of registration");
+      const saltRounds = 10;
+      let salt = bcrypt.genSaltSync(saltRounds);
+      let hash = bcrypt.hashSync(this.state.password, salt);
       API.register({
         name: this.state.name,
         email: this.state.email,
-        password: this.state.password
+        password: hash
       })
       .then(res => {
-        // console.log(res);
-        
+        console.log(res);
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
-
-        
       })
       .catch(err => console.log(err))
     }
