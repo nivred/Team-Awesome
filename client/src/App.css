@@ -4,7 +4,7 @@ body {
 }
 
 .wrapper {
-	letter-spacing: 2px;
+	letter-spacing: 3px;
 }
 
 .checkUserChange {
@@ -146,10 +146,11 @@ form input {
 }
 
 .well h3 {
-	color: yellow;
+	color: olive;
 	font-size: 1.1em;
 	margin-bottom: 13px;
 	margin-top: 13px;
+	/* text-shadow: 2px 2px 1px yellow; */
 }
 
 .well a {
