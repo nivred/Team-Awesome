@@ -1,31 +1,38 @@
  import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { matchPath } from 'react-router';
 import '../App.css';
 
-export default class Logout extends Component {  
+class Logout extends Component {  
 
-    render() {
+state = {
+
+   pathname: this.props.pathname 
+}
+
+
+    render() {   
+       
         return (
-            <div>
-                <div id="controller" className="col-md-4 text-center">
-                    {/* <a href="#" type="button" className="btn btn-success" onClick={this.Start}><span className="glyphicon glyphicon-play-circle "></span></a> */}
-                    <span id="timer"><span id="minutes">00</span>:<span id="seconds">00</span></span>
-                    {/* <a href="#" className="btn btn-danger dropdown-toggle" data-toggle="dropdown"><span className="glyphicon glyphicon-cog"></span></a>
-                    <ul className="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <li role="presentation" className="dropdown-header">Display Time</li>
-                        <li role="presentation"><a role="menuitem" tabIndex="-1" href="#">1 sec</a></li>
-                        <li role="presentation"><a role="menuitem" tabIndex="-1" href="#">2 sec</a></li>
-                        <li role="presentation"><a role="menuitem" tabIndex="-1" href="#">3 sec</a></li>
-                        <li role="presentation"><a role="menuitem" tabIndex="-1" href="#">4 sec</a></li>    
-                    </ul> */}
+        <div className="wrapper">
+                <div className="container-fluid">
+                <div className="col-md-12" id="myNavbar">
+                    <ul className="nav navbar-nav navbar-right">
+                        { (this.state.pathname == "Game") ?
+                        <li><Link to="/Stats"><span className="glyphicon glyphicon-stats"></span> Stats</Link></li>
+                          : <li><Link to="/Game"><span className="glyphicon glyphicon-stats"></span> Game</Link></li> }
+                        <li><Link to="/"><span className="glyphicon glyphicon-log-out"></span> Sign out</Link></li> 
+                    </ul>               
                 </div>
-            </div>
+                </div>
+         </div>
         )
     }
 }
 
 
 
+export default Logout;
 
 
 
@@ -36,12 +43,3 @@ export default class Logout extends Component {
 
 
 
-
-
-
-                <div className="col-md-4" id="myNavbar">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><Link to="/Stats"><span className="glyphicon glyphicon-stats"></span> Stats</Link></li>
-                        <li><Link to="/"><span className="glyphicon glyphicon-log-out"></span> Sign out</Link></li>
-                    </ul>               
-                </div>
