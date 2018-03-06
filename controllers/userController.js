@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 
 // Import user model to access its functions
 const users = require("../models/users");
@@ -19,7 +20,9 @@ router.route("/login")
         users.findEither(data, function(result){
             if(result.length > 0){
                 for(let i = 0; i < result.length; i++) {
-                    if(req.body.password === result[i].user_password){
+                    let pwComp = bcrypt.compareSync(req.body.password, result[i].user_password);
+                    // res == true
+                    if(res){
                         found = true;
                         res.send({
                             status: "Success",
@@ -28,6 +31,7 @@ router.route("/login")
                             url: '/game'
                         });
                     }
+                    
                 }
                 if(!found) {
                     res.send({
