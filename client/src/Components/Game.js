@@ -141,7 +141,7 @@ class Game extends Component {
                 state.ShuffleDeck[position].flipped = true;
                 //checks to see if there is a match
                 if (state.ShuffleDeck[position].id===state.ShuffleDeck[this.state.selected[0].position].id){
-                    
+                    state.ShuffleDeck[position].flipped = true;
                     this.state.match.push(state.ShuffleDeck[position].id);
                     setTimeout(()=> this.setState({selected: []}), 100);
                     // this.state.selected =[];
