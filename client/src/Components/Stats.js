@@ -95,10 +95,10 @@ componentDidMount = () => {
                     <div className="col-md-6">
                         <div className="col-md-12 well">
                             <div className="panel panel-default">
-                                <h3 className="panel-body-sm">Your last time was: {this.state.lastScore}</h3>
+                                <h3 className="panel-body-sm">Your last time was <span id="blink_me">{this.state.lastScore}</span></h3>
                             </div>
                             <div className="panel panel-default">
-                                <h3 className="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
+                                <h3 className="panel-body-sm">Your best time is {this.state.bestScore}</h3>
                             </div>
                             <Link to="/Game"><div type="button" className="btn btn-sample btn-lg">PLAY AGAIN</div></Link>
                         </div>

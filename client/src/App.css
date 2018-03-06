@@ -153,6 +153,16 @@ form input {
 	/* text-shadow: 2px 2px 1px yellow; */
 }
 
+#blink_me {
+	animation: blinker 1s linear infinite;
+	color: #BE1313;
+  }
+  
+  @keyframes blinker {  
+	50% { opacity: 0; }
+  }
+
+
 .well a {
 	margin-top: 20px;
 }
