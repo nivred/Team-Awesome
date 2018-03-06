@@ -27,7 +27,7 @@ CREATE TABLE scores
 (
 	score_id INT NOT NULL AUTO_INCREMENT,
     user_id INT,
-	score TIME DEFAULT 0,
+	score TIME DEFAULT '99:59:59',
     date_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     theme_id INT DEFAULT 1,
     flip_speed INT DEFAULT 0,
