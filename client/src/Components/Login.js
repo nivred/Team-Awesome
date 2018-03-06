@@ -164,13 +164,13 @@ class Login extends Component {
                             <div className="panel-body">
                                 <form onSubmit={this.handleLoginSubmit}> 
                                    <div className="form-group text-left">
-                                        <label for="email">Username / E-Mail</label>
+                                        <label htmlFor="email">Username / E-Mail</label>
                                         <input type="text" className="form-control" id="username-email" placeholder="contact@example.com" name="userdata"
                                         value={this.state.userdata}
                                         onChange={this.handleInputChange} />
                                     </div>
                                     <div className="form-group text-left">
-                                        <label for="pwd">Password</label>
+                                        <label htmlFor="pwd">Password</label>
                                         <input type="password" className="form-control" id="password" placeholder="Password" name="password"
                                      value={this.state.password}
                                     onChange={this.handleInputChange} />
@@ -206,7 +206,7 @@ class Login extends Component {
                              <form onSubmit={this.handleRegisterSubmit}> 
                                 <div className="form-group">
                                     <div className="col-md-6">
-                                        <label for="username">Username:</label>
+                                        <label htmlFor="username">Username:</label>
                                     </div>
                                     <div className="col-md-6 text-right">
                                         <span id="userNameOK" className="glyphicon"></span>
@@ -218,7 +218,7 @@ class Login extends Component {
                                </div>
                                 <div className="form-group">
                                     <div className="col-md-6">
-                                        <label for="email">Email address:</label>
+                                        <label htmlFor="email">Email address:</label>
                                     </div>
                                     <div className="col-md-6 text-right">
                                         <span id="emailOK" className="glyphicon"></span>
@@ -229,13 +229,13 @@ class Login extends Component {
                                     onBlur={() => this.handleUsername(this.state.email,"email")} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="pwd">Password:</label>
+                                    <label htmlFor="pwd">Password:</label>
                                     <input type="password" className="form-control" id="pwd1" name="password" 
                                     value={this.state.password}
                                     onChange={this.handlePwdConfirm} />
                                 </div>
                                 <div className="form-group">
-                                    <label for="pwd">Confirm Password:</label>
+                                    <label htmlFor="pwd">Confirm Password:</label>
                                     <input type="password" className="form-control" id="pwd2" name="pwd2" 
                                     value={this.state.pwd2} 
                                     onChange={this.handlePwdConfirm} />
