@@ -1,7 +1,7 @@
 
 USE memory_db;
 
-INSERT INTO users (user_name, user_password, user_email) VALUES ('admin', 'nimda', 'admin@admin');
+INSERT INTO users (user_name, user_password, user_email) VALUES ('admin', '$2a$10$XLHO67SuWjNMZge12ASPLe6bp7cbNzmeDihwXrTGOCFfV6uCRtfSW', 'admin@admin');
 
 INSERT INTO themes (descr, author, game_level) VALUES ('Zombies', 1, 'normal');
 
