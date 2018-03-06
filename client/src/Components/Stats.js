@@ -104,7 +104,7 @@ componentDidMount = () => {
                         </div>
                         <div id="highScores" className="col-md-12">	
                             <h2>HIGH SCORES</h2>
-                            <table className="table" border="0" cellspacing="0" cellpadding="0">
+                            <table className="table" border="0" cellSpacing="0" cellPadding="0">
                                 <thead>
                                     <tr>
                                         <th>RANK</th>
