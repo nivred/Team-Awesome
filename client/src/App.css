@@ -4,7 +4,7 @@ body {
 }
 
 .wrapper {
-	letter-spacing: 2px;
+	letter-spacing: 3px;
 }
 
 .checkUserChange {
@@ -125,16 +125,15 @@ form input {
 	-o-background-size: cover;
 	background-position-y: -120px;
 	background-color: black;
-	color: #be1313;
+	color: yellowgreen;
 	font-family: 'Creepster', cursive;
-	font-size: 1.5em;
+	font-size: 2.5em;
 	font-weight: 600;
 	height: 100vh;
 }
 
 .highlight {
-	color: yellowgreen !important;
-	font-size: 1.6em !important;
+	color: yellow !important;
 }
 
 .well {
@@ -147,8 +146,11 @@ form input {
 }
 
 .well h3 {
+	color: olive;
+	font-size: 1.1em;
 	margin-bottom: 13px;
 	margin-top: 13px;
+	/* text-shadow: 2px 2px 1px yellow; */
 }
 
 .well a {
@@ -209,7 +211,13 @@ fieldset[disabled] .btn-sample.active {
 
 #highScores {
 	background-color: rgba(0, 0, 0, 0.35);
-	text-shadow: 1px 1px 1px black;
+	text-shadow: 2px 2px 1px #BE1313;
+}
+
+#highScores h2, th {
+	color: #BE1313; 
+	font-size: 1.2em;
+	text-shadow: 2px 2px 1px yellow;
 }
 
 .table {
