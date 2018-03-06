@@ -88,7 +88,6 @@ class Login extends Component {
       return;
     }
     if(this.state.name && this.state.email && this.state.password) {
-      alert("hey you got through the gates of registration");
       const saltRounds = 10;
       let salt = bcrypt.genSaltSync(saltRounds);
       let hash = bcrypt.hashSync(this.state.password, salt);

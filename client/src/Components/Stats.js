@@ -35,7 +35,7 @@ componentDidMount = () => {
     // }
     // else {
       // window.addEventListener('load', this.getStats());
-        console.log("Hello, " + this.props.name + " from the Stats Component");
+        // console.log("Hello, " + this.props.name + " from the Stats Component");
         this.getStats();
         this.getLast();
         this.getBest();
