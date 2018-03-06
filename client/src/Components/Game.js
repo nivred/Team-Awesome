@@ -50,7 +50,7 @@ class Game extends Component {
             theme: 1
           })
           .then(res => {
-            console.log("added score");          
+                      
           })
           .catch(err => console.log(err))
         };

@@ -34,7 +34,6 @@ class App extends Component {
   getCards = () => {
       API.getCards()
       .then(res => {
-        console.log(res.data.result);
         let deck = [];
        for(let i = 0; i < res.data.result.length; i++) {
             let card = {
