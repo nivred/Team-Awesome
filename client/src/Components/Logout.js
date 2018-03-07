@@ -20,7 +20,7 @@ state = {
                     <ul className="nav navbar-nav navbar-right">
                         { (this.state.pathname == "Game") ?
                         <li><Link to="/Stats"><span className="glyphicon glyphicon-stats"></span> Stats</Link></li>
-                          : <li><Link to="/Game"><span className="glyphicon glyphicon-stats"></span> Game</Link></li> }
+                          : <li><Link to="/Game"><span className="glyphicon glyphicon-th"></span> Game</Link></li> }
                         <li><Link to="/"><span className="glyphicon glyphicon-log-out"></span> Sign out</Link></li> 
                     </ul>               
                 </div>
