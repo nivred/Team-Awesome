@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-export default class Timer extends Component {  // ******Note you cannot export more than one defaults form a single file
+export default class Timer extends Component {  
     state = {
         elapsed: "00"
     }
@@ -14,22 +14,7 @@ export default class Timer extends Component {  // ******Note you cannot export 
 
     
 
-    // Start = event => {
-    //     event.preventDefault();
-    //     this.setState({start:Date.now()});
-    //     this.timer = setInterval(this.tick,1);
-    // }
-    
-    //-----------------------------------------------------------------------------------------------
-    // Description: Preparing the startTimer Event for card onClick which will encompass the 
-    //     necessary actions 
-    // handleStartTimerEvent = event => {
-    //     event.preventDefault();
-    //     this.setState({start:Date.now()});
-    //     this.timer = setInterval(this.tick,1);
-    // }
-    //-----------------------------------------------------------------------------------------------
-
+ 
     render() {
         return (
             <div>

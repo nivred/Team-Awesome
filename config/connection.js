@@ -11,7 +11,7 @@ if(process.env.JAWSDB_URL){
   port: 3306,
 
   user: "root",
-
+  //use environment variables rather than actual password
   password: process.env.MYSQL_ROOT_PWD,
   database: "memory_db"
 });

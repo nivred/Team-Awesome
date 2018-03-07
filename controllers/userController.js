@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 // Import user model to access its functions
 const users = require("../models/users");
 
+//login route
 router.route("/login")
     .post(function(req,res){
 
@@ -16,13 +17,14 @@ router.route("/login")
             }
 
         let found = false;
- 
+    //find users where either name or email matches login input, then compare hashed password to authenticate user
         users.findEither(data, function(result){
             if(result.length > 0){
                 for(let i = 0; i < result.length; i++) {
+                    //compare hashed password
                     let pwComp = bcrypt.compareSync(req.body.password, result[i].user_password);
-                    // res == true
-                    if(res){
+                    //if password match, return success and user data
+                     if(res){
                         found = true;
                         res.send({
                             status: "Success",
@@ -33,12 +35,14 @@ router.route("/login")
                     }
                     
                 }
+                //if password not matched
                 if(!found) {
                     res.send({
                         status: "Incorrect password",
                         url:'/login'
                      });
                  }
+            //if user name or email not found
             } else {
                 res.send({
                     status: "User not found",
@@ -47,22 +51,23 @@ router.route("/login")
             }   
          });        
     });
-
+//check if user exists
 router.route("/exists")
     .post(function(req, res){
           let data = {
             name: req.body.userdata,
             email: req.body.userdata
             }
-
+        //find users where either name or email matches input
         users.findEither(data, function(result){
-            
+            //if match found, return user data
             if(result.length > 0){
                     res.send({
                         status: "User found",
                         name: result[0].user_name,
                         email: result[0].user_email,
                     });
+                //if user name or email not found
                 } else {
                     res.send({
                         status: "User not found",
@@ -71,7 +76,7 @@ router.route("/exists")
           });        
     });
 
-
+//select all users
 router.route("/")
     .get(function(req, res) {
 
@@ -87,7 +92,7 @@ router.route("/")
         });
     });
     
-
+//register route
 router.route("/register")
     .post(function(req, res) {
 
@@ -96,10 +101,10 @@ router.route("/register")
             password: req.body.password,
             email: req.body.email
             }
-     
+        //check if email or name matches existing user
         users.findEither(data, function(result){
             if(result.length > 0){
-
+                //if user found, do not register
                 res.send({
                     status: "User is already registered",
                     name: result[0].user_name,
@@ -107,7 +112,7 @@ router.route("/register")
                     url: '/login'
                 });
             } else {
-
+                //if user not found, add row to users table
                 users.createNew(data, function(result){
                     if(result === "Database Error"){
                         res.send({
@@ -125,7 +130,7 @@ router.route("/register")
             }
         });
 });
-
+//change password route
 router.route("/password")
     .post(function(req, res) {
 
@@ -133,7 +138,7 @@ router.route("/password")
             name: req.body.name,
             password: req.body.password
             }
-     
+        //update password in table for user
         users.changePassword(data, function(result){
             if(result[0].changedRows == 1){
 
@@ -151,7 +156,7 @@ router.route("/password")
         });
     
 });
-
+//find user by name
 router.route("/name")
     .post(function(req, res) {
 
@@ -171,24 +176,24 @@ router.route("/name")
         });
     
 });
+//find user by email
+router.route("/email")
+.post(function(req, res) {
 
-    router.route("/email")
-    .post(function(req, res) {
 
-   
-        users.findByEmail(req.body.email, function(result){
-            if(result[0]){
-                res.send({
-                    status: "Email found",
-                    name: result[0].user_name,
-                    email: result[0].user_email,
-                });
-            } else {
-                res.send({
-                    status: "Email not found",
-                });
-            }
-        });
+    users.findByEmail(req.body.email, function(result){
+        if(result[0]){
+            res.send({
+                status: "Email found",
+                name: result[0].user_name,
+                email: result[0].user_email,
+            });
+        } else {
+            res.send({
+                status: "Email not found",
+            });
+        }
+    });
     
 });
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import { Switch, Route, BrowserRouter as Router, Redirect, Link } from 'react-router-dom';
+
 import { Switch, Route,Link} from 'react-router-dom';
 import Timer from "./Timer";
 import Logout from "./Logout";
 import '../App.css';
-// import data from "./data.json";
+
 
 class Nav extends Component {
     

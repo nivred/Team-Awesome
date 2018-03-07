@@ -16,7 +16,7 @@ class Game extends Component {
       isStarted:false,
       elapsed:"00"
     };
-
+//get user name from session storage if not in state
 componentDidMount = () => {
     if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
         let getValue = window.sessionStorage.getItem("SignIn"); 
@@ -28,7 +28,7 @@ componentDidMount = () => {
       }
 };
     
-//this will convert milliseconds to minutes and seconds
+//this will convert milliseconds to hours, minutes and seconds
 millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     if(minutes > 59) {
@@ -96,7 +96,7 @@ tick = () => this.setState(()=>{
     document.querySelector("#seconds").textContent = this.formatTime(elapsed, "seconds")
     return {elapsed}
 });
-
+//when user matches all cards
 youWin = () => {
     this.setState(
         {isStarted:false,
@@ -107,9 +107,9 @@ youWin = () => {
     });
     return this.props.history.push("/Stats");
 }
-
+//card gameplay
 handleItemClick =  (id,position) => {
-//if you click on card that has already been match return to click another card
+//if you click on card that has already been matched return to click another card
     if (this.state.match.includes(this.state.ShuffleDeck[position].id)){
         return;
     } else {
