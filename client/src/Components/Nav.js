@@ -7,14 +7,6 @@ import '../App.css';
 // import data from "./data.json";
 
 class Nav extends Component {
-  
-    //  displayGreeting = () => {   
-    //     let playerName = this.props.name;
-    //     if(playerName != "") {
-    //       console.log("Nav says Hi to " + playerName);
-    //       return <h2>Hello {playerName} ! </h2>;
-    //     }
-    // };
     
 
     render() {   

@@ -13,33 +13,22 @@ class Stats extends Component {
     bestScore: 0
   };
 
-  // componentDidMount(){
-  //   if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
-  //     let getValue = window.sessionStorage.getItem("SignIn"); 
-  //     this.setState({
-  //       name:JSON.parse(getValue).userName
-  //     });
-  //   }
-  //   // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
-  // }
-
 
 componentDidMount = () => {
-    // if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
-    //   let getValue = window.sessionStorage.getItem("SignIn"); 
-    //   this.setState({
-    //     name:JSON.parse(getValue).userName
-    //   });
-    // } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
-    //   return this.context.history.push("/");
-    // }
-    // else {
-      // window.addEventListener('load', this.getStats());
-        // console.log("Hello, " + this.props.name + " from the Stats Component");
+    if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+      let getValue = window.sessionStorage.getItem("SignIn"); 
+      this.setState({
+        name:JSON.parse(getValue).userName
+      });
+    } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
+      return this.props.history.push("/");
+
+    }
+    if(this.state.name != "") {
         this.getStats();
         this.getLast();
         this.getBest();
-      // }
+      }
 };
 
 
