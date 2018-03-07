@@ -17,8 +17,7 @@ router.route("/")
             } else {
                 let str = JSON.stringify(result)
                 res.send({ result });
-                console.log(str);
-            }
+           }
         });
     });
     

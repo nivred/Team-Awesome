@@ -28,7 +28,6 @@ class App extends Component {
 
   onPassName = (nameValue) => {
     this.setState({name: nameValue});
-    console.log("App says Hi to " + nameValue);
   };
 
   getCards = () => {
