@@ -25,11 +25,11 @@ class App extends Component {
     elapsed:"00",
     cards: []
   };
-
+  //function to retrieve name from child component Login
   onPassName = (nameValue) => {
     this.setState({name: nameValue});
   };
-
+  //get cards from DB to pass to ShuffleDeck
   getCards = () => {
       API.getCards()
       .then(res => {

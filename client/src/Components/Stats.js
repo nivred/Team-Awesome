@@ -13,7 +13,7 @@ class Stats extends Component {
     bestScore: 0
   };
 
-
+//pull name from session storage if not in state
 componentDidMount = () => {
     if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
       let getValue = window.sessionStorage.getItem("SignIn"); 
@@ -31,7 +31,7 @@ componentDidMount = () => {
       }
 };
 
-
+  //get top ten scores for all users for rankings board
   getStats = () => {
       API.allScores()
       .then(res => {
@@ -49,7 +49,7 @@ componentDidMount = () => {
       })
       .catch(err => console.log(err))
   };
-
+  //get last score for user (most recent game played)
   getLast = () => {
     if(this.props.name) {
       API.lastScore({
@@ -61,7 +61,7 @@ componentDidMount = () => {
       .catch(err => console.log(err))
     }
   };
-
+  //get best score for user
   getBest = () => {
     if(this.props.name) {
       API.bestScore({

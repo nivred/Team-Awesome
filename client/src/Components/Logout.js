@@ -10,7 +10,7 @@ state = {
    pathname: this.props.pathname 
 }
 
-
+    //display links to other components based on which component is active
     render() {   
        
         return (
