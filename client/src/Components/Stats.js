@@ -24,7 +24,7 @@ componentDidMount = () => {
       return this.props.history.push("/");
 
     }
-    if(this.state.name != "") {
+    if(this.state.name !== "") {
         this.getStats();
         this.getLast();
         this.getBest();
@@ -35,7 +35,7 @@ componentDidMount = () => {
   getStats = () => {
       API.allScores()
       .then(res => {
-        console.log(res.data.result);
+        // console.log(res.data.result);
         let allStats = [];
        for(let i = 1, j = 0; i <= res.data.result.length && i <= 10; i++, j++) {
             let score = {
