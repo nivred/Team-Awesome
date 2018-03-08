@@ -157,8 +157,9 @@ render() {
             <div className="container-fluid text-center">    
                 <div id="main-content" className="row content">
                     <div className="col-xs-12 col-sm-12">
-                        {this.state.ShuffleDeck.map(item => (
+                        {this.state.ShuffleDeck.map((item, i) => (
                             <ClickItem
+                                key={i}
                                 timerStart={this.timerStart}
                                 id={item.id}
                                 handleClick={this.handleItemClick}

@@ -55,7 +55,6 @@ componentDidMount = () => {
       API.lastScore({
         name: this.props.name})
       .then(res => {
-        console.log(res.data.result);  
         this.setState({lastScore:res.data.result[0].score});
       })
       .catch(err => console.log(err))
@@ -67,7 +66,6 @@ componentDidMount = () => {
       API.bestScore({
         name: this.props.name})
       .then(res => {
-        console.log(res.data.result);
         this.setState({bestScore:res.data.result[0].score});
       })
       .catch(err => console.log(err))
@@ -102,10 +100,10 @@ componentDidMount = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.stats.map(stat => (
+                                    {this.state.stats.map((stat,i) => (
                                         (this.props.name === stat.user_name && this.state.bestScore === stat.score) ?
-                                        <tr className="highlight"><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
-                                         : <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                        <tr className="highlight" key={i}><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
+                                         : <tr key={i}><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
                                         
                                         ))}
                                 </tbody>

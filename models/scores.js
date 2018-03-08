@@ -49,7 +49,6 @@ const scores = {
       score: scoreData.score,
       theme_id: scoreData.theme_id
      }
-     console.log(scoreTableData);
 
     orm.insertRow('scores', scoreTableData, function(result){
       if(result === "Database Error"){
