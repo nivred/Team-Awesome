@@ -6,6 +6,7 @@ const router = express.Router();
 // Import game model to access its functions
 const game = require("../models/game");
 
+//return all cards in DB
 router.route("/")
     .get(function(req, res) {
 
@@ -17,8 +18,7 @@ router.route("/")
             } else {
                 let str = JSON.stringify(result)
                 res.send({ result });
-                console.log(str);
-            }
+           }
         });
     });
     

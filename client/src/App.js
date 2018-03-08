@@ -25,16 +25,14 @@ class App extends Component {
     elapsed:"00",
     cards: []
   };
-
+  //function to retrieve name from child component Login
   onPassName = (nameValue) => {
     this.setState({name: nameValue});
-    console.log("App says Hi to " + nameValue);
   };
-
+  //get cards from DB to pass to ShuffleDeck
   getCards = () => {
       API.getCards()
       .then(res => {
-        console.log(res.data.result);
         let deck = [];
        for(let i = 0; i < res.data.result.length; i++) {
             let card = {
@@ -63,7 +61,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component = {(props)=> <Login {...props} onPassName={this.onPassName} />} />
             <Route exact path="/Game" component = {(props)=> <Game {...props} timerStart={this.timerStart} name={this.state.name} elapsed={this.state.elapsed} cards={this.state.cards} />} />
-            <Route exact path="/Stats" component= {()=> <Stats {...this.state} />} />
+            <Route exact path="/Stats" component= {(props)=> <Stats  {...props} {...this.state} />} />
           </Switch>
         
       </div>

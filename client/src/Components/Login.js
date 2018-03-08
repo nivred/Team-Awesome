@@ -18,7 +18,7 @@ class Login extends Component {
   };
 
   
-  componentDidMount(){
+  componentDidMount = () => {
     // User Persistence >>> This could possibly be simplified if all instances of state name is pulled from the parent component's state name
     if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
       let getValue = window.sessionStorage.getItem("SignIn"); 
@@ -26,7 +26,7 @@ class Login extends Component {
         name:JSON.parse(getValue).userName
       });
     }
-  }
+  };
 
   // handle changes for onchange events
   handleInputChange = event => {
@@ -88,7 +88,6 @@ class Login extends Component {
       return;
     }
     if(this.state.name && this.state.email && this.state.password) {
-      alert("hey you got through the gates of registration");
       const saltRounds = 10;
       let salt = bcrypt.genSaltSync(saltRounds);
       let hash = bcrypt.hashSync(this.state.password, salt);

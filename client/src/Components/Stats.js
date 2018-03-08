@@ -13,40 +13,29 @@ class Stats extends Component {
     bestScore: 0
   };
 
-  // componentDidMount(){
-  //   if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
-  //     let getValue = window.sessionStorage.getItem("SignIn"); 
-  //     this.setState({
-  //       name:JSON.parse(getValue).userName
-  //     });
-  //   }
-  //   // window.sessionStorage.getItem("SignIn") === null ? "" : (this.state.name === "" ? this.setState({name:JSON.parse(window.sessionStorage.getItem("SignIn")).userName}) : "")  
-  // }
-
-
+//pull name from session storage if not in state
 componentDidMount = () => {
-    // if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
-    //   let getValue = window.sessionStorage.getItem("SignIn"); 
-    //   this.setState({
-    //     name:JSON.parse(getValue).userName
-    //   });
-    // } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
-    //   return this.context.history.push("/");
-    // }
-    // else {
-      // window.addEventListener('load', this.getStats());
-        console.log("Hello, " + this.props.name + " from the Stats Component");
+    if(window.sessionStorage.getItem("SignIn") !== null && this.state.name === "") {
+      let getValue = window.sessionStorage.getItem("SignIn"); 
+      this.setState({
+        name:JSON.parse(getValue).userName
+      });
+    } else if(window.sessionStorage.getItem("SignIn") == null && this.state.name === "") {
+      return this.props.history.push("/");
+
+    }
+    if(this.state.name !== "") {
         this.getStats();
         this.getLast();
         this.getBest();
-      // }
+      }
 };
 
-
+  //get top ten scores for all users for rankings board
   getStats = () => {
       API.allScores()
       .then(res => {
-        console.log(res.data.result);
+        // console.log(res.data.result);
         let allStats = [];
        for(let i = 1, j = 0; i <= res.data.result.length && i <= 10; i++, j++) {
             let score = {
@@ -60,7 +49,7 @@ componentDidMount = () => {
       })
       .catch(err => console.log(err))
   };
-
+  //get last score for user (most recent game played)
   getLast = () => {
     if(this.props.name) {
       API.lastScore({
@@ -72,7 +61,7 @@ componentDidMount = () => {
       .catch(err => console.log(err))
     }
   };
-
+  //get best score for user
   getBest = () => {
     if(this.props.name) {
       API.bestScore({
@@ -95,10 +84,10 @@ componentDidMount = () => {
                     <div className="col-md-6">
                         <div className="col-md-12 well">
                             <div className="panel panel-default">
-                                <h3 className="panel-body-sm">Your last time was: {this.state.lastScore}</h3>
+                                <h3 className="panel-body-sm">Your last time was <span id="blink_me">{this.state.lastScore}</span></h3>
                             </div>
                             <div className="panel panel-default">
-                                <h3 className="panel-body-sm">Your best time is: {this.state.bestScore}</h3>
+                                <h3 className="panel-body-sm">Your best time is {this.state.bestScore}</h3>
                             </div>
                             <Link to="/Game"><div type="button" className="btn btn-sample btn-lg">PLAY AGAIN</div></Link>
                         </div>
@@ -114,7 +103,7 @@ componentDidMount = () => {
                                 </thead>
                                 <tbody>
                                     {this.state.stats.map(stat => (
-                                        (this.props.name === stat.user_name) ?
+                                        (this.props.name === stat.user_name && this.state.bestScore === stat.score) ?
                                         <tr className="highlight"><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
                                          : <tr><td>{stat.rank}</td><td>{stat.user_name}</td><td>{stat.score}</td></tr>
                                         
