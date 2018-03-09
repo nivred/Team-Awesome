@@ -11,7 +11,7 @@ body {
 	color:red;
 }
 
-#valid {
+#valid, #validEmail {
 	font-size:0.75em;
 }
 
