@@ -5,6 +5,8 @@ import '../App.css';
 import API from "../utils/API";
 const bcrypt = require("bcryptjs");
 
+const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 class Login extends Component {
     
   state = {
@@ -14,7 +16,7 @@ class Login extends Component {
     email: "",
     password: "",
     pwd2: "",
-    isAuthenticated:false
+    validEmail:false
   };
 
   
@@ -77,6 +79,15 @@ class Login extends Component {
   // Handles registration form
   handleRegisterSubmit = event => {
     event.preventDefault();
+    // -----------------------------------------------------------------
+    
+    console.log(emailRegEx.test(this.state.email));
+    if (emailRegEx.test(this.state.email)) {
+      
+      this.setState({validEmail:emailRegEx.test(this.state.email)});
+
+    }
+    // -----------------------------------------------------------------
     if(this.state.password !== this.state.pwd2) {
       let notMatch = "Not a Match, Re-Enter Passwords"
       document.querySelector("#pwd1").placeholder = notMatch;
@@ -87,6 +98,8 @@ class Login extends Component {
       }, 1500)
       return;
     }
+    
+    
     if(this.state.name && this.state.email && this.state.password) {
       const saltRounds = 10;
       let salt = bcrypt.genSaltSync(saltRounds);
@@ -100,6 +113,7 @@ class Login extends Component {
         console.log(res);
         this.setState({name:res.data.name});
         this.handlePassName(this.state.name);
+        this.setState({validEmail:false});
       })
       .catch(err => console.log(err))
     }
@@ -120,6 +134,12 @@ class Login extends Component {
       return;
     };
     
+    if ( emailRegEx.test(this.state.email) === false && myStr.toLowerCase() === "email") {
+      document.querySelector("#valid").innerHTML = "Invalid form of Email<br>(ie. abc123@abc.edu)"
+    } else {
+      document.querySelector("#valid").innerHTML = ""
+    };
+
     API.checkUser({ userdata: userData }).then(res => {
       if(res.data.status === "User not found") {
         activeElement.classList.add("glyphicon-ok")
@@ -240,11 +260,13 @@ class Login extends Component {
                                     onChange={this.handlePwdConfirm} />
                               </div>
                                 <div className="modal-footer">
-                                    <div id="valid"></div>
-                                    <button type="submit" className="btn btn-lg" data-dismiss="modal"
-                                    disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password !== this.state.pwd2}
-                                    onChange={this.handlePwdConfirm} 
-                                    onClick={this.handleRegisterSubmit}>Submit</button>
+                                    <div className="col-md-6 text-left" id="valid"></div>
+                                    <div className="col-md-6">
+                                      <button type="submit" className="btn btn-lg" data-dismiss="modal"
+                                        disabled={(!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password !== this.state.pwd2) && this.state.validEmail}
+                                        onChange={this.handlePwdConfirm} 
+                                        onClick={this.handleRegisterSubmit}>Submit</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
