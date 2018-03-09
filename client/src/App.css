@@ -11,6 +11,10 @@ body {
 	color:red;
 }
 
+#valid {
+	font-size:0.75em;
+}
+
 .checkUserOK {
 	color:#adff2f;
 }
