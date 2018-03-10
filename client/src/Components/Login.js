@@ -5,7 +5,7 @@ import '../App.css';
 import API from "../utils/API";
 const bcrypt = require("bcryptjs");
 
-const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 class Login extends Component {
     
@@ -135,9 +135,11 @@ class Login extends Component {
     };
     
     if ( emailRegEx.test(this.state.email) === false && myStr.toLowerCase() === "email") {
-      document.querySelector("#valid").innerHTML = "Invalid form of Email<br>(ie. abc123@abc.edu)"
+      this.setState({validEmail:false});
+      document.querySelector("#validEmail").innerHTML = "Invalid form of Email<br />(ie. abc123@abc.edu)"
     } else {
-      document.querySelector("#valid").innerHTML = ""
+      this.setState({validEmail:true});
+      document.querySelector("#validEmail").innerHTML = ""
     };
 
     API.checkUser({ userdata: userData }).then(res => {
@@ -260,10 +262,13 @@ class Login extends Component {
                                     onChange={this.handlePwdConfirm} />
                               </div>
                                 <div className="modal-footer">
-                                    <div className="col-md-6 text-left" id="valid"></div>
+                                    <div className="col-md-6 text-left">
+                                      <span id="valid"></span><br />
+                                      <span id="validEmail"></span>
+                                    </div>
                                     <div className="col-md-6">
                                       <button type="submit" className="btn btn-lg" data-dismiss="modal"
-                                        disabled={(!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password !== this.state.pwd2) && this.state.validEmail}
+                                        disabled={!(this.state.name && this.state.email && this.state.password && this.state.pwd2) || this.state.password !== this.state.pwd2 || !(this.state.validEmail)}
                                         onChange={this.handlePwdConfirm} 
                                         onClick={this.handleRegisterSubmit}>Submit</button>
                                     </div>
